@@ -128,6 +128,7 @@ import { carregarLiga, ordenarPorData, el, marcarNavegacao } from "./assets/js/l
 import { montarFeedback } from "./assets/js/feedback.js";
 import { lerCodigo, lerCodigoDeArquivo, interpretarECard, formatosSuportados } from "./assets/js/scanner.js";
 import { carregarFiliados, idDoAtleta, estaRegular } from "./assets/js/atletas.js";
+import { carregarCores, acharAtletica, semAcento } from "./assets/js/cores.js";
 import { HASH_SENHA_REPRESENTANTE, CHAVE_SESSAO, CHAVE_REGISTROS, CHAVE_ELENCO } from "./assets/js/config.js";
 
 marcarNavegacao();
@@ -149,8 +150,8 @@ const recuperar = (chave, padrao) => { try { return JSON.parse(localStorage.getI
 let registros = recuperar(CHAVE_REGISTROS, []);
 let elenco = [];
 let filiados = null;
-let elencoDoJogo = null;
-const elencosPorModalidade = new Map();
+let equipesDoJogo = null;
+let cores = null;
 let fluxo = null;
 let lendo = false;
 let ultimoPayload = "";
@@ -209,19 +210,22 @@ async function abrirPainel() {
     filiados = null;
   }
   await avisarFormatos();
-  await atualizarElencoDoJogo();
+  cores = await carregarCores().catch(() => null);
+  await atualizarEquipesDoJogo();
   renderizarRegistros();
 }
 
-/* ---------- jogos e elenco ---------- */
+/* ---------- jogos e lista de inscritos ---------- */
+
+let todosOsJogos = [];
 
 async function montarSeletorDeJogos() {
   if (seletorJogo.options.length) return;
   const liga = await carregarLiga();
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
-  const jogos = ordenarPorData(liga.modalidades.flatMap((m) => m.jogos))
-    .filter((j) => !j.quando || j.quando >= hoje);
+  todosOsJogos = ordenarPorData(liga.modalidades.flatMap((m) => m.jogos));
+  const jogos = todosOsJogos.filter((j) => !j.quando || j.quando >= hoje);
   seletorJogo.append(el("option", { value: "", text: "Sem jogo vinculado" }),
     ...jogos.map((j) => el("option", {
       value: j.codigo,
@@ -290,74 +294,78 @@ async function avisarFormatos() {
       "barras, use o Chrome no Android ou peça o QR no aplicativo da USP.";
 }
 
-/* ---------- inscritos do jogo escolhido ---------- */
+/* ---------- quem pode jogar a partida escolhida ---------- */
 
-/** Lista cruzada entre a tabela dos jogos e a filiação (scripts/cruzar-elenco.py). */
-async function carregarElencoDaModalidade(modalidade) {
-  if (elencosPorModalidade.has(modalidade)) return elencosPorModalidade.get(modalidade);
-  let dados = null;
-  for (const caminho of [`data/elenco-${modalidade}.json`, `data/elenco-${modalidade}.exemplo.json`]) {
-    try {
-      const resposta = await fetch(caminho, { cache: "no-cache" });
-      if (!resposta.ok) continue;
-      dados = await resposta.json();
-      break;
-    } catch {
-      /* tenta o próximo caminho */
-    }
-  }
-  elencosPorModalidade.set(modalidade, dados);
-  return dados;
+/* A regra é a do regulamento: pelo Artigo 7 joga quem tem vínculo com a IES e
+   filiação regular, e pelo Artigo 8, § 1º a conferência do representante "tem um
+   caráter meramente de conferência de filiação". Modalidade e naipe declarados na
+   ficha são intenção de competir, não restrição — qualquer atleta filiado pode
+   jogar qualquer modalidade. Por isso o cruzamento é feito aqui, na hora, sobre a
+   própria filiação: pode jogar quem é filiado regular de uma das atléticas que
+   formam a equipe (uma equipe pode reunir até três, pelo Artigo 6, § 2º). */
+
+function atleticasDaEquipe(equipe) {
+  return (equipe || "").split("+")
+    .map((parte) => parte.trim())
+    .filter(Boolean)
+    .map((sigla) => acharAtletica(sigla, cores)?.sigla || sigla);
 }
 
-async function atualizarElencoDoJogo() {
+function regularesDa(equipe) {
+  if (!filiados) return [];
+  const siglas = new Set(atleticasDaEquipe(equipe).map(semAcento));
+  return filiados.atletas.filter((a) => siglas.has(semAcento(a.atletica)) && estaRegular(a));
+}
+
+async function atualizarEquipesDoJogo() {
   const status = document.getElementById("status-jogo");
   const codigo = seletorJogo.value;
-  elencoDoJogo = null;
+  equipesDoJogo = null;
 
   if (!codigo) {
-    status.textContent = "Sem jogo escolhido: a conferência vale para a liga inteira.";
+    status.textContent = "Sem jogo escolhido: a conferência diz apenas se a pessoa está filiada e regular.";
+    return;
+  }
+  if (!filiados) {
+    status.textContent = "Lista de filiados indisponível — a conferência fica limitada à lista importada.";
     return;
   }
 
-  const dados = await carregarElencoDaModalidade(codigo.split("-")[0]);
-  const jogo = dados?.jogos.find((j) => j.codigo === codigo);
-  if (!dados || !jogo) {
-    status.textContent = `Não há lista de inscritos cruzada para ${codigo} — ` +
-      "a conferência vale para a liga inteira.";
+  const jogo = todosOsJogos.find((j) => j.codigo === codigo);
+  if (!jogo) {
+    status.textContent = "";
     return;
   }
 
-  const porEquipe = [jogo.equipeA, jogo.equipeB].map((equipe) => ({
-    equipe,
-    atletas: dados.equipes[equipe] || [],
-  }));
-  const resumo = porEquipe.map((e) => `${e.equipe}: ${e.atletas.length}`).join(" · ");
-  const faltando = porEquipe.filter((e) => !e.atletas.length).map((e) => e.equipe);
+  equipesDoJogo = [jogo.equipeA, jogo.equipeB]
+    .filter(Boolean)
+    .map((equipe) => ({ equipe, atletas: regularesDa(equipe) }));
 
-  if (faltando.length) {
-    // Com uma das equipes sem lista, exigir inscrição barraria quem tem direito
-    // de jogar: a conferência volta a valer para a liga inteira.
-    status.textContent = `${resumo}. Sem inscritos de ${faltando.join(" e ")} — falta importar ` +
-      "a ficha de filiação dessa(s) atlética(s); até lá a conferência vale para a liga inteira.";
-    return;
-  }
-
-  elencoDoJogo = {
-    jogo,
-    atletas: porEquipe.flatMap((e) => e.atletas.map((a) => ({ ...a, equipe: e.equipe }))),
-  };
-  status.textContent = `${resumo} atletas inscritos neste jogo.`;
+  const resumo = equipesDoJogo.map((e) => `${e.equipe}: ${e.atletas.length}`).join(" · ");
+  const vazias = equipesDoJogo.filter((e) => !e.atletas.length).map((e) => e.equipe);
+  status.textContent = vazias.length
+    ? `${resumo} atletas regulares. Sem nenhum filiado de ${vazias.join(" e ")} — confira se a ` +
+      "filiação dessa(s) atlética(s) foi importada."
+    : `${resumo} atletas regulares e aptos a entrar em súmula nesta partida.`;
 }
 
-seletorJogo.addEventListener("change", atualizarElencoDoJogo);
+seletorJogo.addEventListener("change", atualizarEquipesDoJogo);
 
-/** Diz se o atleta está na lista daquele jogo — e por qual equipe. */
-function inscricaoNoJogo({ nusp, codigo }) {
-  if (!elencoDoJogo) return { verificavel: false };
-  const achado = elencoDoJogo.atletas.find((a) =>
-    (nusp && a.nusp === nusp) || (codigo && a.codigoEcard && a.codigoEcard === codigo));
-  return { verificavel: true, inscrito: Boolean(achado), atleta: achado };
+/** Diz se o atleta pode jogar a partida escolhida — e por qual equipe.
+
+   Boa parte dos filiados vem do planilhão e não tem número USP, então o filiado
+   já identificado (pela carteirinha, por exemplo) é comparado direto, e não só
+   pelo número. */
+function aptidaoNoJogo({ nusp, codigo, filiado }) {
+  if (!equipesDoJogo) return { verificavel: false };
+  for (const { equipe, atletas } of equipesDoJogo) {
+    const achado = atletas.find((a) =>
+      (filiado && a === filiado) ||
+      (nusp && a.nusp === nusp) ||
+      (codigo && a.codigoEcard && a.codigoEcard === codigo));
+    if (achado) return { verificavel: true, apto: true, atleta: achado, equipe };
+  }
+  return { verificavel: true, apto: false };
 }
 
 /* ---------- câmera ---------- */
@@ -458,26 +466,29 @@ function processar(payload, origem, formato = "") {
     situacao: estaRegular(naFiliacao) ? "inscrito" : naFiliacao.situacao,
   });
 
-  const inscricao = inscricaoNoJogo({ nusp: atleta?.nusp || nusp, codigo });
+  const aptidao = aptidaoNoJogo({ nusp: atleta?.nusp || nusp, codigo, filiado: naFiliacao });
   const situacaoBoa = atleta && /^(inscrito|apto|ok|aprovado|regular)$/i.test(atleta.situacao);
 
   let nivel = "alerta";
-  let titulo = "Não encontrado na lista";
+  let titulo = "Não encontrado na filiação";
   if (!codigo && !nusp) {
     nivel = "erro";
     titulo = "Código não reconhecido";
   } else if (atleta && !situacaoBoa) {
     nivel = "erro";
     titulo = `Impedido: ${atleta.situacao}`;
-  } else if (inscricao.verificavel && !inscricao.inscrito) {
-    nivel = "erro";
-    titulo = "Não inscrito nesta partida";
-  } else if (inscricao.verificavel && inscricao.inscrito) {
+  } else if (aptidao.verificavel && aptidao.apto) {
     nivel = "ok";
     titulo = "Liberado para jogar";
+  } else if (aptidao.verificavel && atleta) {
+    nivel = "erro";
+    titulo = "Não é de nenhuma das equipes deste jogo";
   } else if (situacaoBoa) {
     nivel = "ok";
     titulo = "Liberado para jogar";
+  } else if (aptidao.verificavel) {
+    nivel = "erro";
+    titulo = "Não é de nenhuma das equipes deste jogo";
   } else if (!elenco.length && !filiados) {
     titulo = "Leitura registrada (sem lista carregada)";
   }
@@ -491,9 +502,9 @@ function processar(payload, origem, formato = "") {
       "Código do e-Card": codigo || "—",
       "Número USP": atleta?.nusp || nusp || "—",
       Atleta: atleta?.nome || "—",
-      Atlética: inscricao.atleta?.equipe || atleta?.atletica || "—",
-      Inscrição: elencoDoJogo
-        ? (inscricao.inscrito ? `inscrito por ${inscricao.atleta.equipe}` : "fora da lista do jogo")
+      Atlética: atleta?.atletica || "—",
+      "Nesta partida": equipesDoJogo
+        ? (aptidao.apto ? `joga por ${aptidao.equipe}` : "não é das equipes em quadra")
         : "—",
       Jogo: jogo || "—",
       Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
@@ -526,7 +537,7 @@ function processar(payload, origem, formato = "") {
 function processarCarteirinha(payload, leitura, origem, formato = "") {
   const filiado = filiados?.atletas.find((a) => idDoAtleta(a) === leitura.idAtleta);
   const regular = filiado && estaRegular(filiado);
-  const inscricao = inscricaoNoJogo({ nusp: filiado?.nusp || leitura.nusp, codigo: "" });
+  const aptidao = aptidaoNoJogo({ nusp: filiado?.nusp || leitura.nusp, codigo: "", filiado });
 
   let nivel = "alerta";
   let titulo = "Carteirinha não encontrada na filiação";
@@ -535,9 +546,9 @@ function processarCarteirinha(payload, leitura, origem, formato = "") {
   } else if (filiado && !regular) {
     nivel = "erro";
     titulo = `Impedido: filiação ${filiado.situacao}`;
-  } else if (inscricao.verificavel && !inscricao.inscrito) {
+  } else if (aptidao.verificavel && !aptidao.apto) {
     nivel = "erro";
-    titulo = "Não inscrito nesta partida";
+    titulo = "Não é de nenhuma das equipes deste jogo";
   } else if (regular) {
     nivel = "ok";
     titulo = "Liberado para jogar";
@@ -556,8 +567,8 @@ function processarCarteirinha(payload, leitura, origem, formato = "") {
       Atlética: filiado?.atletica || "—",
       Modalidades: filiado?.modalidades?.join(", ") || "—",
       Jogo: jogo || "—",
-      Inscrição: elencoDoJogo
-        ? (inscricao.inscrito ? `inscrito por ${inscricao.atleta.equipe}` : "fora da lista do jogo")
+      "Nesta partida": equipesDoJogo
+        ? (aptidao.apto ? `joga por ${aptidao.equipe}` : "não é das equipes em quadra")
         : "—",
       Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
       Formato: NOME_DO_FORMATO[formato] || formato || "—",

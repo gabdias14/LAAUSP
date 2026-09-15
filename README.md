@@ -119,27 +119,35 @@ configurados em `assets/js/config.js`:
 Nos dois casos a mensagem também fica guardada no `localStorage` do aparelho,
 para não se perder se o envio falhar.
 
-## Lista de inscritos por jogo
+## Quem pode jogar cada partida
 
-`scripts/cruzar-elenco.py` cruza a tabela dos jogos com a filiação: para cada
-partida, junta os atletas que pertencem às atléticas das duas equipes,
-declararam aquela modalidade e aquele naipe na ficha de filiação, e estão
-regulares.
+A regra é a do regulamento, não a da ficha de filiação:
+
+> **Artigo 7** — jogam os alunos da IES devidamente matriculados.
+> **Artigo 8, § 1º** — a verificação do representante antes da súmula "tem um
+> caráter meramente de conferência de filiação".
+
+Ou seja: **pode jogar quem é filiado regular de uma das atléticas que formam a
+equipe** (uma equipe reúne até três atléticas, pelo Artigo 6, § 2º). Qualquer
+atleta filiado pode jogar qualquer modalidade — a modalidade e o naipe
+declarados na ficha são intenção de competir, não restrição.
+
+Na área do representante, escolher o jogo faz esse cruzamento na hora, sobre a
+própria filiação: o resultado passa de "está filiada?" para "pode entrar na
+súmula **desta** partida?". Quem é de outra atlética aparece como **Não é de
+nenhuma das equipes deste jogo**; quem está irregular continua impedido.
+
+`scripts/cruzar-elenco.py` faz o mesmo cruzamento fora do site, para a
+organização conferir a cobertura antes da rodada ou exportar a lista de uma
+partida:
 
 ```bash
-python3 scripts/cruzar-elenco.py HM > data/elenco-HM.json
-python3 scripts/cruzar-elenco.py HM --resumo   # cobertura por equipe
+python3 scripts/cruzar-elenco.py HM --resumo        # regulares por equipe
+python3 scripts/cruzar-elenco.py HM --jogo HM-14    # quem pode jogar a partida
 ```
 
-Na área do representante, escolher o jogo passa a carregar essa lista: a
-conferência deixa de valer para a liga inteira e passa a responder "esta pessoa
-pode jogar **esta** partida?". Quando uma das equipes está sem lista, o site
-avisa e volta a conferir contra a liga inteira, para não barrar quem tem direito
-de jogar.
-
-O arquivo tem nome e número USP, então está no `.gitignore`; a versão
-`data/elenco-HM.exemplo.json`, gerada a partir do exemplo de filiados, fica no
-repositório para demonstração.
+A coluna `DECLARARAM` do resumo mostra quantos declararam aquela modalidade na
+ficha — informação útil para a atlética montar o time, sem valor de restrição.
 
 ## Área do atleta
 

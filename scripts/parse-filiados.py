@@ -16,6 +16,7 @@ Uso:
 import json
 import re
 import sys
+import unicodedata
 
 CABECALHO_PLANILHAO = ["FACULDADE", "NOME", "VINCULO", "REGULADO?"]
 
@@ -114,22 +115,46 @@ def parse(texto):
     return atletas
 
 
+def chave_de_nome(atleta):
+    sem_acento = unicodedata.normalize("NFD", atleta["nome"])
+    nome = "".join(c for c in sem_acento if unicodedata.category(c) != "Mn")
+    nome = re.sub(r"\s+", " ", nome).casefold().strip()
+    return f"{atleta['atletica'].upper()}:{nome}"
+
+
 def mesclar(atletas):
-    """Junta as duas fontes: o formulário traz o número USP, o planilhão a situação."""
-    por_chave = {}
+    """Junta as duas fontes: o formulário traz o número USP, o planilhão a situação.
+
+    O mesmo atleta aparece nas duas, e na maioria das vezes só o formulário tem
+    número USP — então a junção precisa casar também por atlética + nome, senão
+    a pessoa entra duas vezes na lista.
+    """
+    registros = []
+    por_nusp = {}
+    por_nome = {}
+
     for atleta in atletas:
-        chave = atleta["nusp"] or f"{atleta['atletica']}:{atleta['nome'].casefold()}"
-        atual = por_chave.get(chave)
-        if not atual:
-            por_chave[chave] = atleta
+        atual = por_nusp.get(atleta["nusp"]) if atleta["nusp"] else None
+        if atual is None:
+            atual = por_nome.get(chave_de_nome(atleta))
+
+        if atual is None:
+            registros.append(atleta)
+            por_nome[chave_de_nome(atleta)] = atleta
+            if atleta["nusp"]:
+                por_nusp[atleta["nusp"]] = atleta
             continue
+
         for campo, valor in atleta.items():
             if valor and not atual.get(campo):
                 atual[campo] = valor
         # IRREGULAR sempre prevalece sobre REGULAR.
         if "IRREGULAR" in (atleta["situacao"], atual["situacao"]):
             atual["situacao"] = "IRREGULAR"
-    return sorted(por_chave.values(), key=lambda a: (a["atletica"], a["nome"].casefold()))
+        if atual["nusp"]:
+            por_nusp.setdefault(atual["nusp"], atual)
+
+    return sorted(registros, key=lambda a: (a["atletica"], a["nome"].casefold()))
 
 
 def main():
