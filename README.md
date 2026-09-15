@@ -6,6 +6,11 @@ scanner de QR Code do e-Card USP.
 
 Site estático (HTML + CSS + JS de módulo, sem build). Basta servir a pasta.
 
+A identidade visual segue o material gráfico da liga (@dino.laausp): azul-marinho
+`#142156`, laranja `#ef8a3c` e as faixas retrô em azul claro `#afdbf4` e azul
+médio `#5c7dde` sobre off-white `#f2f2f2`. As cores ficam todas em variáveis CSS
+no topo de `assets/css/style.css`, e a faixa de listras é a classe `.faixa-retro`.
+
 ```
 python3 -m http.server 8000     # http://localhost:8000
 ```
@@ -99,8 +104,8 @@ conferidos contra a base de filiados. A área tem duas abas:
 
 ### Carteirinha digital
 
-Carteirinha com a estética macro da LAAUSP (moldura vinho, selo da liga,
-temporada) e a identidade micro da atlética (faixa e cores próprias, sigla e
+Carteirinha com a estética macro da LAAUSP (azul-marinho, faixa retrô, selo da
+liga e a temporada em laranja) e a identidade micro da atlética (faixa e cores próprias, sigla e
 unidade). Traz nome, número USP, vínculo, modalidades, selo de **atleta
 regular/irregular**, validade e um **QR Code** no formato:
 

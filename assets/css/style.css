@@ -1,12 +1,19 @@
 :root {
-  --vinho: #7d1128;
-  --vinho-claro: #a4213c;
-  --vinho-escuro: #56091b;
-  --areia: #f6f1ea;
+  /* Paleta da LAAUSP: azul-marinho, laranja e os azuis das faixas retrô do
+     material gráfico da liga (@dino.laausp). */
+  --navy: #142156;
+  --navy-escuro: #0c1436;
+  --navy-claro: #23347e;
+  --navy-texto: #142156;
+  --laranja: #ef8a3c;
+  --laranja-escuro: #d86c23;
+  --azul-medio: #5c7dde;
+  --azul-claro: #afdbf4;
+  --areia: #f2f2f2;
   --papel: #ffffff;
-  --tinta: #1d1a1b;
-  --tinta-fraca: #6b6469;
-  --borda: #e3dad0;
+  --tinta: #14192b;
+  --tinta-fraca: #5d6785;
+  --borda: #dcdfe9;
   --verde: #15803d;
   --verde-fundo: #dcfce7;
   --ambar: #a16207;
@@ -14,28 +21,44 @@
   --vermelho: #b91c1c;
   --vermelho-fundo: #fee2e2;
   --raio: 12px;
-  --sombra: 0 1px 2px rgba(29, 26, 27, .06), 0 8px 24px rgba(29, 26, 27, .06);
+  --sombra: 0 1px 2px rgba(20, 33, 86, .07), 0 8px 24px rgba(20, 33, 86, .07);
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --areia: #171316;
-    --papel: #201b1e;
-    --tinta: #f3eeea;
-    --tinta-fraca: #a9a0a4;
-    --borda: #362d32;
-    --vinho: #c62d4c;
-    --vinho-claro: #e14f6b;
-    --vinho-escuro: #7d1128;
+    --navy: #16225a;
+    --navy-escuro: #0c1436;
+    --navy-claro: #23347e;
+    --navy-texto: #9db3f2;
+    --laranja: #f3933d;
+    --laranja-escuro: #ef8a3c;
+    --azul-medio: #7d97e6;
+    --azul-claro: #6d8fc2;
+    --areia: #0f1426;
+    --papel: #172040;
+    --tinta: #eef1fa;
+    --tinta-fraca: #9aa6c8;
+    --borda: #2b355c;
     --verde: #4ade80;
     --verde-fundo: #10281a;
     --ambar: #fbbf24;
     --ambar-fundo: #2a2008;
     --vermelho: #f87171;
     --vermelho-fundo: #2b1213;
-    --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    --sombra: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .3);
   }
+}
+
+/* Faixa retrô da LAAUSP: laranja, azul claro, azul médio e branco. */
+.faixa-retro {
+  height: 8px;
+  background: linear-gradient(
+    to bottom,
+    var(--laranja) 0 25%,
+    var(--azul-claro) 25% 50%,
+    var(--azul-medio) 50% 75%,
+    #fff 75% 100%);
 }
 
 * { box-sizing: border-box; }
@@ -48,10 +71,10 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-a { color: var(--vinho); }
+a { color: var(--laranja-escuro); }
 
 .cabecalho {
-  background: var(--vinho-escuro);
+  background: var(--navy);
   color: #fff;
   padding: env(safe-area-inset-top, 0px) 0 0;
   position: sticky;
@@ -79,7 +102,8 @@ a { color: var(--vinho); }
   letter-spacing: .04em;
 }
 
-.marca span { font-weight: 400; font-size: 13px; opacity: .75; letter-spacing: 0; }
+.marca { text-transform: uppercase; font-size: 19px; }
+.marca span { font-weight: 500; font-size: 12px; opacity: .8; letter-spacing: .02em; text-transform: none; }
 
 .nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
 
@@ -94,12 +118,26 @@ a { color: var(--vinho); }
 }
 
 .nav a:hover { background: rgba(255, 255, 255, .12); opacity: 1; }
-.nav a[aria-current="page"] { background: rgba(255, 255, 255, .18); opacity: 1; }
+.nav a[aria-current="page"] { background: var(--laranja); color: #14192b; opacity: 1; }
 
 main { max-width: 1120px; margin: 0 auto; padding: 24px 16px 64px; }
 
-h1 { font-size: clamp(24px, 4vw, 34px); margin: 8px 0 4px; letter-spacing: -.01em; }
-h2 { font-size: 20px; margin: 32px 0 12px; }
+h1 {
+  font-size: clamp(26px, 4.4vw, 38px);
+  margin: 8px 0 4px;
+  letter-spacing: -.015em;
+  text-transform: uppercase;
+  font-weight: 850;
+  color: var(--navy-texto);
+}
+h2 {
+  font-size: 20px;
+  margin: 32px 0 12px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-weight: 800;
+  color: var(--navy-texto);
+}
 h3 { font-size: 15px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-fraca); }
 
 .subtitulo { color: var(--tinta-fraca); margin: 0 0 24px; max-width: 62ch; }
@@ -140,25 +178,27 @@ button {
   padding: 10px 16px;
   border-radius: 9px;
   border: 1px solid transparent;
-  background: var(--vinho);
+  background: var(--navy);
   color: #fff;
   cursor: pointer;
 }
 
-button:hover { background: var(--vinho-claro); }
+button:hover { background: var(--navy-claro); }
 button[disabled] { opacity: .5; cursor: not-allowed; }
-button.secundario { background: transparent; color: var(--vinho); border-color: var(--borda); }
-button.secundario:hover { background: rgba(125, 17, 40, .08); }
+button.secundario { background: transparent; color: var(--navy-texto); border-color: var(--borda); }
+button.secundario:hover { background: rgba(20, 33, 86, .08); }
 
 .jogos { display: grid; gap: 10px; }
 
 .dia-titulo {
   margin: 26px 0 6px;
+  padding-left: 10px;
+  border-left: 4px solid var(--laranja);
   font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--vinho);
+  color: var(--navy-texto);
 }
 
 .jogo {
@@ -180,7 +220,7 @@ button.secundario:hover { background: rgba(125, 17, 40, .08); }
 .jogo__placar { font-variant-numeric: tabular-nums; font-weight: 800; white-space: nowrap; }
 .jogo__vs { color: var(--tinta-fraca); font-size: 13px; }
 .jogo__meta { text-align: right; font-size: 12px; color: var(--tinta-fraca); }
-.venceu { color: var(--vinho); }
+.venceu { color: var(--laranja-escuro); }
 
 @media (max-width: 640px) {
   .jogo { grid-template-columns: 1fr; gap: 8px; }
@@ -204,9 +244,9 @@ button.secundario:hover { background: rgba(125, 17, 40, .08); }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
 th, td { padding: 9px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--borda); }
 th:first-child, td:first-child { text-align: left; white-space: normal; }
-thead th { background: var(--vinho-escuro); color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; position: sticky; top: 0; }
+thead th { background: var(--navy); color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; position: sticky; top: 0; }
 tbody tr:last-child td { border-bottom: 0; }
-tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
+tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
 
 .vazio { color: var(--tinta-fraca); padding: 32px 0; text-align: center; }
 
@@ -258,11 +298,11 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
 }
 
 .aba:hover { background: transparent; color: var(--tinta); }
-.aba[aria-selected="true"] { color: var(--vinho); border-bottom-color: var(--vinho); }
+.aba[aria-selected="true"] { color: var(--laranja-escuro); border-bottom-color: var(--laranja-escuro); }
 
 /* Carteirinha: moldura macro da LAAUSP, cores micro da atlética */
 .carteirinha {
-  --atletica-primaria: var(--vinho);
+  --atletica-primaria: var(--laranja-escuro);
   --atletica-secundaria: var(--areia);
   position: relative;
   max-width: 440px;
@@ -270,10 +310,14 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
   overflow: hidden;
   color: #fff;
   background:
-    linear-gradient(150deg, var(--atletica-primaria), color-mix(in srgb, var(--atletica-primaria) 55%, #000));
+    linear-gradient(155deg,
+      color-mix(in srgb, var(--atletica-primaria) 42%, #142156),
+      color-mix(in srgb, var(--atletica-primaria) 70%, #0c1436));
   box-shadow: 0 10px 30px rgba(29, 26, 27, .25);
   border: 1px solid rgba(255, 255, 255, .14);
 }
+
+.carteirinha .faixa-retro { height: 7px; }
 
 .carteirinha__topo {
   display: flex;
@@ -281,12 +325,21 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  background: var(--vinho-escuro);
+  background: var(--navy);
 }
 
 .carteirinha__liga strong { display: block; font-size: 19px; letter-spacing: .12em; }
 .carteirinha__liga small { font-size: 11px; opacity: .78; letter-spacing: .04em; }
-.carteirinha__temporada { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.carteirinha__temporada {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #14192b;
+  background: var(--laranja);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
 
 .carteirinha__faixa {
   display: flex;
@@ -298,7 +351,7 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
   flex-wrap: wrap;
 }
 
-.carteirinha__sigla { font-size: 22px; font-weight: 850; letter-spacing: .04em; }
+.carteirinha__sigla { font-size: 22px; font-weight: 850; letter-spacing: .04em; text-transform: uppercase; }
 .carteirinha__unidade { font-size: 11px; opacity: .72; }
 
 .carteirinha__corpo { display: flex; gap: 14px; padding: 18px; padding-right: 150px; }
@@ -365,12 +418,13 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
 
 /* Cartela de fidelidade da Pizzaria Europa */
 .cartao--pizzaria {
-  background: linear-gradient(160deg, #1f7a3d, #10532a 60%, #8c1d1d);
+  background: linear-gradient(160deg, var(--navy-escuro), #142156 55%, #2a2f6e);
   color: #fff;
   border-color: rgba(255, 255, 255, .18);
+  overflow: hidden;
 }
 
-.cartao--pizzaria h3 { color: rgba(255, 255, 255, .8); }
+.cartao--pizzaria h3 { color: var(--laranja); }
 
 .cartela { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 
@@ -387,11 +441,11 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
 
 .casa__icone { font-size: 22px; filter: grayscale(1) opacity(.45); }
 .casa__numero { font-size: 10px; font-weight: 800; letter-spacing: .06em; opacity: .7; }
-.casa--carimbada { border-style: solid; border-color: #fff; background: rgba(255, 255, 255, .18); }
+.casa--carimbada { border-style: solid; border-color: var(--laranja); background: rgba(239, 138, 60, .22); }
 .casa--carimbada .casa__icone { filter: none; }
 .casa--carimbada .casa__numero { opacity: 1; }
-.casa--premio { border-color: #f2c94c; }
-.casa--premio .casa__icone { color: #f2c94c; filter: none; opacity: .5; }
+.casa--premio { border-color: var(--laranja); }
+.casa--premio .casa__icone { color: var(--laranja); filter: none; opacity: .55; }
 .casa--premio.casa--carimbada .casa__icone { opacity: 1; }
 
 @media print {

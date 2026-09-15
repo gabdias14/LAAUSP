@@ -1,5 +1,6 @@
-/* Carteirinha digital da LAAUSP: estética macro da liga (moldura vinho, selo e
-   tipografia) com a identidade micro da atlética nas cores e na faixa. */
+/* Carteirinha digital da LAAUSP: estética macro da liga (azul-marinho, laranja e
+   a faixa retrô do material gráfico) com a identidade micro da atlética nas
+   cores da faixa e no monograma. */
 
 import { el } from "./liga.js";
 import { estaRegular, iniciais, idDoAtleta } from "./atletas.js";
@@ -54,6 +55,7 @@ export async function montarCarteirinha(atleta, identidade, temporada) {
   cartao.style.setProperty("--atletica-secundaria", identidade.corSecundaria);
 
   cartao.append(
+    el("div", { class: "faixa-retro" }),
     el("div", { class: "carteirinha__topo" },
       el("div", { class: "carteirinha__liga" },
         el("strong", { text: "LAAUSP" }),
