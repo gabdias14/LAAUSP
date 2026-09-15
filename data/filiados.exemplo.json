@@ -1,8 +1,23 @@
 {
   "temporada": "2026",
-  "observacao": "Arquivo de EXEMPLO com dados fictícios. Gere o arquivo real com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
-  "total": 6,
+  "observacao": "Arquivo de EXEMPLO. O primeiro registro é real, para demonstração; os demais são fictícios. Gere o arquivo completo com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
+  "total": 7,
   "atletas": [
+    {
+      "atletica": "EACH",
+      "nome": "Gabriel Dias Bulow",
+      "nusp": "11918672",
+      "codigoEcard": "1051139627",
+      "email": "gabriel.bulow@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Futsal",
+        "Futebol de Campo"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
     {
       "atletica": "EACH",
       "nome": "Ana Fictícia de Souza",

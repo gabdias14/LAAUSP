@@ -576,3 +576,7 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
 .feedback-aviso { font-size: 13px; margin: 0; }
 .feedback-aviso--ok { color: var(--verde); }
 .feedback-aviso--erro { color: var(--vermelho); }
+
+/* A carteirinha precisa de largura própria: os cartões de apoio empilham ao lado */
+.grade--carteirinha { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.coluna-cartoes { display: grid; gap: 16px; align-content: start; }
