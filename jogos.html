@@ -54,7 +54,7 @@
 <footer class="rodape"><div>LAAUSP · dados da planilha pública dos Jogos da Liga</div></footer>
 
 <script type="module">
-import { carregarLiga, ordenarPorData, cartaoDeJogo, el, marcarNavegacao } from "./assets/js/liga.js";
+import { carregarLiga, ordenarPorData, cartaoDeJogo, corDaEquipe, el, marcarNavegacao } from "./assets/js/liga.js";
 
 marcarNavegacao();
 const liga = await carregarLiga();
@@ -121,7 +121,7 @@ function tabelaDeClassificacao(tabela) {
         el("th", { text: "Atlética" }),
         ...colunas.map((c) => el("th", { text: c })))),
       el("tbody", {}, tabela.map((linha) => el("tr", {},
-        el("td", { text: linha.equipe }),
+        el("td", {}, corDaEquipe(linha.equipe), linha.equipe),
         ...colunas.map((c) => el("td", { text: linha[c] || "—" })))))));
 }
 

@@ -302,17 +302,15 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
 
 /* Carteirinha: moldura macro da LAAUSP, cores micro da atlética */
 .carteirinha {
-  --atletica-primaria: var(--laranja-escuro);
-  --atletica-secundaria: var(--areia);
+  --atletica-primaria: var(--navy);
+  --atletica-secundaria: #ffffff;
+  --atletica-texto: #ffffff;
   position: relative;
   max-width: 440px;
   border-radius: 18px;
   overflow: hidden;
   color: #fff;
-  background:
-    linear-gradient(155deg,
-      color-mix(in srgb, var(--atletica-primaria) 42%, #142156),
-      color-mix(in srgb, var(--atletica-primaria) 70%, #0c1436));
+  background: linear-gradient(155deg, #1b2a6b, #142156 45%, #0c1436);
   box-shadow: 0 10px 30px rgba(29, 26, 27, .25);
   border: 1px solid rgba(255, 255, 255, .14);
 }
@@ -346,8 +344,10 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
   align-items: baseline;
   gap: 10px;
   padding: 12px 18px;
-  background: var(--atletica-secundaria);
-  color: #1d1a1b;
+  background: var(--atletica-primaria);
+  color: var(--atletica-texto);
+  border-top: 2px solid var(--atletica-secundaria);
+  border-bottom: 2px solid var(--atletica-secundaria);
   flex-wrap: wrap;
 }
 
@@ -363,8 +363,9 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
   display: grid;
   place-items: center;
   border-radius: 14px;
-  background: rgba(255, 255, 255, .16);
-  border: 1px solid rgba(255, 255, 255, .3);
+  background: var(--atletica-primaria);
+  color: var(--atletica-texto);
+  border: 2px solid var(--atletica-secundaria);
   font-size: 22px;
   font-weight: 800;
 }
@@ -453,3 +454,17 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
   body { background: #fff; }
   .carteirinha { box-shadow: none; }
 }
+
+/* Selo com as cores oficiais da atlética (lidas do planilhão) */
+.cor-equipe {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 7px;
+  vertical-align: baseline;
+  border: 1px solid rgba(20, 25, 43, .25);
+  flex: none;
+}
+
+.jogo__time--b .cor-equipe { margin: 0 0 0 7px; }

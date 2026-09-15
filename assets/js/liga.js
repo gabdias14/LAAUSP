@@ -6,7 +6,10 @@ const MES_NOME = ["janeiro", "fevereiro", "março", "abril", "maio", "junho",
 const DIA_NOME = ["domingo", "segunda-feira", "terça-feira", "quarta-feira",
   "quinta-feira", "sexta-feira", "sábado"];
 
+import { carregarCores, faixaDaEquipe } from "./cores.js";
+
 let cache = null;
+let cores = null;
 
 export async function carregarLiga() {
   if (cache) return cache;
@@ -14,6 +17,7 @@ export async function carregarLiga() {
   const resposta = await fetch(`${base}data/liga.json`, { cache: "no-cache" });
   if (!resposta.ok) throw new Error(`Falha ao carregar os dados (${resposta.status})`);
   cache = await resposta.json();
+  cores = await carregarCores().catch(() => null);
   for (const modalidade of cache.modalidades) {
     for (const jogo of modalidade.jogos) {
       jogo.modalidadeNome = modalidade.nome;
@@ -84,6 +88,13 @@ export function el(tag, props = {}, ...filhos) {
   return node;
 }
 
+/** Selo com as cores da atlética, ao lado do nome da equipe. */
+export function corDaEquipe(equipe) {
+  const selo = el("span", { class: "cor-equipe", "aria-hidden": "true" });
+  selo.style.background = cores ? faixaDaEquipe(equipe, cores) : "var(--borda)";
+  return selo;
+}
+
 export function cartaoDeJogo(jogo, { mostrarModalidade = true } = {}) {
   const a = Number(jogo.placarA);
   const b = Number(jogo.placarB);
@@ -95,11 +106,13 @@ export function cartaoDeJogo(jogo, { mostrarModalidade = true } = {}) {
       jogo.hora || "—",
       el("small", { text: jogo.data || "data a definir" })),
     el("div", { class: "jogo__times" },
-      el("div", { class: `jogo__time${aVenceu ? " venceu" : ""}`, text: jogo.equipeA || "A definir" }),
+      el("div", { class: `jogo__time${aVenceu ? " venceu" : ""}` },
+        corDaEquipe(jogo.equipeA), jogo.equipeA || "A definir"),
       jogo.encerrado
         ? el("div", { class: "jogo__placar", text: `${jogo.placarA} × ${jogo.placarB}` })
         : el("div", { class: "jogo__vs", text: "×" }),
-      el("div", { class: `jogo__time jogo__time--b${bVenceu ? " venceu" : ""}`, text: jogo.equipeB || "A definir" })),
+      el("div", { class: `jogo__time jogo__time--b${bVenceu ? " venceu" : ""}` },
+        jogo.equipeB || "A definir", corDaEquipe(jogo.equipeB))),
     el("div", { class: "jogo__meta" },
       mostrarModalidade ? el("div", { text: jogo.modalidadeNome }) : null,
       el("div", { text: [jogo.local, jogo.rodada].filter(Boolean).join(" · ") || "—" }),

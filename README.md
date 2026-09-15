@@ -118,9 +118,26 @@ câmera para a carteirinha do atleta e o site confere a situação da filiação
 hora, sem depender do e-Card da USP. O botão **Salvar / imprimir** gera uma
 versão só da carteirinha para PDF.
 
-As cores de cada atlética ficam em `data/atleticas.json` e são **provisórias** —
-foram escolhidas só para diferenciar as carteirinhas. Cada atlética deve
-substituir pelas suas cores oficiais (e, quando houver, pelo brasão).
+### Cores das atléticas
+
+As cores de cada atlética são as **oficiais, lidas do próprio planilhão**: em
+cada aba `<SIGLA>`, o título da linha 1 é pintado com a cor primária no
+preenchimento e a secundária na fonte. `scripts/parse-cores-atleticas.py`
+extrai as duas e gera `data/atleticas.json`:
+
+```bash
+# baixe o planilhão como .xlsx (Arquivo → Fazer download → Microsoft Excel)
+python3 scripts/parse-cores-atleticas.py planilhao.xlsx > data/atleticas.json
+```
+
+Essas cores aparecem em todo o site: no selo ao lado de cada equipe na tabela e
+no calendário (equipes combinadas, como `FARMA+ODONTO+VET`, viram uma faixa com
+a cor de cada atlética) e na faixa e no monograma da carteirinha.
+
+Quando a cor secundária não tem contraste suficiente sobre a primária — o branco
+sobre o azul claro da EDUCA, por exemplo — o texto cai para preto ou branco e a
+cor da atlética fica na borda, para a carteirinha continuar legível. A regra
+está em `textoSobre()`, em `assets/js/cores.js`.
 
 ### Fidelidade Pizzaria Europa
 

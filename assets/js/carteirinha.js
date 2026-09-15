@@ -4,6 +4,7 @@
 
 import { el } from "./liga.js";
 import { estaRegular, iniciais, idDoAtleta } from "./atletas.js";
+import { textoSobre } from "./cores.js";
 
 /** Payload lido pelo scanner do representante. */
 export function payloadDaCarteirinha(atleta, temporada) {
@@ -51,8 +52,12 @@ export async function desenharQR(texto, tamanho = 156) {
 export async function montarCarteirinha(atleta, identidade, temporada) {
   const regular = estaRegular(atleta);
   const cartao = el("div", { class: "carteirinha" });
-  cartao.style.setProperty("--atletica-primaria", identidade.corPrimaria);
+  const primaria = identidade.corPrimaria;
+  // A secundária da atlética só vira texto quando o contraste permite ler.
+  const sobrePrimaria = textoSobre(primaria, identidade.corSecundaria);
+  cartao.style.setProperty("--atletica-primaria", primaria);
   cartao.style.setProperty("--atletica-secundaria", identidade.corSecundaria);
+  cartao.style.setProperty("--atletica-texto", sobrePrimaria);
 
   cartao.append(
     el("div", { class: "faixa-retro" }),
