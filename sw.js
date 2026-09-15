@@ -3,7 +3,7 @@
    Objetivo principal: a carteirinha abrir no ginásio, onde quase nunca há
    sinal. As páginas e os dados ficam em cache; as leituras seguem online. */
 
-const CACHE = "laausp-v1";
+const CACHE = "laausp-v2";
 
 const ESSENCIAIS = [
   "./",
@@ -12,6 +12,7 @@ const ESSENCIAIS = [
   "jogos.html",
   "calendario.html",
   "regulamento.html",
+  "contato.html",
   "manifest.webmanifest",
   "assets/css/style.css",
   "assets/favicon.svg",
@@ -23,6 +24,7 @@ const ESSENCIAIS = [
   "assets/js/fidelidade.js",
   "assets/js/feedback.js",
   "assets/js/config.js",
+  "assets/vendor/zxing.js",
   "assets/vendor/qrcode.js",
   "data/atleticas.json",
   "data/liga.json",

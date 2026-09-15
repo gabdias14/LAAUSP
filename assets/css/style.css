@@ -580,3 +580,20 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
 /* A carteirinha precisa de largura própria: os cartões de apoio empilham ao lado */
 .grade--carteirinha { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
 .coluna-cartoes { display: grid; gap: 16px; align-content: start; }
+
+/* Página de feedback e solicitações */
+.lista-canais { margin: 0; padding-left: 18px; font-size: 14px; }
+.lista-canais li { margin-bottom: 10px; }
+.lista-canais li:last-child { margin-bottom: 0; }
+#form-contato textarea {
+  font: inherit;
+  min-height: 140px;
+  resize: vertical;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--borda);
+  background: var(--papel);
+  color: var(--tinta);
+  width: 100%;
+}
+#form-contato select, #form-contato input { width: 100%; min-width: 0; }

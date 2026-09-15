@@ -1,7 +1,7 @@
 {
   "temporada": "2026",
   "observacao": "Arquivo de EXEMPLO. O primeiro registro é real, para demonstração; os demais são fictícios. Gere o arquivo completo com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
-  "total": 7,
+  "total": 9,
   "atletas": [
     {
       "atletica": "EACH",
@@ -92,6 +92,35 @@
       "vinculo": "Formado",
       "naipe": "Masculino",
       "modalidades": [
+        "Futsal"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "EACH",
+      "nome": "Heitor Exemplo Nakagawa",
+      "nusp": "77777777",
+      "codigoEcard": "",
+      "email": "heitor.exemplo@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Handebol"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "POLI",
+      "nome": "Igor Fictício Barreto",
+      "nusp": "88888888",
+      "codigoEcard": "",
+      "email": "igor.ficticio@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Handebol",
         "Futsal"
       ],
       "situacao": "REGULAR",

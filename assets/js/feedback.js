@@ -9,12 +9,30 @@
 import { el } from "./liga.js";
 import { FEEDBACK_ENDPOINT, EMAIL_FEEDBACK, CHAVE_FEEDBACK } from "./config.js";
 
-const TIPOS = [
+export const TIPOS = [
   ["sugestao", "Sugestão de melhoria"],
+  ["solicitacao", "Solicitação à LAAUSP"],
   ["erro", "Erro no site ou nos dados"],
-  ["duvida", "Dúvida"],
+  ["duvida", "Dúvida sobre o regulamento ou a tabela"],
+  ["reclamacao", "Reclamação"],
   ["outro", "Outro assunto"],
 ];
+
+/** Guarda no aparelho e envia — usado pelo ícone de chat e pela página pública. */
+export async function registrarEEnviar(registro) {
+  guardar(registro);
+  const caminho = await enviar(registro);
+  if (caminho === "email") {
+    const assunto = `[Site LAAUSP] ${rotuloDoTipo(registro.tipo)} — ${registro.pagina}`;
+    location.href = `mailto:${EMAIL_FEEDBACK}?subject=${encodeURIComponent(assunto)}` +
+      `&body=${encodeURIComponent(corpoDoEmail(registro))}`;
+  }
+  return caminho;
+}
+
+export function rotuloDoTipo(tipo) {
+  return TIPOS.find(([valor]) => valor === tipo)?.[1] || tipo;
+}
 
 function guardar(registro) {
   try {
@@ -26,15 +44,16 @@ function guardar(registro) {
   }
 }
 
-function corpoDoEmail({ tipo, mensagem, contato, pagina }) {
-  const rotulo = TIPOS.find(([valor]) => valor === tipo)?.[1] || tipo;
+function corpoDoEmail({ tipo, mensagem, contato, pagina, atletica, nome }) {
   return [
-    `Tipo: ${rotulo}`,
+    `Tipo: ${rotuloDoTipo(tipo)}`,
     `Página: ${pagina}`,
+    nome ? `Nome: ${nome}` : null,
+    atletica ? `Atlética: ${atletica}` : null,
     contato ? `Contato: ${contato}` : "Contato: não informado",
     "",
     mensagem,
-  ].join("\n");
+  ].filter((linha) => linha !== null).join("\n");
 }
 
 async function enviar(registro) {
@@ -73,11 +92,15 @@ export function montarFeedback() {
   const aviso = el("p", { class: "feedback-aviso", hidden: "hidden" });
   const enviarBotao = el("button", { type: "submit", text: "Enviar" });
 
+  const link = el("p", { style: "margin:0;font-size:12.5px;color:var(--tinta-fraca)" },
+    "Precisa de mais espaço? ",
+    el("a", { href: "contato.html", text: "abra a página de feedback e solicitações" }), ".");
+
   const formulario = el("form", { class: "feedback-painel__corpo" },
     el("label", { class: "campo", for: "feedback-tipo", text: "Assunto" }), tipo,
     el("label", { class: "campo", for: "feedback-mensagem", text: "Mensagem" }), mensagem,
     el("label", { class: "campo", for: "feedback-contato", text: "Contato" }), contato,
-    enviarBotao, aviso);
+    enviarBotao, aviso, link);
 
   const painel = el("div", {
     class: "feedback-painel", id: "feedback-painel", hidden: "hidden",
@@ -112,25 +135,17 @@ export function montarFeedback() {
       pagina: location.pathname.split("/").pop() || "index.html",
       quando: new Date().toISOString(),
     };
-    guardar(registro);
-
     aviso.hidden = false;
     aviso.className = "feedback-aviso";
     aviso.textContent = "Enviando…";
     enviarBotao.disabled = true;
 
     try {
-      const caminho = await enviar(registro);
-      if (caminho === "email") {
-        const assunto = `Feedback do site LAAUSP — ${registro.pagina}`;
-        location.href = `mailto:${EMAIL_FEEDBACK}?subject=${encodeURIComponent(assunto)}` +
-          `&body=${encodeURIComponent(corpoDoEmail(registro))}`;
-        aviso.className = "feedback-aviso feedback-aviso--ok";
-        aviso.textContent = "Abrimos seu e-mail com a mensagem pronta — é só enviar. Obrigado!";
-      } else {
-        aviso.className = "feedback-aviso feedback-aviso--ok";
-        aviso.textContent = "Recebemos seu recado. Obrigado por ajudar a melhorar o site!";
-      }
+      const caminho = await registrarEEnviar(registro);
+      aviso.className = "feedback-aviso feedback-aviso--ok";
+      aviso.textContent = caminho === "email"
+        ? "Abrimos seu e-mail com a mensagem pronta — é só enviar. Obrigado!"
+        : "Recebemos seu recado. Obrigado por ajudar a melhorar o site!";
       mensagem.value = "";
       contato.value = "";
     } catch (erro) {

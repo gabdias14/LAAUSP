@@ -1,0 +1,190 @@
+{
+  "modalidade": "HM",
+  "nome": "Handebol Masculino",
+  "temporada": "2026",
+  "equipes": {
+    "AAAGW+EDUCA": [],
+    "EACH": [
+      {
+        "nusp": "77777777",
+        "nome": "Heitor Exemplo Nakagawa",
+        "atletica": "EACH",
+        "codigoEcard": "",
+        "situacao": "REGULAR"
+      }
+    ],
+    "ECA": [],
+    "EEFE": [],
+    "FARMA": [],
+    "FAU": [],
+    "FEA": [],
+    "FFLCH": [],
+    "FOFITO+FSP+GEO": [],
+    "ICBIÓ+QUIM": [],
+    "IME": [],
+    "ODONTO": [],
+    "POLI": [
+      {
+        "nusp": "88888888",
+        "nome": "Igor Fictício Barreto",
+        "atletica": "POLI",
+        "codigoEcard": "",
+        "situacao": "REGULAR"
+      }
+    ],
+    "RI+VET": [],
+    "SANFRAN": []
+  },
+  "jogos": [
+    {
+      "codigo": "HM-03",
+      "data": "30/08",
+      "hora": "13:50",
+      "local": "Módulos 1&2",
+      "equipeA": "ODONTO",
+      "equipeB": "POLI",
+      "inscritosA": 0,
+      "inscritosB": 1
+    },
+    {
+      "codigo": "HM-01",
+      "data": "23/08",
+      "hora": "15:10",
+      "local": "Módulos 1&2",
+      "equipeA": "POLI",
+      "equipeB": "ECA",
+      "inscritosA": 1,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-02",
+      "data": "27/09",
+      "hora": "15:10",
+      "local": "Módulos 1&2",
+      "equipeA": "ECA",
+      "equipeB": "ODONTO",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-04",
+      "data": "15/08",
+      "hora": "08:30",
+      "local": "Módulos 1&2",
+      "equipeA": "ICBIÓ+QUIM",
+      "equipeB": "FAU",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-06",
+      "data": "05/09",
+      "hora": "13:50",
+      "local": "Módulos 1&2",
+      "equipeA": "FFLCH",
+      "equipeB": "ICBIÓ+QUIM",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-05",
+      "data": "27/09",
+      "hora": "13:50",
+      "local": "Módulos 1&2",
+      "equipeA": "FAU",
+      "equipeB": "FFLCH",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-07",
+      "data": "30/08",
+      "hora": "15:10",
+      "local": "Módulos 1&2",
+      "equipeA": "EEFE",
+      "equipeB": "FOFITO+FSP+GEO",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-08",
+      "data": "23/08",
+      "hora": "12:30",
+      "local": "Módulos 1&2",
+      "equipeA": "FOFITO+FSP+GEO",
+      "equipeB": "SANFRAN",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-09",
+      "data": "03/10",
+      "hora": "12:30",
+      "local": "Módulos 1&2",
+      "equipeA": "SANFRAN",
+      "equipeB": "EEFE",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-11",
+      "data": "30/08",
+      "hora": "12:30",
+      "local": "Módulos 1&2",
+      "equipeA": "AAAGW+EDUCA",
+      "equipeB": "FARMA",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-10",
+      "data": "05/09",
+      "hora": "11:10",
+      "local": "Módulos 1&2",
+      "equipeA": "IME",
+      "equipeB": "AAAGW+EDUCA",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-12",
+      "data": "27/09",
+      "hora": "08:30",
+      "local": "Módulos 1&2",
+      "equipeA": "FARMA",
+      "equipeB": "IME",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-15",
+      "data": "30/08",
+      "hora": "11:10",
+      "local": "Módulos 1&2",
+      "equipeA": "RI+VET",
+      "equipeB": "FEA",
+      "inscritosA": 0,
+      "inscritosB": 0
+    },
+    {
+      "codigo": "HM-13",
+      "data": "05/09",
+      "hora": "09:50",
+      "local": "Módulos 1&2",
+      "equipeA": "FEA",
+      "equipeB": "EACH",
+      "inscritosA": 0,
+      "inscritosB": 1
+    },
+    {
+      "codigo": "HM-14",
+      "data": "03/10",
+      "hora": "08:30",
+      "local": "Módulos 1&2",
+      "equipeA": "EACH",
+      "equipeB": "RI+VET",
+      "inscritosA": 1,
+      "inscritosB": 0
+    }
+  ]
+}

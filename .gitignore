@@ -10,3 +10,7 @@ documentos/wallet/
 
 # Certificados de assinatura da Apple e do Google.
 certificados/
+
+# Listas de inscritos cruzadas: derivam da filiação e têm dados pessoais.
+data/elenco-*.json
+!data/elenco-*.exemplo.json

@@ -23,6 +23,7 @@ python3 -m http.server 8000     # http://localhost:8000
 | `jogos.html` | Tabela completa com filtros (modalidade, situação, atlética, busca) e classificação geral e por grupo. |
 | `calendario.html` | Jogos agrupados por dia, com filtro de rodada/período e exportação `.ics`. |
 | `regulamento.html` | Regulamento Oficial dos Jogos da Liga, em PDF, com leitor embutido e download. |
+| `contato.html` | Feedback e solicitações: canal público para sugestões, solicitações, dúvidas e reclamações. |
 | `atleta.html` | Área do atleta: carteirinha digital da LAAUSP e cartela de fidelidade da Pizzaria Europa. |
 | `restrito.html` | Área do representante: leitura do QR do e-Card **e da carteirinha LAAUSP**, conferência contra a lista de inscritos e registro das leituras. |
 
@@ -117,6 +118,28 @@ configurados em `assets/js/config.js`:
 
 Nos dois casos a mensagem também fica guardada no `localStorage` do aparelho,
 para não se perder se o envio falhar.
+
+## Lista de inscritos por jogo
+
+`scripts/cruzar-elenco.py` cruza a tabela dos jogos com a filiação: para cada
+partida, junta os atletas que pertencem às atléticas das duas equipes,
+declararam aquela modalidade e aquele naipe na ficha de filiação, e estão
+regulares.
+
+```bash
+python3 scripts/cruzar-elenco.py HM > data/elenco-HM.json
+python3 scripts/cruzar-elenco.py HM --resumo   # cobertura por equipe
+```
+
+Na área do representante, escolher o jogo passa a carregar essa lista: a
+conferência deixa de valer para a liga inteira e passa a responder "esta pessoa
+pode jogar **esta** partida?". Quando uma das equipes está sem lista, o site
+avisa e volta a conferir contra a liga inteira, para não barrar quem tem direito
+de jogar.
+
+O arquivo tem nome e número USP, então está no `.gitignore`; a versão
+`data/elenco-HM.exemplo.json`, gerada a partir do exemplo de filiados, fica no
+repositório para demonstração.
 
 ## Área do atleta
 

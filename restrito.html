@@ -17,6 +17,7 @@
       <a href="jogos.html">Jogos</a>
       <a href="calendario.html">Calendário</a>
       <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
       <a href="atleta.html">Atleta</a>
       <a href="restrito.html">Área restrita</a>
     </nav>
@@ -53,6 +54,7 @@
       <label class="campo">Jogo
         <select id="f-jogo"></select>
       </label>
+      <p id="status-jogo" style="margin:0 0 4px;font-size:13px;color:var(--tinta-fraca);flex-basis:100%"></p>
       <button id="btn-camera" type="button">Ligar câmera</button>
       <button id="btn-foto" class="secundario" type="button">Ler de uma foto</button>
       <input type="file" id="arquivo" accept="image/*" hidden>
@@ -124,7 +126,7 @@
 <script type="module">
 import { carregarLiga, ordenarPorData, el, marcarNavegacao } from "./assets/js/liga.js";
 import { montarFeedback } from "./assets/js/feedback.js";
-import { lerQR, lerQRDeArquivo, interpretarECard } from "./assets/js/scanner.js";
+import { lerCodigo, lerCodigoDeArquivo, interpretarECard, formatosSuportados } from "./assets/js/scanner.js";
 import { carregarFiliados, idDoAtleta, estaRegular } from "./assets/js/atletas.js";
 import { HASH_SENHA_REPRESENTANTE, CHAVE_SESSAO, CHAVE_REGISTROS, CHAVE_ELENCO } from "./assets/js/config.js";
 
@@ -147,9 +149,26 @@ const recuperar = (chave, padrao) => { try { return JSON.parse(localStorage.getI
 let registros = recuperar(CHAVE_REGISTROS, []);
 let elenco = [];
 let filiados = null;
+let elencoDoJogo = null;
+const elencosPorModalidade = new Map();
 let fluxo = null;
 let lendo = false;
 let ultimoPayload = "";
+
+const NOME_DO_FORMATO = {
+  qr_code: "QR Code",
+  code_128: "Código de barras (Code 128)",
+  code_39: "Código de barras (Code 39)",
+  code_93: "Código de barras (Code 93)",
+  codabar: "Código de barras (Codabar)",
+  ean_13: "Código de barras (EAN-13)",
+  ean_8: "Código de barras (EAN-8)",
+  itf: "Código de barras (ITF)",
+  upc_a: "Código de barras (UPC-A)",
+  upc_e: "Código de barras (UPC-E)",
+  pdf417: "PDF417",
+  data_matrix: "Data Matrix",
+};
 
 /* ---------- acesso ---------- */
 
@@ -189,6 +208,8 @@ async function abrirPainel() {
   } catch {
     filiados = null;
   }
+  await avisarFormatos();
+  await atualizarElencoDoJogo();
   renderizarRegistros();
 }
 
@@ -260,6 +281,85 @@ document.getElementById("arquivo-elenco").addEventListener("change", async (even
   evento.target.value = "";
 });
 
+async function avisarFormatos() {
+  const formatos = await formatosSuportados();
+  const leCodigoDeBarras = formatos.some((f) => f !== "qr_code");
+  statusCamera.textContent = leCodigoDeBarras
+    ? "Este aparelho lê QR Code e código de barras — serve para o e-Card no app e na Wallet."
+    : "Este aparelho lê apenas QR Code. Para o e-Card na Apple Wallet, que usa código de " +
+      "barras, use o Chrome no Android ou peça o QR no aplicativo da USP.";
+}
+
+/* ---------- inscritos do jogo escolhido ---------- */
+
+/** Lista cruzada entre a tabela dos jogos e a filiação (scripts/cruzar-elenco.py). */
+async function carregarElencoDaModalidade(modalidade) {
+  if (elencosPorModalidade.has(modalidade)) return elencosPorModalidade.get(modalidade);
+  let dados = null;
+  for (const caminho of [`data/elenco-${modalidade}.json`, `data/elenco-${modalidade}.exemplo.json`]) {
+    try {
+      const resposta = await fetch(caminho, { cache: "no-cache" });
+      if (!resposta.ok) continue;
+      dados = await resposta.json();
+      break;
+    } catch {
+      /* tenta o próximo caminho */
+    }
+  }
+  elencosPorModalidade.set(modalidade, dados);
+  return dados;
+}
+
+async function atualizarElencoDoJogo() {
+  const status = document.getElementById("status-jogo");
+  const codigo = seletorJogo.value;
+  elencoDoJogo = null;
+
+  if (!codigo) {
+    status.textContent = "Sem jogo escolhido: a conferência vale para a liga inteira.";
+    return;
+  }
+
+  const dados = await carregarElencoDaModalidade(codigo.split("-")[0]);
+  const jogo = dados?.jogos.find((j) => j.codigo === codigo);
+  if (!dados || !jogo) {
+    status.textContent = `Não há lista de inscritos cruzada para ${codigo} — ` +
+      "a conferência vale para a liga inteira.";
+    return;
+  }
+
+  const porEquipe = [jogo.equipeA, jogo.equipeB].map((equipe) => ({
+    equipe,
+    atletas: dados.equipes[equipe] || [],
+  }));
+  const resumo = porEquipe.map((e) => `${e.equipe}: ${e.atletas.length}`).join(" · ");
+  const faltando = porEquipe.filter((e) => !e.atletas.length).map((e) => e.equipe);
+
+  if (faltando.length) {
+    // Com uma das equipes sem lista, exigir inscrição barraria quem tem direito
+    // de jogar: a conferência volta a valer para a liga inteira.
+    status.textContent = `${resumo}. Sem inscritos de ${faltando.join(" e ")} — falta importar ` +
+      "a ficha de filiação dessa(s) atlética(s); até lá a conferência vale para a liga inteira.";
+    return;
+  }
+
+  elencoDoJogo = {
+    jogo,
+    atletas: porEquipe.flatMap((e) => e.atletas.map((a) => ({ ...a, equipe: e.equipe }))),
+  };
+  status.textContent = `${resumo} atletas inscritos neste jogo.`;
+}
+
+seletorJogo.addEventListener("change", atualizarElencoDoJogo);
+
+/** Diz se o atleta está na lista daquele jogo — e por qual equipe. */
+function inscricaoNoJogo({ nusp, codigo }) {
+  if (!elencoDoJogo) return { verificavel: false };
+  const achado = elencoDoJogo.atletas.find((a) =>
+    (nusp && a.nusp === nusp) || (codigo && a.codigoEcard && a.codigoEcard === codigo));
+  return { verificavel: true, inscrito: Boolean(achado), atleta: achado };
+}
+
 /* ---------- câmera ---------- */
 
 document.getElementById("btn-camera").addEventListener("click", () => (fluxo ? pararCamera() : ligarCamera()));
@@ -295,10 +395,10 @@ async function laçoDeLeitura() {
   while (lendo) {
     if (video.readyState >= 2 && video.videoWidth) {
       try {
-        const payload = await lerQR(video, video.videoWidth, video.videoHeight);
-        if (payload && payload !== ultimoPayload) {
-          ultimoPayload = payload;
-          processar(payload, "camera");
+        const leitura = await lerCodigo(video, video.videoWidth, video.videoHeight);
+        if (leitura && leitura.valor !== ultimoPayload) {
+          ultimoPayload = leitura.valor;
+          processar(leitura.valor, "camera", leitura.formato);
           setTimeout(() => { ultimoPayload = ""; }, 2500);
         }
       } catch (erro) {
@@ -316,9 +416,9 @@ document.getElementById("arquivo").addEventListener("change", async (evento) => 
   const arquivo = evento.target.files[0];
   if (!arquivo) return;
   try {
-    const payload = await lerQRDeArquivo(arquivo);
-    if (payload) processar(payload, "foto");
-    else mostrarResultado({ nivel: "erro", titulo: "QR Code não encontrado", detalhes: { Arquivo: arquivo.name } });
+    const leitura = await lerCodigoDeArquivo(arquivo);
+    if (leitura) processar(leitura.valor, "foto", leitura.formato);
+    else mostrarResultado({ nivel: "erro", titulo: "Nenhum código encontrado na imagem", detalhes: { Arquivo: arquivo.name } });
   } catch (erro) {
     mostrarResultado({ nivel: "erro", titulo: "Falha ao ler a imagem", detalhes: { Erro: erro.message } });
   }
@@ -336,27 +436,49 @@ document.getElementById("btn-manual").addEventListener("click", () => {
 
 let ultimaLeitura = null;
 
-function processar(payload, origem) {
+function processar(payload, origem, formato = "") {
   const leitura = interpretarECard(payload);
-  if (leitura.tipo === "carteirinha") return processarCarteirinha(payload, leitura, origem);
+  if (leitura.tipo === "carteirinha") return processarCarteirinha(payload, leitura, origem, formato);
 
   const { codigo, nusp } = leitura;
-  const atleta = elenco.find((a) =>
+
+  // Procura primeiro na lista de inscritos carregada, depois na filiação.
+  const naLista = elenco.find((a) =>
     (codigo && a.codigoEcard && a.codigoEcard === codigo) ||
     (nusp && a.nusp && a.nusp === nusp));
+  const naFiliacao = !naLista && filiados
+    ? filiados.atletas.find((a) =>
+      (nusp && a.nusp === nusp) || (codigo && a.codigoEcard && a.codigoEcard === codigo))
+    : null;
+  const atleta = naLista || (naFiliacao && {
+    nusp: naFiliacao.nusp,
+    nome: naFiliacao.nome,
+    atletica: naFiliacao.atletica,
+    codigoEcard: naFiliacao.codigoEcard || "",
+    situacao: estaRegular(naFiliacao) ? "inscrito" : naFiliacao.situacao,
+  });
+
+  const inscricao = inscricaoNoJogo({ nusp: atleta?.nusp || nusp, codigo });
+  const situacaoBoa = atleta && /^(inscrito|apto|ok|aprovado|regular)$/i.test(atleta.situacao);
 
   let nivel = "alerta";
   let titulo = "Não encontrado na lista";
   if (!codigo && !nusp) {
     nivel = "erro";
-    titulo = "QR Code não reconhecido";
-  } else if (atleta && /^(inscrito|apto|ok|aprovado)$/i.test(atleta.situacao)) {
-    nivel = "ok";
-    titulo = "Liberado para jogar";
-  } else if (atleta) {
+    titulo = "Código não reconhecido";
+  } else if (atleta && !situacaoBoa) {
     nivel = "erro";
     titulo = `Impedido: ${atleta.situacao}`;
-  } else if (!elenco.length) {
+  } else if (inscricao.verificavel && !inscricao.inscrito) {
+    nivel = "erro";
+    titulo = "Não inscrito nesta partida";
+  } else if (inscricao.verificavel && inscricao.inscrito) {
+    nivel = "ok";
+    titulo = "Liberado para jogar";
+  } else if (situacaoBoa) {
+    nivel = "ok";
+    titulo = "Liberado para jogar";
+  } else if (!elenco.length && !filiados) {
     titulo = "Leitura registrada (sem lista carregada)";
   }
 
@@ -369,10 +491,14 @@ function processar(payload, origem) {
       "Código do e-Card": codigo || "—",
       "Número USP": atleta?.nusp || nusp || "—",
       Atleta: atleta?.nome || "—",
-      Atlética: atleta?.atletica || "—",
+      Atlética: inscricao.atleta?.equipe || atleta?.atletica || "—",
+      Inscrição: elencoDoJogo
+        ? (inscricao.inscrito ? `inscrito por ${inscricao.atleta.equipe}` : "fora da lista do jogo")
+        : "—",
       Jogo: jogo || "—",
       Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
-      "Conteúdo do QR": payload.slice(0, 140),
+      Formato: NOME_DO_FORMATO[formato] || formato || "—",
+      "Conteúdo lido": payload.slice(0, 140),
     },
   });
   atualizarCaixaDeVinculo();
@@ -386,6 +512,7 @@ function processar(payload, origem) {
     jogo,
     situacao: titulo,
     origem,
+    formato,
     payload,
   });
   registros = registros.slice(0, 500);
@@ -396,20 +523,24 @@ function processar(payload, origem) {
 }
 
 /** Carteirinha digital da LAAUSP: confere direto na lista de filiados. */
-function processarCarteirinha(payload, leitura, origem) {
+function processarCarteirinha(payload, leitura, origem, formato = "") {
   const filiado = filiados?.atletas.find((a) => idDoAtleta(a) === leitura.idAtleta);
   const regular = filiado && estaRegular(filiado);
+  const inscricao = inscricaoNoJogo({ nusp: filiado?.nusp || leitura.nusp, codigo: "" });
 
   let nivel = "alerta";
   let titulo = "Carteirinha não encontrada na filiação";
   if (!filiados) {
     titulo = "Carteirinha lida (lista de filiados indisponível)";
+  } else if (filiado && !regular) {
+    nivel = "erro";
+    titulo = `Impedido: filiação ${filiado.situacao}`;
+  } else if (inscricao.verificavel && !inscricao.inscrito) {
+    nivel = "erro";
+    titulo = "Não inscrito nesta partida";
   } else if (regular) {
     nivel = "ok";
     titulo = "Liberado para jogar";
-  } else if (filiado) {
-    nivel = "erro";
-    titulo = `Impedido: filiação ${filiado.situacao}`;
   }
 
   const jogo = seletorJogo.value;
@@ -425,7 +556,11 @@ function processarCarteirinha(payload, leitura, origem) {
       Atlética: filiado?.atletica || "—",
       Modalidades: filiado?.modalidades?.join(", ") || "—",
       Jogo: jogo || "—",
+      Inscrição: elencoDoJogo
+        ? (inscricao.inscrito ? `inscrito por ${inscricao.atleta.equipe}` : "fora da lista do jogo")
+        : "—",
       Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
+      Formato: NOME_DO_FORMATO[formato] || formato || "—",
     },
   });
 
@@ -438,6 +573,7 @@ function processarCarteirinha(payload, leitura, origem) {
     jogo,
     situacao: titulo,
     origem,
+    formato,
     payload,
   });
   registros = registros.slice(0, 500);
