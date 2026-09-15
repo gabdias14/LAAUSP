@@ -17,7 +17,8 @@ python3 -m http.server 8000     # http://localhost:8000
 | `index.html` | Resumo da temporada, próximos jogos e últimos resultados. |
 | `jogos.html` | Tabela completa com filtros (modalidade, situação, atlética, busca) e classificação geral e por grupo. |
 | `calendario.html` | Jogos agrupados por dia, com filtro de rodada/período e exportação `.ics`. |
-| `restrito.html` | Área do representante: leitura do QR do e-Card, conferência contra a lista de inscritos e registro das leituras. |
+| `atleta.html` | Área do atleta: carteirinha digital da LAAUSP e cartela de fidelidade da Pizzaria Europa. |
+| `restrito.html` | Área do representante: leitura do QR do e-Card **e da carteirinha LAAUSP**, conferência contra a lista de inscritos e registro das leituras. |
 
 ## Dados dos jogos
 
@@ -91,6 +92,67 @@ Senha atual: `liga2026`. Para trocar, gere o hash e cole em `config.js`:
 printf 'nova-senha' | sha256sum
 ```
 
+## Área do atleta
+
+O atleta entra pelo **número USP** ou pela dupla **atlética + nome completo**,
+conferidos contra a base de filiados. A área tem duas abas:
+
+### Carteirinha digital
+
+Carteirinha com a estética macro da LAAUSP (moldura vinho, selo da liga,
+temporada) e a identidade micro da atlética (faixa e cores próprias, sigla e
+unidade). Traz nome, número USP, vínculo, modalidades, selo de **atleta
+regular/irregular**, validade e um **QR Code** no formato:
+
+```
+LAAUSP|<temporada>|<número USP ou atlética:nome>
+```
+
+Esse QR é lido pelo mesmo scanner da área restrita: o representante aponta a
+câmera para a carteirinha do atleta e o site confere a situação da filiação na
+hora, sem depender do e-Card da USP. O botão **Salvar / imprimir** gera uma
+versão só da carteirinha para PDF.
+
+As cores de cada atlética ficam em `data/atleticas.json` e são **provisórias** —
+foram escolhidas só para diferenciar as carteirinhas. Cada atlética deve
+substituir pelas suas cores oficiais (e, quando houver, pelo brasão).
+
+### Fidelidade Pizzaria Europa
+
+Cartela de 8 casas: **7 pizzas carimbadas e a 8ª é grátis**. O carimbo é dado
+pelo caixa da pizzaria, que digita a senha (`europa2026`, em
+`assets/js/config.js`) no aparelho do atleta; há botão de desfazer o último
+carimbo e de resgatar a pizza grátis, que zera a cartela e guarda o histórico.
+
+Os carimbos ficam no `localStorage` do aparelho do atleta — trocar de celular
+ou limpar o navegador zera a cartela. É o suficiente para validar o programa com
+a pizzaria; para valer de verdade, os carimbos precisam de backend.
+
+## Base de filiados
+
+`scripts/parse-filiados.py` converte os exports das planilhas de filiação em
+`data/filiados.json`. Ele entende os dois formatos: o **planilhão**
+(`<SIGLA> ATLETAS REGULARES`) e as **respostas do formulário de filiação** de
+cada atlética, e junta os dois pelo número USP ou pelo nome — o planilhão dá a
+situação (REGULAR/IRREGULAR) e o formulário dá número USP, e-mail, naipe e
+modalidades.
+
+```bash
+python3 scripts/parse-filiados.py planilhao.md filiacao-each.md > data/filiados.json
+```
+
+O **CPF do formulário é descartado de propósito** pelo parser: a carteirinha não
+precisa dele.
+
+> **Dados pessoais.** `data/filiados.json` tem nome, e-mail e número USP de
+> ~3.400 atletas, então está no `.gitignore` e não vai para o repositório. O
+> site cai em `data/filiados.exemplo.json` (dados fictícios) quando o arquivo
+> real não existe. Atenção: publicar o site com o arquivo real **torna essa
+> lista pública** — em um site estático não há como o navegador consultar a base
+> sem baixá-la. Se isso não for aceitável (e provavelmente não é, pela LGPD
+> citada no próprio formulário), a área do atleta precisa do backend com login
+> antes de ir ao ar com os dados reais.
+
 ## Publicação
 
 `.github/workflows/pages.yml` publica a pasta inteira no GitHub Pages a cada
@@ -98,6 +160,13 @@ push na `main` (basta habilitar Pages → Source: GitHub Actions no repositório
 
 ## Próximos passos do plano
 
-Fora do MVP, mas previstos: solicitação de quadras pelas atléticas, envio de
-súmulas pelos representantes, carteirinha/desconto CICO, notificações por e-mail
-e o painel da gestão.
+Fora do MVP, mas previstos:
+
+- **Reservas de quadra** — a partir da planilha `[CONTROLE 2026] RESERVAS QUADRAS`:
+  solicitação pelas atléticas até o antepenúltimo dia do mês, montagem
+  automática da tabela do mês e aviso por e-mail para DMs, DGEs e presidências.
+- Envio de súmulas pelos representantes depois do jogo.
+- Desconto CICO na carteirinha.
+- Painel da gestão, com permissão para alterar todo o resto.
+- Backend com login de verdade (atleta, representante, gestão), que é o que
+  destrava publicar a base de filiados com segurança.

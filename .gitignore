@@ -1,0 +1,6 @@
+# Lista real de filiados: contém dados pessoais dos atletas e não vai para o
+# repositório. Gere com scripts/parse-filiados.py quando for publicar o site.
+data/filiados.json
+
+# Exports brutos das planilhas de filiação (contêm CPF).
+scripts/export-filiados*.md

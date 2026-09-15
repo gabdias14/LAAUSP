@@ -244,3 +244,158 @@ tbody tr:nth-child(odd) td { background: rgba(125, 17, 40, .03); }
 .registros { margin: 0; padding: 0; }
 
 .linha-botoes { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Abas da área do atleta */
+.abas { display: flex; gap: 6px; border-bottom: 1px solid var(--borda); margin: 18px 0 22px; flex-wrap: wrap; }
+
+.aba {
+  background: transparent;
+  color: var(--tinta-fraca);
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 10px 14px;
+}
+
+.aba:hover { background: transparent; color: var(--tinta); }
+.aba[aria-selected="true"] { color: var(--vinho); border-bottom-color: var(--vinho); }
+
+/* Carteirinha: moldura macro da LAAUSP, cores micro da atlética */
+.carteirinha {
+  --atletica-primaria: var(--vinho);
+  --atletica-secundaria: var(--areia);
+  position: relative;
+  max-width: 440px;
+  border-radius: 18px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    linear-gradient(150deg, var(--atletica-primaria), color-mix(in srgb, var(--atletica-primaria) 55%, #000));
+  box-shadow: 0 10px 30px rgba(29, 26, 27, .25);
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+
+.carteirinha__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--vinho-escuro);
+}
+
+.carteirinha__liga strong { display: block; font-size: 19px; letter-spacing: .12em; }
+.carteirinha__liga small { font-size: 11px; opacity: .78; letter-spacing: .04em; }
+.carteirinha__temporada { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+
+.carteirinha__faixa {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--atletica-secundaria);
+  color: #1d1a1b;
+  flex-wrap: wrap;
+}
+
+.carteirinha__sigla { font-size: 22px; font-weight: 850; letter-spacing: .04em; }
+.carteirinha__unidade { font-size: 11px; opacity: .72; }
+
+.carteirinha__corpo { display: flex; gap: 14px; padding: 18px; padding-right: 150px; }
+
+.carteirinha__monograma {
+  width: 58px;
+  height: 58px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .3);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.carteirinha__nome { margin: 0 0 10px; font-size: 18px; font-weight: 750; line-height: 1.25; }
+.carteirinha__dados { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; font-size: 12.5px; }
+.carteirinha__dados dt { opacity: .7; }
+.carteirinha__dados dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+
+.carteirinha__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 18px 16px;
+  padding-right: 160px;
+  flex-wrap: wrap;
+}
+
+.carteirinha__validade { font-size: 11px; opacity: .8; }
+
+.carteirinha__qr {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 10px;
+  line-height: 0;
+}
+
+.carteirinha__qr-falha { font-size: 11px; color: #1d1a1b; line-height: 1.4; display: block; width: 120px; text-align: center; }
+
+.selo {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.selo--ok { background: #dcfce7; color: #14532d; }
+.selo--erro { background: #fee2e2; color: #7f1d1d; }
+
+@media (max-width: 460px) {
+  .carteirinha__corpo, .carteirinha__rodape { padding-right: 18px; }
+  .carteirinha__qr { position: static; margin: 0 18px 18px; display: inline-block; }
+}
+
+/* Cartela de fidelidade da Pizzaria Europa */
+.cartao--pizzaria {
+  background: linear-gradient(160deg, #1f7a3d, #10532a 60%, #8c1d1d);
+  color: #fff;
+  border-color: rgba(255, 255, 255, .18);
+}
+
+.cartao--pizzaria h3 { color: rgba(255, 255, 255, .8); }
+
+.cartela { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+.casa {
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .06);
+  text-align: center;
+}
+
+.casa__icone { font-size: 22px; filter: grayscale(1) opacity(.45); }
+.casa__numero { font-size: 10px; font-weight: 800; letter-spacing: .06em; opacity: .7; }
+.casa--carimbada { border-style: solid; border-color: #fff; background: rgba(255, 255, 255, .18); }
+.casa--carimbada .casa__icone { filter: none; }
+.casa--carimbada .casa__numero { opacity: 1; }
+.casa--premio { border-color: #f2c94c; }
+.casa--premio .casa__icone { color: #f2c94c; filter: none; opacity: .5; }
+.casa--premio.casa--carimbada .casa__icone { opacity: 1; }
+
+@media print {
+  .cabecalho, .rodape, .abas, .filtros, .cartao:not(#area-carteirinha .cartao) { display: none !important; }
+  body { background: #fff; }
+  .carteirinha { box-shadow: none; }
+}

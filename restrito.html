@@ -16,6 +16,7 @@
       <a href="index.html">Início</a>
       <a href="jogos.html">Jogos</a>
       <a href="calendario.html">Calendário</a>
+      <a href="atleta.html">Atleta</a>
       <a href="restrito.html">Área restrita</a>
     </nav>
   </div>
@@ -121,6 +122,7 @@
 <script type="module">
 import { carregarLiga, ordenarPorData, el, marcarNavegacao } from "./assets/js/liga.js";
 import { lerQR, lerQRDeArquivo, interpretarECard } from "./assets/js/scanner.js";
+import { carregarFiliados, idDoAtleta, estaRegular } from "./assets/js/atletas.js";
 import { HASH_SENHA_REPRESENTANTE, CHAVE_SESSAO, CHAVE_REGISTROS, CHAVE_ELENCO } from "./assets/js/config.js";
 
 marcarNavegacao();
@@ -140,6 +142,7 @@ const recuperar = (chave, padrao) => { try { return JSON.parse(localStorage.getI
 
 let registros = recuperar(CHAVE_REGISTROS, []);
 let elenco = [];
+let filiados = null;
 let fluxo = null;
 let lendo = false;
 let ultimoPayload = "";
@@ -177,6 +180,11 @@ async function abrirPainel() {
   telaPainel.hidden = false;
   await montarSeletorDeJogos();
   await carregarElenco();
+  try {
+    filiados = await carregarFiliados();
+  } catch {
+    filiados = null;
+  }
   renderizarRegistros();
 }
 
@@ -314,7 +322,9 @@ document.getElementById("arquivo").addEventListener("change", async (evento) => 
 });
 
 document.getElementById("btn-manual").addEventListener("click", () => {
-  const digitado = document.getElementById("nusp-manual").value.replace(/\D/g, "");
+  const bruto = document.getElementById("nusp-manual").value.trim();
+  // Aceita tanto um número digitado quanto o conteúdo colado de um QR.
+  const digitado = /^LAAUSP\|/i.test(bruto) ? bruto : bruto.replace(/\D/g, "");
   if (digitado) processar(digitado, "manual");
 });
 
@@ -323,7 +333,10 @@ document.getElementById("btn-manual").addEventListener("click", () => {
 let ultimaLeitura = null;
 
 function processar(payload, origem) {
-  const { codigo, nusp } = interpretarECard(payload);
+  const leitura = interpretarECard(payload);
+  if (leitura.tipo === "carteirinha") return processarCarteirinha(payload, leitura, origem);
+
+  const { codigo, nusp } = leitura;
   const atleta = elenco.find((a) =>
     (codigo && a.codigoEcard && a.codigoEcard === codigo) ||
     (nusp && a.nusp && a.nusp === nusp));
@@ -375,6 +388,57 @@ function processar(payload, origem) {
   guardar(CHAVE_REGISTROS, registros);
   renderizarRegistros();
 
+  if (navigator.vibrate) navigator.vibrate(nivel === "ok" ? 60 : [60, 60, 60]);
+}
+
+/** Carteirinha digital da LAAUSP: confere direto na lista de filiados. */
+function processarCarteirinha(payload, leitura, origem) {
+  const filiado = filiados?.atletas.find((a) => idDoAtleta(a) === leitura.idAtleta);
+  const regular = filiado && estaRegular(filiado);
+
+  let nivel = "alerta";
+  let titulo = "Carteirinha não encontrada na filiação";
+  if (!filiados) {
+    titulo = "Carteirinha lida (lista de filiados indisponível)";
+  } else if (regular) {
+    nivel = "ok";
+    titulo = "Liberado para jogar";
+  } else if (filiado) {
+    nivel = "erro";
+    titulo = `Impedido: filiação ${filiado.situacao}`;
+  }
+
+  const jogo = seletorJogo.value;
+  ultimaLeitura = null;
+  atualizarCaixaDeVinculo();
+  mostrarResultado({
+    nivel,
+    titulo,
+    detalhes: {
+      Documento: `Carteirinha LAAUSP ${leitura.temporada || ""}`.trim(),
+      "Número USP": filiado?.nusp || leitura.nusp || "—",
+      Atleta: filiado?.nome || "—",
+      Atlética: filiado?.atletica || "—",
+      Modalidades: filiado?.modalidades?.join(", ") || "—",
+      Jogo: jogo || "—",
+      Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
+    },
+  });
+
+  registros.unshift({
+    quando: new Date().toISOString(),
+    codigoEcard: "",
+    nusp: filiado?.nusp || leitura.nusp,
+    nome: filiado?.nome || "",
+    atletica: filiado?.atletica || "",
+    jogo,
+    situacao: titulo,
+    origem,
+    payload,
+  });
+  registros = registros.slice(0, 500);
+  guardar(CHAVE_REGISTROS, registros);
+  renderizarRegistros();
   if (navigator.vibrate) navigator.vibrate(nivel === "ok" ? 60 : [60, 60, 60]);
 }
 

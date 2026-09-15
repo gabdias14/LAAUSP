@@ -1,0 +1,155 @@
+{
+  "observacao": "As cores abaixo são provisórias, escolhidas só para diferenciar as carteirinhas. Substitua pelas cores oficiais de cada atlética.",
+  "atleticas": [
+    {
+      "sigla": "AAAGW",
+      "unidade": "",
+      "corPrimaria": "#1f6f3d",
+      "corSecundaria": "#f2c94c"
+    },
+    {
+      "sigla": "EACH",
+      "unidade": "Escola de Artes, Ciências e Humanidades",
+      "corPrimaria": "#0f4c81",
+      "corSecundaria": "#f2b705"
+    },
+    {
+      "sigla": "ECA",
+      "unidade": "Escola de Comunicações e Artes",
+      "corPrimaria": "#7b2d8b",
+      "corSecundaria": "#f2f2f2"
+    },
+    {
+      "sigla": "EDUCA",
+      "unidade": "Faculdade de Educação",
+      "corPrimaria": "#2f6f6f",
+      "corSecundaria": "#f5e6c8"
+    },
+    {
+      "sigla": "EEFE",
+      "unidade": "Escola de Educação Física e Esporte",
+      "corPrimaria": "#134e7a",
+      "corSecundaria": "#e8eef5"
+    },
+    {
+      "sigla": "EEL",
+      "unidade": "Escola de Engenharia de Lorena",
+      "corPrimaria": "#31485c",
+      "corSecundaria": "#d9c27e"
+    },
+    {
+      "sigla": "ENF",
+      "unidade": "Escola de Enfermagem",
+      "corPrimaria": "#8c1d40",
+      "corSecundaria": "#f5dfe4"
+    },
+    {
+      "sigla": "FARMA",
+      "unidade": "Faculdade de Ciências Farmacêuticas",
+      "corPrimaria": "#1d6f5c",
+      "corSecundaria": "#e5f0e9"
+    },
+    {
+      "sigla": "FAU",
+      "unidade": "Faculdade de Arquitetura e Urbanismo",
+      "corPrimaria": "#2b2b2b",
+      "corSecundaria": "#e94f37"
+    },
+    {
+      "sigla": "FEA",
+      "unidade": "Faculdade de Economia, Administração e Contabilidade",
+      "corPrimaria": "#0d3b66",
+      "corSecundaria": "#f4d35e"
+    },
+    {
+      "sigla": "FFLCH",
+      "unidade": "Faculdade de Filosofia, Letras e Ciências Humanas",
+      "corPrimaria": "#5b2333",
+      "corSecundaria": "#e7d7c1"
+    },
+    {
+      "sigla": "FOFITO",
+      "unidade": "Fonoaudiologia, Fisioterapia e Terapia Ocupacional",
+      "corPrimaria": "#0a6b74",
+      "corSecundaria": "#ffd166"
+    },
+    {
+      "sigla": "FSP",
+      "unidade": "Faculdade de Saúde Pública",
+      "corPrimaria": "#00695c",
+      "corSecundaria": "#cfe8e3"
+    },
+    {
+      "sigla": "GEO",
+      "unidade": "Instituto de Geociências",
+      "corPrimaria": "#6b4423",
+      "corSecundaria": "#e6c79c"
+    },
+    {
+      "sigla": "ICBIÓ",
+      "unidade": "Instituto de Ciências Biomédicas",
+      "corPrimaria": "#1b5e20",
+      "corSecundaria": "#c8e6c9"
+    },
+    {
+      "sigla": "IME",
+      "unidade": "Instituto de Matemática e Estatística",
+      "corPrimaria": "#1a237e",
+      "corSecundaria": "#c5cae9"
+    },
+    {
+      "sigla": "IRI",
+      "unidade": "Instituto de Relações Internacionais",
+      "corPrimaria": "#0b3d5c",
+      "corSecundaria": "#cddfea"
+    },
+    {
+      "sigla": "MED",
+      "unidade": "Faculdade de Medicina",
+      "corPrimaria": "#8e1b1b",
+      "corSecundaria": "#f3d7d7"
+    },
+    {
+      "sigla": "ODONTO",
+      "unidade": "Faculdade de Odontologia",
+      "corPrimaria": "#123f6d",
+      "corSecundaria": "#dbe7f3"
+    },
+    {
+      "sigla": "POLI",
+      "unidade": "Escola Politécnica",
+      "corPrimaria": "#1b1b1b",
+      "corSecundaria": "#f2c200"
+    },
+    {
+      "sigla": "PSICO",
+      "unidade": "Instituto de Psicologia",
+      "corPrimaria": "#4a3b76",
+      "corSecundaria": "#ded7f0"
+    },
+    {
+      "sigla": "QUÍMICA",
+      "unidade": "Instituto de Química",
+      "corPrimaria": "#0f5257",
+      "corSecundaria": "#bfe3e0"
+    },
+    {
+      "sigla": "RI",
+      "unidade": "Instituto de Relações Internacionais",
+      "corPrimaria": "#0b3d5c",
+      "corSecundaria": "#cddfea"
+    },
+    {
+      "sigla": "SANFRAN",
+      "unidade": "Faculdade de Direito (Largo São Francisco)",
+      "corPrimaria": "#7a1420",
+      "corSecundaria": "#f0dcd0"
+    },
+    {
+      "sigla": "VET",
+      "unidade": "Faculdade de Medicina Veterinária e Zootecnia",
+      "corPrimaria": "#2d572c",
+      "corSecundaria": "#e0ecd8"
+    }
+  ]
+}

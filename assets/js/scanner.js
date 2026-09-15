@@ -75,8 +75,18 @@ export async function lerQRDeArquivo(arquivo) {
    O vínculo código ↔ número USP é montado no cadastro da área restrita. */
 export function interpretarECard(payload) {
   const texto = (payload || "").trim();
-  const resultado = { codigo: "", nusp: "" };
+  const resultado = { codigo: "", nusp: "", tipo: "ecard", idAtleta: "" };
   if (!texto) return resultado;
+
+  // Carteirinha digital da LAAUSP: LAAUSP|<temporada>|<id do atleta>
+  const carteirinha = /^LAAUSP\|(\d{4})\|(.+)$/i.exec(texto);
+  if (carteirinha) {
+    resultado.tipo = "carteirinha";
+    resultado.temporada = carteirinha[1];
+    resultado.idAtleta = carteirinha[2].trim();
+    if (/^\d{4,12}$/.test(resultado.idAtleta)) resultado.nusp = resultado.idAtleta;
+    return resultado;
+  }
 
   const chavesUSP = ["codpes", "nusp", "numusp", "n_usp", "matricula"];
   try {
