@@ -1,0 +1,18 @@
+[
+  {
+    "nusp": "11918672",
+    "codigoEcard": "1051139627",
+    "nome": "Gabriel Dias Bulow",
+    "atletica": "EACH",
+    "modalidade": "FM",
+    "situacao": "inscrito"
+  },
+  {
+    "nusp": "10000001",
+    "codigoEcard": "",
+    "nome": "Atleta de Exemplo (inscrição pendente)",
+    "atletica": "POLI",
+    "modalidade": "BM",
+    "situacao": "pendente"
+  }
+]

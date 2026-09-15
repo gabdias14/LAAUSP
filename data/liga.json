@@ -1,0 +1,6944 @@
+{
+  "fonte": "https://docs.google.com/spreadsheets/d/1xVSMcugSbGGE2-QiPbOJJF1oLZkGpt--MnFXKczq3vU/edit",
+  "temporada": "2026",
+  "modalidades": [
+    {
+      "id": "BF",
+      "nome": "Basquete Feminino",
+      "modalidade": "basquete",
+      "genero": "F",
+      "jogos": [
+        {
+          "codigo": "BF-01",
+          "local": "Módulo 4",
+          "data": "16/08",
+          "hora": "08:30",
+          "equipeA": "SANFRAN",
+          "placarA": "44",
+          "equipeB": "FARMA+ODONTO+VET",
+          "placarB": "10",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-02",
+          "local": "Módulo 2",
+          "data": "30/08",
+          "hora": "08:30",
+          "equipeA": "FARMA+ODONTO+VET",
+          "placarA": "9",
+          "equipeB": "QUIM+ECA",
+          "placarB": "10",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-03",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "15:10",
+          "equipeA": "QUIM+ECA",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-05",
+          "local": "Caveirão",
+          "data": "16/08",
+          "hora": "21:00",
+          "equipeA": "POLI",
+          "placarA": "19",
+          "equipeB": "MED",
+          "placarB": "39",
+          "rodada": "1ª Rodada",
+          "dia": "Domingo",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-04",
+          "local": "Módulo 4",
+          "data": "05/09",
+          "hora": "09:50",
+          "equipeA": "EACH",
+          "placarA": "44",
+          "equipeB": "POLI",
+          "placarB": "20",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-06",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "12:30",
+          "equipeA": "MED",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-07",
+          "local": "Módulo 4",
+          "data": "16/08",
+          "hora": "12:30",
+          "equipeA": "FOFITO+FSP",
+          "placarA": "26",
+          "equipeB": "RI+PSICO+EDUCA",
+          "placarB": "18",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-08",
+          "local": "Módulo 2",
+          "data": "22/08",
+          "hora": "09:50",
+          "equipeA": "FAU",
+          "placarA": "13",
+          "equipeB": "ICBIÓ",
+          "placarB": "34",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-09",
+          "local": "Módulo 2",
+          "data": "26/09",
+          "hora": "08:30",
+          "equipeA": "RI+PSICO+EDUCA",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-10",
+          "local": "Módulo 2",
+          "data": "26/09",
+          "hora": "15:10",
+          "equipeA": "ICBIÓ",
+          "placarA": "",
+          "equipeB": "FOFITO+FSP",
+          "placarB": "",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-11",
+          "local": "Módulo 2",
+          "data": "23/08",
+          "hora": "08:30",
+          "equipeA": "FEA",
+          "placarA": "28",
+          "equipeB": "AAAGW+GEO+IME",
+          "placarB": "11",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-13",
+          "local": "Módulo 4",
+          "data": "29/08",
+          "hora": "13:50",
+          "equipeA": "AAAGW+GEO+IME",
+          "placarA": "21",
+          "equipeB": "EEFE",
+          "placarB": "13",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-14",
+          "local": "Módulo 4",
+          "data": "05/09",
+          "hora": "11:10",
+          "equipeA": "FFLCH",
+          "placarA": "18",
+          "equipeB": "FEA",
+          "placarB": "23",
+          "modalidade": "BF"
+        },
+        {
+          "codigo": "BF-12",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "08:30",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "modalidade": "BF"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "FEA",
+          "J": "2",
+          "P": "4",
+          "V": "2",
+          "D": "0",
+          "P+": "51",
+          "P-": "29",
+          "SP": "22",
+          "MSP": "11",
+          "MP+": "25,5"
+        },
+        {
+          "equipe": "AAAGW+GEO+IME",
+          "J": "2",
+          "P": "3",
+          "V": "1",
+          "D": "1",
+          "P+": "32",
+          "P-": "41",
+          "SP": "-9",
+          "MSP": "-4,5",
+          "MP+": "16"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "44",
+          "P-": "10",
+          "SP": "34",
+          "MSP": "34",
+          "MP+": "44"
+        },
+        {
+          "equipe": "EACH",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "44",
+          "P-": "20",
+          "SP": "24",
+          "MSP": "24",
+          "MP+": "44"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "34",
+          "P-": "13",
+          "SP": "21",
+          "MSP": "21",
+          "MP+": "34"
+        },
+        {
+          "equipe": "MED",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "39",
+          "P-": "19",
+          "SP": "20",
+          "MSP": "20",
+          "MP+": "39"
+        },
+        {
+          "equipe": "FOFITO+FSP",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "26",
+          "P-": "18",
+          "SP": "8",
+          "MSP": "8",
+          "MP+": "26"
+        },
+        {
+          "equipe": "QUIM+ECA",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "10",
+          "P-": "9",
+          "SP": "1",
+          "MSP": "1",
+          "MP+": "10"
+        },
+        {
+          "equipe": "FARMA+ODONTO+VET",
+          "J": "2",
+          "P": "2",
+          "V": "0",
+          "D": "2",
+          "P+": "19",
+          "P-": "54",
+          "SP": "-35",
+          "MSP": "-17,5",
+          "MP+": "9,5"
+        },
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "2",
+          "V": "0",
+          "D": "2",
+          "P+": "39",
+          "P-": "83",
+          "SP": "-44",
+          "MSP": "-22",
+          "MP+": "19,5"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "18",
+          "P-": "23",
+          "SP": "-5",
+          "MSP": "-5",
+          "MP+": "18"
+        },
+        {
+          "equipe": "RI+PSICO+EDUCA",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "18",
+          "P-": "26",
+          "SP": "-8",
+          "MSP": "-8",
+          "MP+": "18"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "13",
+          "P-": "21",
+          "SP": "-8",
+          "MSP": "-8",
+          "MP+": "13"
+        },
+        {
+          "equipe": "FAU",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "13",
+          "P-": "34",
+          "SP": "-21",
+          "MSP": "-21",
+          "MP+": "13"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "44",
+              "P-": "10",
+              "SP": "34",
+              "MSP": "34",
+              "MP+": "44",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "QUIM+ECA",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "10",
+              "P-": "9",
+              "SP": "1",
+              "MSP": "1",
+              "MP+": "10",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FARMA+ODONTO+VET",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "19",
+              "P-": "54",
+              "SP": "-35",
+              "MSP": "-17,5",
+              "MP+": "9,5",
+              "MPD": "50,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "EACH",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "44",
+              "P-": "20",
+              "SP": "24",
+              "MSP": "24",
+              "MP+": "44",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "MED",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "39",
+              "P-": "19",
+              "SP": "20",
+              "MSP": "20",
+              "MP+": "39",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "39",
+              "P-": "83",
+              "SP": "-44",
+              "MSP": "-22",
+              "MP+": "19,5",
+              "MPD": "50,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "34",
+              "P-": "13",
+              "SP": "21",
+              "MSP": "21",
+              "MP+": "34",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "26",
+              "P-": "18",
+              "SP": "8",
+              "MSP": "8",
+              "MP+": "26",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "RI+PSICO+EDUCA",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "18",
+              "P-": "26",
+              "SP": "-8",
+              "MSP": "-8",
+              "MP+": "18",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "13",
+              "P-": "34",
+              "SP": "-21",
+              "MSP": "-21",
+              "MP+": "13",
+              "MPD": "25,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (C x D)",
+          "tabela": [
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "34",
+              "P-": "13",
+              "SP": "21",
+              "MSP": "21",
+              "MP+": "34",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "26",
+              "P-": "18",
+              "SP": "8",
+              "MSP": "8",
+              "MP+": "26",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "RI+PSICO+EDUCA",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "18",
+              "P-": "26",
+              "SP": "-8",
+              "MSP": "-8",
+              "MP+": "18",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "13",
+              "P-": "34",
+              "SP": "-21",
+              "MSP": "-21",
+              "MP+": "13",
+              "MPD": "25,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "51",
+              "P-": "29",
+              "SP": "22",
+              "MSP": "11",
+              "MP+": "25,5",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "AAAGW+GEO+IME",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "D": "1",
+              "P+": "32",
+              "P-": "41",
+              "SP": "-9",
+              "MSP": "-4,5",
+              "MP+": "16",
+              "MPD": "75,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "18",
+              "P-": "23",
+              "SP": "-5",
+              "MSP": "-5",
+              "MP+": "18",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "13",
+              "P-": "21",
+              "SP": "-8",
+              "MSP": "-8",
+              "MP+": "13",
+              "MPD": "25,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (E x F)",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "51",
+              "P-": "29",
+              "SP": "22",
+              "MSP": "11",
+              "MP+": "25,5",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "AAAGW+GEO+IME",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "D": "1",
+              "P+": "32",
+              "P-": "41",
+              "SP": "-9",
+              "MSP": "-4,5",
+              "MP+": "16",
+              "MPD": "75,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "18",
+              "P-": "23",
+              "SP": "-5",
+              "MSP": "-5",
+              "MP+": "18",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "13",
+              "P-": "21",
+              "SP": "-8",
+              "MSP": "-8",
+              "MP+": "13",
+              "MPD": "25,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BM",
+      "nome": "Basquete Masculino",
+      "modalidade": "basquete",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "BM-03",
+          "local": "Módulo 2",
+          "data": "23/08",
+          "hora": "09:50",
+          "equipeA": "AAAGW+EDUCA",
+          "placarA": "50",
+          "equipeB": "FEA",
+          "placarB": "44",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-01",
+          "local": "Módulo 4",
+          "data": "29/08",
+          "hora": "15:10",
+          "equipeA": "FEA",
+          "placarA": "28",
+          "equipeB": "EEL",
+          "placarB": "36",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-02",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "11:10",
+          "equipeA": "EEL",
+          "placarA": "",
+          "equipeB": "AAAGW+EDUCA",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-05",
+          "local": "Módulo 4",
+          "data": "16/08",
+          "hora": "09:50",
+          "equipeA": "EACH",
+          "placarA": "40",
+          "equipeB": "FARMA+QUIM+FSP",
+          "placarB": "26",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-06",
+          "local": "Módulo 2",
+          "data": "06/09",
+          "hora": "13:50",
+          "equipeA": "FARMA+QUIM+FSP",
+          "placarA": "36",
+          "equipeB": "EEFE",
+          "placarB": "69",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-04",
+          "local": "Módulos 1&2",
+          "data": "26/09",
+          "hora": "12:30",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-09",
+          "local": "Módulo 2",
+          "data": "06/09",
+          "hora": "12:30",
+          "equipeA": "IRI",
+          "placarA": "0",
+          "equipeB": "MED",
+          "placarB": "20",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-08",
+          "local": "Módulo 2",
+          "data": "26/09",
+          "hora": "09:50",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "IRI",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-07",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "13:50",
+          "equipeA": "MED",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-10",
+          "local": "Módulo 2",
+          "data": "30/08",
+          "hora": "09:50",
+          "equipeA": "POLI",
+          "placarA": "46",
+          "equipeB": "ODONTO",
+          "placarB": "30",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-12",
+          "local": "Módulo 4",
+          "data": "16/08",
+          "hora": "11:10",
+          "equipeA": "ODONTO",
+          "placarA": "20",
+          "equipeB": "ICBIÓ",
+          "placarB": "42",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-13",
+          "local": "Módulo 2",
+          "data": "06/09",
+          "hora": "09:50",
+          "equipeA": "FFLCH",
+          "placarA": "37",
+          "equipeB": "POLI",
+          "placarB": "50",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-11",
+          "local": "Módulo 2",
+          "data": "26/09",
+          "hora": "13:50",
+          "equipeA": "ICBIÓ",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-14",
+          "local": "Módulo 4",
+          "data": "05/09",
+          "hora": "12:30",
+          "equipeA": "SANFRAN",
+          "placarA": "41",
+          "equipeB": "ECA",
+          "placarB": "45",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-16",
+          "local": "Módulo 2",
+          "data": "06/09",
+          "hora": "11:10",
+          "equipeA": "ECA",
+          "placarA": "55",
+          "equipeB": "PSICO+VET+FOFITO",
+          "placarB": "31",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-17",
+          "local": "Módulo 2",
+          "data": "26/09",
+          "hora": "11:10",
+          "equipeA": "IME",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "BM"
+        },
+        {
+          "codigo": "BM-15",
+          "local": "Módulo 4",
+          "data": "03/10",
+          "hora": "09:50",
+          "equipeA": "PSICO+VET+FOFITO",
+          "placarA": "",
+          "equipeB": "IME",
+          "placarB": "",
+          "modalidade": "BM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "4",
+          "V": "2",
+          "D": "0",
+          "P+": "96",
+          "P-": "67",
+          "SP": "29",
+          "MSP": "14,5",
+          "MP+": "48",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "ECA",
+          "J": "2",
+          "P": "4",
+          "V": "2",
+          "D": "0",
+          "P+": "100",
+          "P-": "72",
+          "SP": "28",
+          "MSP": "14",
+          "MP+": "50",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "69",
+          "P-": "36",
+          "SP": "33",
+          "MSP": "33",
+          "MP+": "69",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "42",
+          "P-": "20",
+          "SP": "22",
+          "MSP": "22",
+          "MP+": "42",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "MED",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "20",
+          "P-": "0",
+          "SP": "20",
+          "MSP": "20",
+          "MP+": "20",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "EACH",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "40",
+          "P-": "26",
+          "SP": "14",
+          "MSP": "14",
+          "MP+": "40",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "EEL",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "36",
+          "P-": "28",
+          "SP": "8",
+          "MSP": "8",
+          "MP+": "36",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "AAAGW+EDUCA",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0",
+          "P+": "50",
+          "P-": "44",
+          "SP": "6",
+          "MSP": "6",
+          "MP+": "50",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FEA",
+          "J": "2",
+          "P": "2",
+          "V": "0",
+          "D": "2",
+          "P+": "72",
+          "P-": "86",
+          "SP": "-14",
+          "MSP": "-7",
+          "MP+": "36",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "2",
+          "P": "2",
+          "V": "0",
+          "D": "2",
+          "P+": "50",
+          "P-": "88",
+          "SP": "-38",
+          "MSP": "-19",
+          "MP+": "25",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FARMA+QUIM+FSP",
+          "J": "2",
+          "P": "2",
+          "V": "0",
+          "D": "2",
+          "P+": "62",
+          "P-": "109",
+          "SP": "-47",
+          "MSP": "-23,5",
+          "MP+": "31",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "41",
+          "P-": "45",
+          "SP": "-4",
+          "MSP": "-4",
+          "MP+": "41",
+          "MPD": "25,00%"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "37",
+          "P-": "50",
+          "SP": "-13",
+          "MSP": "-13",
+          "MP+": "37",
+          "MPD": "25,00%"
+        },
+        {
+          "equipe": "IRI",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "0",
+          "P-": "20",
+          "SP": "-20",
+          "MSP": "-20",
+          "MP+": "0",
+          "MPD": "25,00%"
+        },
+        {
+          "equipe": "PSICO+VET+FOFITO",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1",
+          "P+": "31",
+          "P-": "55",
+          "SP": "-24",
+          "MSP": "-24",
+          "MP+": "31",
+          "MPD": "25,00%"
+        },
+        {
+          "equipe": "FAU",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0",
+          "P+": "0",
+          "P-": "0",
+          "SP": "0",
+          "MSP": "",
+          "MP+": "",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "IME",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0",
+          "P+": "0",
+          "P-": "0",
+          "SP": "0",
+          "MSP": "",
+          "MP+": "",
+          "MPD": "0,00%"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "EEL",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "36",
+              "P-": "28",
+              "SP": "8",
+              "MSP": "8",
+              "MP+": "36",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "AAAGW+EDUCA",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "50",
+              "P-": "44",
+              "SP": "6",
+              "MSP": "6",
+              "MP+": "50",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "72",
+              "P-": "86",
+              "SP": "-14",
+              "MSP": "-7",
+              "MP+": "36",
+              "MPD": "50,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "69",
+              "P-": "36",
+              "SP": "33",
+              "MSP": "33",
+              "MP+": "69",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "40",
+              "P-": "26",
+              "SP": "14",
+              "MSP": "14",
+              "MP+": "40",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FARMA+QUIM+FSP",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "62",
+              "P-": "109",
+              "SP": "-47",
+              "MSP": "-23,5",
+              "MP+": "31",
+              "MPD": "50,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "20",
+              "P-": "0",
+              "SP": "20",
+              "MSP": "20",
+              "MP+": "20",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "IRI",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "0",
+              "P-": "20",
+              "SP": "-20",
+              "MSP": "-20",
+              "MP+": "0",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0",
+              "P+": "0",
+              "P-": "0",
+              "SP": "0",
+              "MSP": "",
+              "MP+": "",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "96",
+              "P-": "67",
+              "SP": "29",
+              "MSP": "14,5",
+              "MP+": "48",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "42",
+              "P-": "20",
+              "SP": "22",
+              "MSP": "22",
+              "MP+": "42",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "50",
+              "P-": "88",
+              "SP": "-38",
+              "MSP": "-19",
+              "MP+": "25",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "37",
+              "P-": "50",
+              "SP": "-13",
+              "MSP": "-13",
+              "MP+": "37",
+              "MPD": "25,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (D x E)",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "96",
+              "P-": "67",
+              "SP": "29",
+              "MSP": "14,5",
+              "MP+": "48",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0",
+              "P+": "42",
+              "P-": "20",
+              "SP": "22",
+              "MSP": "22",
+              "MP+": "42",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "2",
+              "P": "2",
+              "V": "0",
+              "D": "2",
+              "P+": "50",
+              "P-": "88",
+              "SP": "-38",
+              "MSP": "-19",
+              "MP+": "25",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "37",
+              "P-": "50",
+              "SP": "-13",
+              "MSP": "-13",
+              "MP+": "37",
+              "MPD": "25,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo F",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "100",
+              "P-": "72",
+              "SP": "28",
+              "MSP": "14",
+              "MP+": "50",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "41",
+              "P-": "45",
+              "SP": "-4",
+              "MSP": "-4",
+              "MP+": "41",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "PSICO+VET+FOFITO",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "31",
+              "P-": "55",
+              "SP": "-24",
+              "MSP": "-24",
+              "MP+": "31",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "IME",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0",
+              "P+": "0",
+              "P-": "0",
+              "SP": "0",
+              "MSP": "",
+              "MP+": "",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (F x G)",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "4",
+              "V": "2",
+              "D": "0",
+              "P+": "100",
+              "P-": "72",
+              "SP": "28",
+              "MSP": "14",
+              "MP+": "50",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "41",
+              "P-": "45",
+              "SP": "-4",
+              "MSP": "-4",
+              "MP+": "41",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "PSICO+VET+FOFITO",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1",
+              "P+": "31",
+              "P-": "55",
+              "SP": "-24",
+              "MSP": "-24",
+              "MP+": "31",
+              "MPD": "25,00%"
+            },
+            {
+              "equipe": "IME",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0",
+              "P+": "0",
+              "P-": "0",
+              "SP": "0",
+              "MSP": "",
+              "MP+": "",
+              "MPD": "0,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF",
+      "nome": "Futsal Feminino",
+      "modalidade": "futsal",
+      "genero": "F",
+      "jogos": [
+        {
+          "codigo": "FF-02",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "08:30",
+          "equipeA": "FAU",
+          "placarA": "4",
+          "equipeB": "EEL",
+          "placarB": "2",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-03",
+          "local": "Módulos 3&4",
+          "data": "05/09",
+          "hora": "15:10",
+          "equipeA": "EEL",
+          "placarA": "0",
+          "equipeB": "EEFE",
+          "placarB": "12",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-01",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "11:10",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-04",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "09:50",
+          "equipeA": "POLI",
+          "placarA": "6",
+          "equipeB": "IME+ODONTO",
+          "placarB": "1",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-06",
+          "local": "Módulos 3&4",
+          "data": "29/08",
+          "hora": "12:30",
+          "equipeA": "PSICO",
+          "placarA": "0",
+          "equipeB": "POLI",
+          "placarB": "6",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-05",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "15:10",
+          "equipeA": "IME+ODONTO",
+          "placarA": "",
+          "equipeB": "PSICO",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-09",
+          "local": "Módulos 3&4",
+          "data": "15/08",
+          "hora": "13:50",
+          "equipeA": "RI+EDUCA",
+          "placarA": "0",
+          "equipeB": "ICBIÓ",
+          "placarB": "7",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-07",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "15:10",
+          "equipeA": "ICBIÓ",
+          "placarA": "2",
+          "equipeB": "ECA",
+          "placarB": "0",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-08",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "13:50",
+          "equipeA": "ECA",
+          "placarA": "",
+          "equipeB": "RI+EDUCA",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-13",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "08:30",
+          "equipeA": "FOFITO+FSP",
+          "placarA": "0",
+          "equipeB": "VET",
+          "placarB": "4",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-12",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "12:30",
+          "equipeA": "FEA",
+          "placarA": "1",
+          "equipeB": "MED",
+          "placarB": "1",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-11",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "13:50",
+          "equipeA": "VET",
+          "placarA": "",
+          "equipeB": "FEA",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-10",
+          "local": "Caveirão",
+          "data": "02/10",
+          "hora": "17:30",
+          "equipeA": "MED",
+          "placarA": "",
+          "equipeB": "FOFITO+FSP",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-16",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "12:30",
+          "equipeA": "SANFRAN",
+          "placarA": "",
+          "equipeB": "FARMA",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-17",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "13:50",
+          "equipeA": "EACH",
+          "placarA": "1",
+          "equipeB": "FFLCH",
+          "placarB": "1",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-14",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "09:50",
+          "equipeA": "FFLCH",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "FF"
+        },
+        {
+          "codigo": "FF-15",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "12:30",
+          "equipeA": "FARMA",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "FF"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "12",
+          "G-": "1",
+          "SG": "11",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "9",
+          "G-": "0",
+          "SG": "9",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "12",
+          "G-": "0",
+          "SG": "12",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "VET",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "4",
+          "G-": "0",
+          "SG": "4",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FAU",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "4",
+          "G-": "2",
+          "SG": "2",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "MED",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "0",
+          "G+": "1",
+          "G-": "1",
+          "SG": "0",
+          "MPD": "16,67%"
+        },
+        {
+          "equipe": "FEA",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "0",
+          "G+": "1",
+          "G-": "1",
+          "SG": "0",
+          "MPD": "16,67%"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "0",
+          "G+": "1",
+          "G-": "1",
+          "SG": "0",
+          "MPD": "16,67%"
+        },
+        {
+          "equipe": "EACH",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "0",
+          "G+": "1",
+          "G-": "1",
+          "SG": "0",
+          "MPD": "16,67%"
+        },
+        {
+          "equipe": "FARMA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "0",
+          "G-": "2",
+          "SG": "-2",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FOFITO+FSP",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "0",
+          "G-": "4",
+          "SG": "-4",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "IME+ODONTO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "1",
+          "G-": "6",
+          "SG": "-5",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "PSICO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "0",
+          "G-": "6",
+          "SG": "-6",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "RI+EDUCA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "0",
+          "G-": "7",
+          "SG": "-7",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "EEL",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "2",
+          "G-": "16",
+          "SG": "-14",
+          "MPD": "0,00%"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "12",
+              "G-": "0",
+              "SG": "12",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "4",
+              "G-": "2",
+              "SG": "2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "EEL",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "2",
+              "G-": "16",
+              "SG": "-14",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "12",
+              "G-": "1",
+              "SG": "11",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "IME+ODONTO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "1",
+              "G-": "6",
+              "SG": "-5",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "PSICO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "0",
+              "G-": "6",
+              "SG": "-6",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "9",
+              "G-": "0",
+              "SG": "9",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "0",
+              "G-": "2",
+              "SG": "-2",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "RI+EDUCA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "0",
+              "G-": "7",
+              "SG": "-7",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "VET",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "4",
+              "G-": "0",
+              "SG": "4",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "MED",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "0",
+              "G-": "4",
+              "SG": "-4",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (D x E)",
+          "tabela": [
+            {
+              "equipe": "VET",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "4",
+              "G-": "0",
+              "SG": "4",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "MED",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "0",
+              "G-": "4",
+              "SG": "-4",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo F",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (F x G)",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "1",
+              "G-": "1",
+              "SG": "0",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FM",
+      "nome": "Futsal Masculino",
+      "modalidade": "futsal",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "FM-02",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "09:50",
+          "equipeA": "EACH",
+          "placarA": "4",
+          "equipeB": "ODONTO",
+          "placarB": "0",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-03",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "11:10",
+          "equipeA": "ODONTO",
+          "placarA": "1",
+          "equipeB": "EEFE",
+          "placarB": "8",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-01",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "08:30",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-04",
+          "local": "Módulos 3&4",
+          "data": "05/09",
+          "hora": "13:50",
+          "equipeA": "POLI",
+          "placarA": "",
+          "equipeB": "EDUCA",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-05",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "11:10",
+          "equipeA": "EDUCA",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-06",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "15:10",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "POLI",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-07",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "15:10",
+          "equipeA": "MED",
+          "placarA": "4",
+          "equipeB": "FARMA+VET",
+          "placarB": "3",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-08",
+          "local": "Módulo 3&4",
+          "data": "16/08",
+          "hora": "15:10",
+          "equipeA": "FARMA+VET",
+          "placarA": "6",
+          "equipeB": "ICBIÓ",
+          "placarB": "1",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-09",
+          "local": "Caveirão",
+          "data": "31/08",
+          "hora": "17:30",
+          "equipeA": "ICBIÓ",
+          "placarA": "0",
+          "equipeB": "MED",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-11",
+          "local": "Módulos 3&4",
+          "data": "23/08",
+          "hora": "13:50",
+          "equipeA": "AAAGW",
+          "placarA": "0",
+          "equipeB": "FEA",
+          "placarB": "2",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-10",
+          "local": "Módulos 3&4",
+          "data": "06/09",
+          "hora": "13:50",
+          "equipeA": "ECA",
+          "placarA": "5",
+          "equipeB": "FFLCH",
+          "placarB": "3",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-12",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "08:30",
+          "equipeA": "FEA",
+          "placarA": "",
+          "equipeB": "ECA",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-13",
+          "local": "Módulos 3&4",
+          "data": "26/09",
+          "hora": "12:30",
+          "equipeA": "FFLCH",
+          "placarA": "",
+          "equipeB": "AAAGW",
+          "placarB": "",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-15",
+          "local": "Módulos 3&4",
+          "data": "30/08",
+          "hora": "11:10",
+          "equipeA": "RI+QUIM+GEO",
+          "placarA": "1",
+          "equipeB": "PSICO",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-16",
+          "local": "Módulos 3&4",
+          "data": "15/08",
+          "hora": "15:10",
+          "equipeA": "SANFRAN",
+          "placarA": "2",
+          "equipeB": "RI+QUIM+GEO",
+          "placarB": "1",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-17",
+          "local": "Módulos 3&4",
+          "data": "06/09",
+          "hora": "09:50",
+          "equipeA": "PSICO",
+          "placarA": "0",
+          "equipeB": "FOFITO+FSP",
+          "placarB": "3",
+          "modalidade": "FM"
+        },
+        {
+          "codigo": "FM-14",
+          "local": "Módulos 3&4",
+          "data": "27/09",
+          "hora": "09:50",
+          "equipeA": "FOFITO+FSP",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "FM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "MED",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "6",
+          "G-": "3",
+          "SG": "3",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "8",
+          "G-": "1",
+          "SG": "7",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FARMA+VET",
+          "J": "2",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "1",
+          "G+": "9",
+          "G-": "5",
+          "SG": "4",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "EACH",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "4",
+          "G-": "0",
+          "SG": "4",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FOFITO+FSP",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "3",
+          "G-": "0",
+          "SG": "3",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "5",
+          "G-": "3",
+          "SG": "2",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FEA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "2",
+          "G-": "0",
+          "SG": "2",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "2",
+          "G-": "1",
+          "SG": "1",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "PSICO",
+          "J": "2",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "1",
+          "G+": "2",
+          "G-": "4",
+          "SG": "-2",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "POLI",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "EDUCA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FAU",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "RI+QUIM+GEO",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "2",
+          "G-": "4",
+          "SG": "-2",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "AAAGW",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "3",
+          "G-": "7",
+          "SG": "-4",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "1",
+          "G-": "8",
+          "SG": "-7",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "1",
+          "G-": "12",
+          "SG": "-11",
+          "MPD": "0,00%"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "8",
+              "G-": "1",
+              "SG": "7",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "4",
+              "G-": "0",
+              "SG": "4",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "1",
+              "G-": "12",
+              "SG": "-11",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "EDUCA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "6",
+              "G-": "3",
+              "SG": "3",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "FARMA+VET",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "9",
+              "G-": "5",
+              "SG": "4",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "1",
+              "G-": "8",
+              "SG": "-7",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "5",
+              "G-": "3",
+              "SG": "2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "2",
+              "G-": "0",
+              "SG": "2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "AAAGW",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "3",
+              "G-": "7",
+              "SG": "-4",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (D x E)",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "5",
+              "G-": "3",
+              "SG": "2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "2",
+              "G-": "0",
+              "SG": "2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "AAAGW",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "3",
+              "G-": "7",
+              "SG": "-4",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo F",
+          "tabela": [
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "3",
+              "G-": "0",
+              "SG": "3",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "2",
+              "G-": "1",
+              "SG": "1",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "PSICO",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "2",
+              "G-": "4",
+              "SG": "-2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "RI+QUIM+GEO",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "2",
+              "G-": "4",
+              "SG": "-2",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (F x G)",
+          "tabela": [
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "3",
+              "G-": "0",
+              "SG": "3",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "2",
+              "G-": "1",
+              "SG": "1",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "PSICO",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "2",
+              "G-": "4",
+              "SG": "-2",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "RI+QUIM+GEO",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "2",
+              "G-": "4",
+              "SG": "-2",
+              "MPD": "0,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HF",
+      "nome": "Handebol Feminino",
+      "modalidade": "handebol",
+      "genero": "F",
+      "jogos": [
+        {
+          "codigo": "HF-01",
+          "local": "Módulos 1&2",
+          "data": "15/08",
+          "hora": "09:50",
+          "equipeA": "EEFE",
+          "placarA": "29",
+          "equipeB": "VET+IRI+PSICO",
+          "placarB": "6",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-02",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "11:10",
+          "equipeA": "VET+IRI+PSICO",
+          "placarA": "",
+          "equipeB": "EDUCA",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-03",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "09:50",
+          "equipeA": "EDUCA",
+          "placarA": "",
+          "equipeB": "EEFE",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-04",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "15:10",
+          "equipeA": "EACH",
+          "placarA": "",
+          "equipeB": "FEA",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-05",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "12:30",
+          "equipeA": "FEA",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-06",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "15:10",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-07",
+          "local": "Módulos 1&2",
+          "data": "16/08",
+          "hora": "09:50",
+          "equipeA": "POLI",
+          "placarA": "28",
+          "equipeB": "ODONTO",
+          "placarB": "10",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-08",
+          "local": "Módulos 1&2",
+          "data": "23/08",
+          "hora": "13:50",
+          "equipeA": "ODONTO",
+          "placarA": "11",
+          "equipeB": "AAAGW+QUIM",
+          "placarB": "19",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-09",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "11:10",
+          "equipeA": "AAAGW+QUIM",
+          "placarA": "",
+          "equipeB": "POLI",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-11",
+          "local": "Módulos 1&2",
+          "data": "16/08",
+          "hora": "08:30",
+          "equipeA": "FFLCH",
+          "placarA": "29",
+          "equipeB": "IME",
+          "placarB": "13",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-10",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "08:30",
+          "equipeA": "ECA",
+          "placarA": "6",
+          "equipeB": "FFLCH",
+          "placarB": "17",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-12",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "13:50",
+          "equipeA": "IME",
+          "placarA": "",
+          "equipeB": "ECA",
+          "placarB": "",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-13",
+          "local": "Módulos 1&2",
+          "data": "15/08",
+          "hora": "11:10",
+          "equipeA": "ICBIÓ",
+          "placarA": "8",
+          "equipeB": "FOFITO+FARMA+FSP",
+          "placarB": "9",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-14",
+          "local": "Módulos 1&2",
+          "data": "23/08",
+          "hora": "11:10",
+          "equipeA": "SANFRAN",
+          "placarA": "9",
+          "equipeB": "EEL",
+          "placarB": "9",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-16",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "12:30",
+          "equipeA": "EEL",
+          "placarA": "12",
+          "equipeB": "ICBIÓ",
+          "placarB": "14",
+          "modalidade": "HF"
+        },
+        {
+          "codigo": "HF-15",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "09:50",
+          "equipeA": "FOFITO+FARMA+FSP",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "HF"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "FFLCH",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "46",
+          "G-": "19",
+          "SG": "27",
+          "MSG": "13,5",
+          "MG+": "23"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "29",
+          "G-": "6",
+          "SG": "23",
+          "MSG": "23",
+          "MG+": "29"
+        },
+        {
+          "equipe": "POLI",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "28",
+          "G-": "10",
+          "SG": "18",
+          "MSG": "18",
+          "MG+": "28"
+        },
+        {
+          "equipe": "AAAGW+QUIM",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "19",
+          "G-": "11",
+          "SG": "8",
+          "MSG": "8",
+          "MG+": "19"
+        },
+        {
+          "equipe": "FOFITO+FARMA+FSP",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "9",
+          "G-": "8",
+          "SG": "1",
+          "MSG": "1",
+          "MG+": "9"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "2",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "1",
+          "G+": "22",
+          "G-": "21",
+          "SG": "1",
+          "MSG": "0,5",
+          "MG+": "11"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "0",
+          "G+": "9",
+          "G-": "9",
+          "SG": "0",
+          "MSG": "0",
+          "MG+": "9"
+        },
+        {
+          "equipe": "EEL",
+          "J": "2",
+          "P": "1",
+          "V": "0",
+          "E": "1",
+          "D": "1",
+          "G+": "21",
+          "G-": "23",
+          "SG": "-2",
+          "MSG": "-1",
+          "MG+": "10,5"
+        },
+        {
+          "equipe": "EDUCA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MSG": "",
+          "MG+": ""
+        },
+        {
+          "equipe": "EACH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MSG": "",
+          "MG+": ""
+        },
+        {
+          "equipe": "FEA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MSG": "",
+          "MG+": ""
+        },
+        {
+          "equipe": "FAU",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MSG": "",
+          "MG+": ""
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "6",
+          "G-": "17",
+          "SG": "-11",
+          "MSG": "-11",
+          "MG+": "6"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "21",
+          "G-": "47",
+          "SG": "-26",
+          "MSG": "-13",
+          "MG+": "10,5"
+        },
+        {
+          "equipe": "IME",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "13",
+          "G-": "29",
+          "SG": "-16",
+          "MSG": "-16",
+          "MG+": "13"
+        },
+        {
+          "equipe": "VET+IRI+PSICO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "6",
+          "G-": "29",
+          "SG": "-23",
+          "MSG": "-23",
+          "MG+": "6"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "29",
+              "G-": "6",
+              "SG": "23",
+              "MSG": "23",
+              "MG+": "29",
+              "MG-": "6",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "EDUCA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MSG": "",
+              "MG+": "",
+              "MG-": "",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "VET+IRI+PSICO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "6",
+              "G-": "29",
+              "SG": "-23",
+              "MSG": "-23",
+              "MG+": "6",
+              "MG-": "29",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "EACH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MSG": "",
+              "MG+": "",
+              "MG-": "",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FEA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MSG": "",
+              "MG+": "",
+              "MG-": "",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MSG": "",
+              "MG+": "",
+              "MG-": "",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "28",
+              "G-": "10",
+              "SG": "18",
+              "MSG": "18",
+              "MG+": "28",
+              "MG-": "10",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "AAAGW+QUIM",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "19",
+              "G-": "11",
+              "SG": "8",
+              "MSG": "8",
+              "MG+": "19",
+              "MG-": "11",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "21",
+              "G-": "47",
+              "SG": "-26",
+              "MSG": "-13",
+              "MG+": "10,5",
+              "MG-": "23,5",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "46",
+              "G-": "19",
+              "SG": "27",
+              "MSG": "13,5",
+              "MG+": "23",
+              "MG-": "9,5",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "6",
+              "G-": "17",
+              "SG": "-11",
+              "MSG": "-11",
+              "MG+": "6",
+              "MG-": "17",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "IME",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "13",
+              "G-": "29",
+              "SG": "-16",
+              "MSG": "-16",
+              "MG+": "13",
+              "MG-": "29",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "FOFITO+FARMA+FSP",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "9",
+              "G-": "8",
+              "SG": "1",
+              "MSG": "1",
+              "MG+": "9",
+              "MG-": "8",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "22",
+              "G-": "21",
+              "SG": "1",
+              "MSG": "0,5",
+              "MG+": "11",
+              "MG-": "10,5",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "9",
+              "G-": "9",
+              "SG": "0",
+              "MSG": "0",
+              "MG+": "9",
+              "MG-": "9",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "EEL",
+              "J": "2",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "1",
+              "G+": "21",
+              "G-": "23",
+              "SG": "-2",
+              "MSG": "-1",
+              "MG+": "10,5",
+              "MG-": "11,5",
+              "MPD": "16,67%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (E x F)",
+          "tabela": [
+            {
+              "equipe": "FOFITO+FARMA+FSP",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "9",
+              "G-": "8",
+              "SG": "1",
+              "MSG": "1",
+              "MG+": "9",
+              "MG-": "8",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "22",
+              "G-": "21",
+              "SG": "1",
+              "MSG": "0,5",
+              "MG+": "11",
+              "MG-": "10,5",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "0",
+              "G+": "9",
+              "G-": "9",
+              "SG": "0",
+              "MSG": "0",
+              "MG+": "9",
+              "MG-": "9",
+              "MPD": "16,67%"
+            },
+            {
+              "equipe": "EEL",
+              "J": "2",
+              "P": "1",
+              "V": "0",
+              "E": "1",
+              "D": "1",
+              "G+": "21",
+              "G-": "23",
+              "SG": "-2",
+              "MSG": "-1",
+              "MG+": "10,5",
+              "MG-": "11,5",
+              "MPD": "16,67%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HM",
+      "nome": "Handebol Masculino",
+      "modalidade": "handebol",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "HM-03",
+          "local": "Módulos 1&2",
+          "data": "30/08",
+          "hora": "13:50",
+          "equipeA": "ODONTO",
+          "placarA": "12",
+          "equipeB": "POLI",
+          "placarB": "25",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-01",
+          "local": "Módulos 1&2",
+          "data": "23/08",
+          "hora": "15:10",
+          "equipeA": "POLI",
+          "placarA": "31",
+          "equipeB": "ECA",
+          "placarB": "18",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-02",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "15:10",
+          "equipeA": "ECA",
+          "placarA": "",
+          "equipeB": "ODONTO",
+          "placarB": "",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-04",
+          "local": "Módulos 1&2",
+          "data": "15/08",
+          "hora": "08:30",
+          "equipeA": "ICBIÓ+QUIM",
+          "placarA": "26",
+          "equipeB": "FAU",
+          "placarB": "6",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-06",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "13:50",
+          "equipeA": "FFLCH",
+          "placarA": "27",
+          "equipeB": "ICBIÓ+QUIM",
+          "placarB": "17",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-05",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "13:50",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-07",
+          "local": "Módulos 1&2",
+          "data": "30/08",
+          "hora": "15:10",
+          "equipeA": "EEFE",
+          "placarA": "33",
+          "equipeB": "FOFITO+FSP+GEO",
+          "placarB": "13",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-08",
+          "local": "Módulos 1&2",
+          "data": "23/08",
+          "hora": "12:30",
+          "equipeA": "FOFITO+FSP+GEO",
+          "placarA": "13",
+          "equipeB": "SANFRAN",
+          "placarB": "25",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-09",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "12:30",
+          "equipeA": "SANFRAN",
+          "placarA": "",
+          "equipeB": "EEFE",
+          "placarB": "",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-11",
+          "local": "Módulos 1&2",
+          "data": "30/08",
+          "hora": "12:30",
+          "equipeA": "AAAGW+EDUCA",
+          "placarA": "33",
+          "equipeB": "FARMA",
+          "placarB": "15",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-10",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "11:10",
+          "equipeA": "IME",
+          "placarA": "11",
+          "equipeB": "AAAGW+EDUCA",
+          "placarB": "21",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-12",
+          "local": "Módulos 1&2",
+          "data": "27/09",
+          "hora": "08:30",
+          "equipeA": "FARMA",
+          "placarA": "",
+          "equipeB": "IME",
+          "placarB": "",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-15",
+          "local": "Módulos 1&2",
+          "data": "30/08",
+          "hora": "11:10",
+          "equipeA": "RI+VET",
+          "placarA": "",
+          "equipeB": "FEA",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-13",
+          "local": "Módulos 1&2",
+          "data": "05/09",
+          "hora": "09:50",
+          "equipeA": "FEA",
+          "placarA": "35",
+          "equipeB": "EACH",
+          "placarB": "31",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "HM"
+        },
+        {
+          "codigo": "HM-14",
+          "local": "Módulos 1&2",
+          "data": "03/10",
+          "hora": "08:30",
+          "equipeA": "EACH",
+          "placarA": "",
+          "equipeB": "RI+VET",
+          "placarB": "",
+          "modalidade": "HM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "AAAGW+EDUCA",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "54",
+          "G-": "26",
+          "SG": "28",
+          "MSG": "14",
+          "MG+": "27",
+          "MG-": "13",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "E": "0",
+          "D": "0",
+          "G+": "56",
+          "G-": "30",
+          "SG": "26",
+          "MSG": "13",
+          "MG+": "28",
+          "MG-": "15",
+          "MPD": "100,00%"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "33",
+          "G-": "13",
+          "SG": "20",
+          "MSG": "20",
+          "MG+": "33",
+          "MG-": "13",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "25",
+          "G-": "13",
+          "SG": "12",
+          "MSG": "12",
+          "MG+": "25",
+          "MG-": "13",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "27",
+          "G-": "17",
+          "SG": "10",
+          "MSG": "10",
+          "MG+": "27",
+          "MG-": "17",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "ICBIÓ+QUIM",
+          "J": "2",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "1",
+          "G+": "43",
+          "G-": "33",
+          "SG": "10",
+          "MSG": "5",
+          "MG+": "21,5",
+          "MG-": "16,5",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "FEA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "E": "0",
+          "D": "0",
+          "G+": "35",
+          "G-": "31",
+          "SG": "4",
+          "MSG": "4",
+          "MG+": "35",
+          "MG-": "31",
+          "MPD": "50,00%"
+        },
+        {
+          "equipe": "EACH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0",
+          "SG": "0",
+          "MSG": "",
+          "MG+": "",
+          "MG-": "",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "RI+VET",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "31",
+          "G-": "35",
+          "SG": "-4",
+          "MSG": "-4",
+          "MG+": "31",
+          "MG-": "35",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "IME",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "11",
+          "G-": "21",
+          "SG": "-10",
+          "MSG": "-10",
+          "MG+": "11",
+          "MG-": "21",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "18",
+          "G-": "31",
+          "SG": "-13",
+          "MSG": "-13",
+          "MG+": "18",
+          "MG-": "31",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "12",
+          "G-": "25",
+          "SG": "-13",
+          "MSG": "-13",
+          "MG+": "12",
+          "MG-": "25",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FOFITO+FSP+GEO",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "2",
+          "G+": "26",
+          "G-": "58",
+          "SG": "-32",
+          "MSG": "-16",
+          "MG+": "13",
+          "MG-": "29",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FARMA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "15",
+          "G-": "33",
+          "SG": "-18",
+          "MSG": "-18",
+          "MG+": "15",
+          "MG-": "33",
+          "MPD": "0,00%"
+        },
+        {
+          "equipe": "FAU",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "1",
+          "G+": "6",
+          "G-": "26",
+          "SG": "-20",
+          "MSG": "-20",
+          "MG+": "6",
+          "MG-": "26",
+          "MPD": "0,00%"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "56",
+              "G-": "30",
+              "SG": "26",
+              "MSG": "13",
+              "MG+": "28",
+              "MG-": "15",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "18",
+              "G-": "31",
+              "SG": "-13",
+              "MSG": "-13",
+              "MG+": "18",
+              "MG-": "31",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "12",
+              "G-": "25",
+              "SG": "-13",
+              "MSG": "-13",
+              "MG+": "12",
+              "MG-": "25",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "27",
+              "G-": "17",
+              "SG": "10",
+              "MSG": "10",
+              "MG+": "27",
+              "MG-": "17",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "ICBIÓ+QUIM",
+              "J": "2",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "1",
+              "G+": "43",
+              "G-": "33",
+              "SG": "10",
+              "MSG": "5",
+              "MG+": "21,5",
+              "MG-": "16,5",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "6",
+              "G-": "26",
+              "SG": "-20",
+              "MSG": "-20",
+              "MG+": "6",
+              "MG-": "26",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "33",
+              "G-": "13",
+              "SG": "20",
+              "MSG": "20",
+              "MG+": "33",
+              "MG-": "13",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "25",
+              "G-": "13",
+              "SG": "12",
+              "MSG": "12",
+              "MG+": "25",
+              "MG-": "13",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "FOFITO+FSP+GEO",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "2",
+              "G+": "26",
+              "G-": "58",
+              "SG": "-32",
+              "MSG": "-16",
+              "MG+": "13",
+              "MG-": "29",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "AAAGW+EDUCA",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "E": "0",
+              "D": "0",
+              "G+": "54",
+              "G-": "26",
+              "SG": "28",
+              "MSG": "14",
+              "MG+": "27",
+              "MG-": "13",
+              "MPD": "100,00%"
+            },
+            {
+              "equipe": "IME",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "11",
+              "G-": "21",
+              "SG": "-10",
+              "MSG": "-10",
+              "MG+": "11",
+              "MG-": "21",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "15",
+              "G-": "33",
+              "SG": "-18",
+              "MSG": "-18",
+              "MG+": "15",
+              "MG-": "33",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "E": "0",
+              "D": "0",
+              "G+": "35",
+              "G-": "31",
+              "SG": "4",
+              "MSG": "4",
+              "MG+": "35",
+              "MG-": "31",
+              "MPD": "50,00%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MSG": "",
+              "MG+": "",
+              "MG-": "",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "RI+VET",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "1",
+              "G+": "31",
+              "G-": "35",
+              "SG": "-4",
+              "MSG": "-4",
+              "MG+": "31",
+              "MG-": "35",
+              "MPD": "0,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VF",
+      "nome": "Vôlei Feminino",
+      "modalidade": "volei",
+      "genero": "F",
+      "jogos": [
+        {
+          "codigo": "VF-03",
+          "local": "Módulo 6",
+          "data": "15/08",
+          "hora": "11:10",
+          "equipeA": "FFLCH",
+          "placarA": "0",
+          "equipeB": "ECA",
+          "placarB": "2",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-01",
+          "local": "Módulo 6",
+          "data": "30/08",
+          "hora": "09:50",
+          "equipeA": "ECA",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-02",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "11:10",
+          "equipeA": "EACH",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-04",
+          "local": "Módulo 6",
+          "data": "15/08",
+          "hora": "09:50",
+          "equipeA": "MED",
+          "placarA": "2",
+          "equipeB": "IME",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-06",
+          "local": "Módulo 6",
+          "data": "05/09",
+          "hora": "13:50",
+          "equipeA": "VET+FOFITO+FSP",
+          "placarA": "0",
+          "equipeB": "MED",
+          "placarB": "2",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-05",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "11:10",
+          "equipeA": "IME",
+          "placarA": "",
+          "equipeB": "VET+FOFITO+FSP",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-08",
+          "local": "Módulo 6",
+          "data": "29/08",
+          "hora": "12:30",
+          "equipeA": "RI",
+          "placarA": "0",
+          "equipeB": "PSICO",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-07",
+          "local": "Módulo 6",
+          "data": "05/09",
+          "hora": "11:10",
+          "equipeA": "EEFE",
+          "placarA": "2",
+          "equipeB": "RI",
+          "placarB": "0",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-09",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "12:30",
+          "equipeA": "PSICO",
+          "placarA": "",
+          "equipeB": "EEFE",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-11",
+          "local": "Módulo 6",
+          "data": "29/08",
+          "hora": "15:10",
+          "equipeA": "ODONTO",
+          "placarA": "0",
+          "equipeB": "FEA",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-10",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "09:50",
+          "equipeA": "POLI",
+          "placarA": "",
+          "equipeB": "ODONTO",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-12",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "15:10",
+          "equipeA": "FEA",
+          "placarA": "",
+          "equipeB": "POLI",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-13",
+          "local": "Módulo 6",
+          "data": "30/08",
+          "hora": "08:30",
+          "equipeA": "FAU",
+          "placarA": "2",
+          "equipeB": "FARMA",
+          "placarB": "1",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-14",
+          "local": "Módulo 6",
+          "data": "16/08",
+          "hora": "12:30",
+          "equipeA": "FARMA",
+          "placarA": "2",
+          "equipeB": "AAAGW+QUIM",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-15",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "08:30",
+          "equipeA": "AAAGW+QUIM",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-16",
+          "local": "Módulo 6",
+          "data": "30/08",
+          "hora": "13:50",
+          "equipeA": "ICBIÓ",
+          "placarA": "2",
+          "equipeB": "SANFRAN",
+          "placarB": "0",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-18",
+          "local": "Módulo 6",
+          "data": "05/09",
+          "hora": "12:30",
+          "equipeA": "EDUCA",
+          "placarA": "0",
+          "equipeB": "ICBIÓ",
+          "placarB": "2",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VF"
+        },
+        {
+          "codigo": "VF-17",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "11:10",
+          "equipeA": "SANFRAN",
+          "placarA": "",
+          "equipeB": "EDUCA",
+          "placarB": "",
+          "modalidade": "VF"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "MED",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "FARMA",
+          "J": "2",
+          "P": "4",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "FEA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "PSICO",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "FAU",
+          "J": "1",
+          "P": "2",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "EACH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "POLI",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "AAAGW+QUIM",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "VET+FOFITO+FSP",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "EDUCA",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "IME",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "RI",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "EACH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "VET+FOFITO+FSP",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            },
+            {
+              "equipe": "IME",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "PSICO",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "POLI",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "FARMA",
+              "J": "2",
+              "P": "4",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FAU",
+              "J": "1",
+              "P": "2",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "AAAGW+QUIM",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo F",
+          "tabela": [
+            {
+              "equipe": "SANFRAN",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "EDUCA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VM",
+      "nome": "Vôlei Masculino",
+      "modalidade": "volei",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "VM-01",
+          "local": "Módulo 6",
+          "data": "30/08",
+          "hora": "11:10",
+          "equipeA": "POLI",
+          "placarA": "2",
+          "equipeB": "IME",
+          "placarB": "0",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-02",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "13:50",
+          "equipeA": "IME",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-03",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "13:50",
+          "equipeA": "FFLCH",
+          "placarA": "",
+          "equipeB": "POLI",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-05",
+          "local": "Módulo 6",
+          "data": "30/08",
+          "hora": "12:30",
+          "equipeA": "AAAGW",
+          "placarA": "2",
+          "equipeB": "FOFITO+FSP",
+          "placarB": "1",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-04",
+          "local": "Módulo 6",
+          "data": "06/09",
+          "hora": "12:30",
+          "equipeA": "EEL",
+          "placarA": "2",
+          "equipeB": "AAAGW",
+          "placarB": "0",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-06",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "12:30",
+          "equipeA": "FOFITO+FSP",
+          "placarA": "",
+          "equipeB": "EEL",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-07",
+          "local": "Módulo 6",
+          "data": "16/08",
+          "hora": "15:10",
+          "equipeA": "ICBIÓ",
+          "placarA": "2",
+          "equipeB": "GEO",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-08",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "08:30",
+          "equipeA": "GEO",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-09",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "15:10",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "ICBIÓ",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-10",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "09:50",
+          "equipeA": "EACH",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-12",
+          "local": "Módulo 6",
+          "data": "26/09",
+          "hora": "15:10",
+          "equipeA": "RI",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-11",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "08:30",
+          "equipeA": "SANFRAN",
+          "placarA": "",
+          "equipeB": "RI",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-14",
+          "local": "Módulo 6",
+          "data": "16/08",
+          "hora": "09:50",
+          "equipeA": "FARMA",
+          "placarA": "0",
+          "equipeB": "ECA",
+          "placarB": "2",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-13",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "13:50",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "FARMA",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-15",
+          "local": "Módulo 6",
+          "data": "03/10",
+          "hora": "09:50",
+          "equipeA": "ECA",
+          "placarA": "",
+          "equipeB": "EEFE",
+          "placarB": "",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-18",
+          "local": "Módulo 6",
+          "data": "16/08",
+          "hora": "13:50",
+          "equipeA": "ODONTO",
+          "placarA": "0",
+          "equipeB": "FEA",
+          "placarB": "2",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-16",
+          "local": "Módulo 6",
+          "data": "06/09",
+          "hora": "13:50",
+          "equipeA": "FEA",
+          "placarA": "2",
+          "equipeB": "PSICO+QUIM+VET",
+          "placarB": "0",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "VM"
+        },
+        {
+          "codigo": "VM-17",
+          "local": "Módulo 6",
+          "data": "27/09",
+          "hora": "12:30",
+          "equipeA": "PSICO+QUIM+VET",
+          "placarA": "",
+          "equipeB": "ODONTO",
+          "placarB": "",
+          "modalidade": "VM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "FEA",
+          "J": "2",
+          "P": "6",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "ECA",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "POLI",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "EEL",
+          "J": "1",
+          "P": "3",
+          "V": "1",
+          "D": "0"
+        },
+        {
+          "equipe": "AAAGW",
+          "J": "2",
+          "P": "2",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FOFITO+FSP",
+          "J": "1",
+          "P": "1",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "FAU",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "EACH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "RI",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "D": "0"
+        },
+        {
+          "equipe": "PSICO+QUIM+VET",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "IME",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "FARMA",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "ODONTO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        },
+        {
+          "equipe": "GEO",
+          "J": "1",
+          "P": "0",
+          "V": "0",
+          "D": "1"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "IME",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "EEL",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "AAAGW",
+              "J": "2",
+              "P": "2",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FOFITO+FSP",
+              "J": "1",
+              "P": "1",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "ICBIÓ",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "FAU",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "GEO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "EACH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "RI",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "ECA",
+              "J": "1",
+              "P": "3",
+              "V": "1",
+              "D": "0"
+            },
+            {
+              "equipe": "EEFE",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "D": "0"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo F",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "6",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "PSICO+QUIM+VET",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            },
+            {
+              "equipe": "ODONTO",
+              "J": "1",
+              "P": "0",
+              "V": "0",
+              "D": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FCM",
+      "nome": "Futebol de Campo Masculino",
+      "modalidade": "futebol",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "FCM-02",
+          "local": "Campo 2",
+          "data": "24/10",
+          "hora": "11:00",
+          "equipeA": "FAU",
+          "placarA": "",
+          "equipeB": "ECA",
+          "placarB": "",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-01",
+          "local": "Campo 2",
+          "data": "01/11",
+          "hora": "09:00",
+          "equipeA": "EEFE",
+          "placarA": "",
+          "equipeB": "FAU",
+          "placarB": "",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-03",
+          "local": "Campo 2",
+          "data": "08/11",
+          "hora": "09:00",
+          "equipeA": "ECA",
+          "placarA": "",
+          "equipeB": "EEFE",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-04",
+          "local": "Campo 2",
+          "data": "24/10",
+          "hora": "09:00",
+          "equipeA": "POLI",
+          "placarA": "",
+          "equipeB": "ICBIÓ",
+          "placarB": "",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-06",
+          "local": "Campo 2",
+          "data": "01/11",
+          "hora": "11:00",
+          "equipeA": "EACH",
+          "placarA": "",
+          "equipeB": "POLI",
+          "placarB": "",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-05",
+          "local": "Campo 2",
+          "data": "08/11",
+          "hora": "11:00",
+          "equipeA": "ICBIÓ",
+          "placarA": "",
+          "equipeB": "EACH",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-09",
+          "local": "Campo 2",
+          "data": "31/10",
+          "hora": "13:00",
+          "equipeA": "AAAGW",
+          "placarA": "",
+          "equipeB": "SANFRAN",
+          "placarB": "",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-10",
+          "local": "Campo 2",
+          "data": "31/10",
+          "hora": "15:00",
+          "equipeA": "FFLCH",
+          "placarA": "",
+          "equipeB": "FEA",
+          "placarB": "",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-07",
+          "local": "Campo 2",
+          "data": "07/11",
+          "hora": "13:00",
+          "equipeA": "FEA",
+          "placarA": "",
+          "equipeB": "AAAGW",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        },
+        {
+          "codigo": "FCM-08",
+          "local": "Campo 2",
+          "data": "07/11",
+          "hora": "15:00",
+          "equipeA": "SANFRAN",
+          "placarA": "",
+          "equipeB": "FFLCH",
+          "placarB": "",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "FCM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "EEFE",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "FAU",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "ECA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "POLI",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "EACH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "FEA",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        },
+        {
+          "equipe": "AAAGW",
+          "J": "0",
+          "P": "0",
+          "V": "0",
+          "E": "0",
+          "D": "0",
+          "G+": "0",
+          "G-": "0"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FAU",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "ECA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "POLI",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "EACH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            },
+            {
+              "equipe": "AAAGW",
+              "J": "0",
+              "P": "0",
+              "V": "0",
+              "E": "0",
+              "D": "0",
+              "G+": "0",
+              "G-": "0",
+              "SG": "0",
+              "MPD": "0,00%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TCF",
+      "nome": "Tênis de Campo Feminino",
+      "modalidade": "tenis",
+      "genero": "F",
+      "jogos": [
+        {
+          "codigo": "TCF-02",
+          "local": "Quadras 1&2",
+          "data": "20/09",
+          "hora": "08:00",
+          "equipeA": "EEFE",
+          "placarA": "2",
+          "equipeB": "POLI",
+          "placarB": "1",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-01",
+          "local": "Quadras 1&2",
+          "data": "28/09",
+          "hora": "13:00",
+          "equipeA": "SANFRAN",
+          "placarA": "2",
+          "equipeB": "EEFE",
+          "placarB": "0",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-03",
+          "local": "Quadras 4&5",
+          "data": "11/10",
+          "hora": "08:00",
+          "equipeA": "POLI",
+          "placarA": "0",
+          "equipeB": "SANFRAN",
+          "placarB": "2",
+          "rodada": "7ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-05",
+          "local": "Quadras 1&2",
+          "data": "14/09",
+          "hora": "15:00",
+          "equipeA": "FFLCH",
+          "placarA": "2",
+          "equipeB": "ECA",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-07",
+          "local": "Quadras 1&2",
+          "data": "28/09",
+          "hora": "15:00",
+          "equipeA": "ECA",
+          "placarA": "0",
+          "equipeB": "FEA",
+          "placarB": "2",
+          "rodada": "7ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-06",
+          "local": "Quadras 1&2",
+          "data": "05/10",
+          "hora": "15:00",
+          "equipeA": "FARMA",
+          "placarA": "0",
+          "equipeB": "FFLCH",
+          "placarB": "2",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-04",
+          "local": "Quadras 1&2",
+          "data": "18/10",
+          "hora": "08:00",
+          "equipeA": "FEA",
+          "placarA": "0",
+          "equipeB": "FARMA",
+          "placarB": "2",
+          "rodada": "6ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-11",
+          "local": "Quadras 4&5",
+          "data": "13/09",
+          "hora": "08:00",
+          "equipeA": "FAU",
+          "placarA": "2",
+          "equipeB": "MED",
+          "placarB": "1",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-09",
+          "local": "Quadras 1&2",
+          "data": "04/10",
+          "hora": "08:00",
+          "equipeA": "RI",
+          "placarA": "0",
+          "equipeB": "FAU",
+          "placarB": "2",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-08",
+          "local": "Quadras 4&5",
+          "data": "04/10",
+          "hora": "10:00",
+          "equipeA": "MED",
+          "placarA": "2",
+          "equipeB": "ICBIÓ",
+          "placarB": "0",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCF"
+        },
+        {
+          "codigo": "TCF-10",
+          "local": "Quadras 1&2",
+          "data": "19/10",
+          "hora": "15:00",
+          "equipeA": "ICBIÓ",
+          "placarA": "2",
+          "equipeB": "RI",
+          "placarB": "0",
+          "modalidade": "TCF"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "SANFRAN",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "FAU",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "MED",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FEA",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FARMA",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "ECA",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "RI",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "-1",
+          "V": "0",
+          "D": "2"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "SANFRAN",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "EEFE",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (B x C)",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (D x E)",
+          "tabela": [
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (B x C)",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FARMA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (D x E)",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TCM",
+      "nome": "Tênis de Campo Masculino",
+      "modalidade": "tenis",
+      "genero": "M",
+      "jogos": [
+        {
+          "codigo": "TCM-03",
+          "local": "Quadras 1&2",
+          "data": "13/09",
+          "hora": "08:00",
+          "equipeA": "FSP",
+          "placarA": "2",
+          "equipeB": "FFLCH",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-01",
+          "local": "Quadras 1&2",
+          "data": "27/09",
+          "hora": "10:00",
+          "equipeA": "FFLCH",
+          "placarA": "2",
+          "equipeB": "ICBIÓ",
+          "placarB": "0",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-02",
+          "local": "Quadras 1&2",
+          "data": "11/10",
+          "hora": "08:00",
+          "equipeA": "ICBIÓ",
+          "placarA": "1",
+          "equipeB": "FSP",
+          "placarB": "2",
+          "rodada": "5ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-06",
+          "local": "Quadras 4&5",
+          "data": "27/09",
+          "hora": "10:00",
+          "equipeA": "ECA",
+          "placarA": "0",
+          "equipeB": "AAAGW",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-04",
+          "local": "Quadras 4&5",
+          "data": "11/10",
+          "hora": "10:00",
+          "equipeA": "AAAGW",
+          "placarA": "2",
+          "equipeB": "FARMA A",
+          "placarB": "1",
+          "rodada": "5ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-05",
+          "local": "Quadras 1&2",
+          "data": "18/10",
+          "hora": "10:00",
+          "equipeA": "FARMA A",
+          "placarA": "2",
+          "equipeB": "ECA",
+          "placarB": "1",
+          "rodada": "6ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-07",
+          "local": "Quadras 4&5",
+          "data": "05/10",
+          "hora": "13:00",
+          "equipeA": "MED",
+          "placarA": "0",
+          "equipeB": "FAU",
+          "placarB": "2",
+          "rodada": "4ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-09",
+          "local": "Quadras 1&2",
+          "data": "11/10",
+          "hora": "10:00",
+          "equipeA": "EDUCA",
+          "placarA": "0",
+          "equipeB": "MED",
+          "placarB": "2",
+          "rodada": "5ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-08",
+          "local": "Quadras 6&7",
+          "data": "19/10",
+          "hora": "16:00",
+          "equipeA": "FAU",
+          "placarA": "2",
+          "equipeB": "EDUCA",
+          "placarB": "0",
+          "rodada": "1ª Rodada",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-10",
+          "local": "Quadras 1&2",
+          "data": "20/09",
+          "hora": "10:00",
+          "equipeA": "EEFE",
+          "placarA": "0",
+          "equipeB": "IME",
+          "placarB": "2",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-11",
+          "local": "Quadras 4&5",
+          "data": "18/10",
+          "hora": "10:00",
+          "equipeA": "IME",
+          "placarA": "1",
+          "equipeB": "FARMA B",
+          "placarB": "2",
+          "rodada": "7ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-12",
+          "local": "Quadras 1&2",
+          "data": "19/10",
+          "hora": "13:00",
+          "equipeA": "FARMA B",
+          "placarA": "2",
+          "equipeB": "EEFE",
+          "placarB": "0",
+          "rodada": "6ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-13",
+          "local": "Quadras 4&5",
+          "data": "20/09",
+          "hora": "08:00",
+          "equipeA": "FEA",
+          "placarA": "2",
+          "equipeB": "POLI",
+          "placarB": "0",
+          "rodada": "2ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-14",
+          "local": "Quadras 4&5",
+          "data": "28/09",
+          "hora": "13:00",
+          "equipeA": "SANFRAN",
+          "placarA": "0",
+          "equipeB": "RI",
+          "placarB": "2",
+          "rodada": "3ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-15",
+          "local": "Campo do XI",
+          "data": "11/10",
+          "hora": "13:00",
+          "equipeA": "POLI",
+          "placarA": "2",
+          "equipeB": "SANFRAN",
+          "placarB": "0",
+          "rodada": "5ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        },
+        {
+          "codigo": "TCM-16",
+          "local": "Quadras 4&5",
+          "data": "18/10",
+          "hora": "08:00",
+          "equipeA": "RI",
+          "placarA": "2",
+          "equipeB": "FEA",
+          "placarB": "0",
+          "rodada": "6ª Rodada",
+          "dia": "Sábado",
+          "modalidade": "TCM"
+        }
+      ],
+      "classificacaoGeral": [
+        {
+          "equipe": "FAU",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "RI",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "FSP",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "AAAGW",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "FARMA B",
+          "J": "2",
+          "P": "2",
+          "V": "2",
+          "D": "0"
+        },
+        {
+          "equipe": "IME",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FARMA A",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "MED",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FEA",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "POLI",
+          "J": "2",
+          "P": "1",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "FFLCH",
+          "J": "2",
+          "P": "0",
+          "V": "1",
+          "D": "1"
+        },
+        {
+          "equipe": "ICBIÓ",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "ECA",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "EDUCA",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "EEFE",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        },
+        {
+          "equipe": "SANFRAN",
+          "J": "2",
+          "P": "0",
+          "V": "0",
+          "D": "2"
+        }
+      ],
+      "grupos": [
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "FSP",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo B",
+          "tabela": [
+            {
+              "equipe": "AAAGW",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FARMA A",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ECA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "EDUCA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "FARMA B",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "IME",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "EEFE",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (E x F)",
+          "tabela": [
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo A",
+          "tabela": [
+            {
+              "equipe": "FFLCH",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "ICBIÓ",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "FSP",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo C",
+          "tabela": [
+            {
+              "equipe": "MED",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FAU",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            },
+            {
+              "equipe": "EDUCA",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo D",
+          "tabela": [
+            {
+              "equipe": "EEFE",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "IME",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "FARMA B",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo E",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        },
+        {
+          "nome": "Grupo Único (E x F)",
+          "tabela": [
+            {
+              "equipe": "FEA",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "SANFRAN",
+              "J": "2",
+              "P": "0",
+              "V": "0",
+              "D": "2"
+            },
+            {
+              "equipe": "POLI",
+              "J": "2",
+              "P": "1",
+              "V": "1",
+              "D": "1"
+            },
+            {
+              "equipe": "RI",
+              "J": "2",
+              "P": "2",
+              "V": "2",
+              "D": "0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

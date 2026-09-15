@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área restrita — LAAUSP</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="tela-login">
+    <h1>Área do representante</h1>
+    <p class="subtitulo">Acesso restrito aos representantes das atléticas escalados para a mesa.</p>
+    <form class="cartao" id="form-login" style="max-width:420px">
+      <label class="campo" style="margin-bottom:12px">Senha do representante
+        <input type="password" id="senha" autocomplete="current-password" required>
+      </label>
+      <button type="submit">Entrar</button>
+      <p id="erro-login" class="vazio" hidden style="color:var(--vermelho);padding:12px 0 0"></p>
+    </form>
+    <p class="aviso" style="margin-top:20px;max-width:640px">
+      Esta é uma versão piloto: a senha fica no código do site e serve só para
+      esconder a tela do operador durante os testes. Não guarde dados sensíveis
+      aqui até existir autenticação no servidor.
+    </p>
+  </section>
+
+  <section id="tela-painel" hidden>
+    <h1>Conferência de e-Card</h1>
+    <p class="subtitulo">
+      Aponte a câmera para o QR Code do e-Card USP do atleta, ou envie a foto do
+      e-Card. A conferência é feita contra a lista de inscritos da modalidade.
+    </p>
+
+    <div class="filtros">
+      <label class="campo">Jogo
+        <select id="f-jogo"></select>
+      </label>
+      <button id="btn-camera" type="button">Ligar câmera</button>
+      <button id="btn-foto" class="secundario" type="button">Ler de uma foto</button>
+      <input type="file" id="arquivo" accept="image/*" hidden>
+      <button id="btn-sair" class="secundario" type="button" style="margin-left:auto">Sair</button>
+    </div>
+
+    <div class="scanner">
+      <div>
+        <div class="video-caixa">
+          <video id="video" playsinline muted></video>
+          <div class="mira"></div>
+        </div>
+        <p id="status-camera" class="vazio" style="padding:12px 0 0"></p>
+      </div>
+
+      <div>
+        <div id="resultado" class="resultado">
+          <p class="resultado__titulo">Aguardando leitura</p>
+          <p style="margin:0;color:var(--tinta-fraca)">
+            Ligue a câmera e centralize o QR Code do e-Card na mira.
+          </p>
+        </div>
+
+        <div class="cartao" style="margin-top:16px">
+          <h3>Conferência manual</h3>
+          <div class="linha-botoes">
+            <input type="text" id="nusp-manual" inputmode="numeric" placeholder="Número USP ou código do e-Card">
+            <button id="btn-manual" class="secundario" type="button">Conferir</button>
+          </div>
+        </div>
+
+        <div class="cartao" style="margin-top:16px" id="caixa-vinculo" hidden>
+          <h3>Vincular e-Card a um atleta</h3>
+          <p style="margin:0 0 10px;color:var(--tinta-fraca);font-size:14px">
+            O QR do e-Card carrega só o código do cartão. Informe o número USP para
+            gravar o vínculo <strong id="vinculo-codigo"></strong> ↔ atleta.
+          </p>
+          <div class="linha-botoes">
+            <input type="text" id="vinculo-nusp" inputmode="numeric" placeholder="Número USP">
+            <input type="text" id="vinculo-nome" placeholder="Nome do atleta">
+            <input type="text" id="vinculo-atletica" placeholder="Atlética">
+            <button id="btn-vincular" type="button">Vincular</button>
+          </div>
+        </div>
+
+        <div class="cartao" style="margin-top:16px">
+          <h3>Lista de inscritos</h3>
+          <p id="status-elenco" style="margin:0 0 10px;color:var(--tinta-fraca);font-size:14px"></p>
+          <div class="linha-botoes">
+            <button id="btn-elenco" class="secundario" type="button">Importar CSV/JSON</button>
+            <button id="btn-exportar-elenco" class="secundario" type="button">Exportar lista</button>
+            <input type="file" id="arquivo-elenco" accept=".csv,.json,text/csv,application/json" hidden>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Registros desta sessão <span id="contador" class="etiqueta"></span></h2>
+    <div class="linha-botoes" style="margin-bottom:12px">
+      <button id="btn-exportar" class="secundario" type="button">Exportar CSV</button>
+      <button id="btn-limpar" class="secundario" type="button">Limpar registros</button>
+    </div>
+    <ul class="registros" id="registros"></ul>
+  </section>
+</main>
+
+<footer class="rodape"><div>LAAUSP · área restrita aos representantes</div></footer>
+
+<script type="module">
+import { carregarLiga, ordenarPorData, el, marcarNavegacao } from "./assets/js/liga.js";
+import { lerQR, lerQRDeArquivo, interpretarECard } from "./assets/js/scanner.js";
+import { HASH_SENHA_REPRESENTANTE, CHAVE_SESSAO, CHAVE_REGISTROS, CHAVE_ELENCO } from "./assets/js/config.js";
+
+marcarNavegacao();
+
+const telaLogin = document.getElementById("tela-login");
+const telaPainel = document.getElementById("tela-painel");
+const video = document.getElementById("video");
+const statusCamera = document.getElementById("status-camera");
+const caixaResultado = document.getElementById("resultado");
+const listaRegistros = document.getElementById("registros");
+const contador = document.getElementById("contador");
+const seletorJogo = document.getElementById("f-jogo");
+const statusElenco = document.getElementById("status-elenco");
+
+const guardar = (chave, valor) => { try { localStorage.setItem(chave, JSON.stringify(valor)); } catch { /* modo privado */ } };
+const recuperar = (chave, padrao) => { try { return JSON.parse(localStorage.getItem(chave)) ?? padrao; } catch { return padrao; } };
+
+let registros = recuperar(CHAVE_REGISTROS, []);
+let elenco = [];
+let fluxo = null;
+let lendo = false;
+let ultimoPayload = "";
+
+/* ---------- acesso ---------- */
+
+async function hashDe(texto) {
+  const dados = new TextEncoder().encode(texto);
+  const resumo = await crypto.subtle.digest("SHA-256", dados);
+  return [...new Uint8Array(resumo)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+document.getElementById("form-login").addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  const erro = document.getElementById("erro-login");
+  const senha = document.getElementById("senha").value;
+  if (await hashDe(senha) === HASH_SENHA_REPRESENTANTE) {
+    sessionStorage.setItem(CHAVE_SESSAO, "1");
+    abrirPainel();
+  } else {
+    erro.textContent = "Senha incorreta.";
+    erro.hidden = false;
+  }
+});
+
+document.getElementById("btn-sair").addEventListener("click", () => {
+  sessionStorage.removeItem(CHAVE_SESSAO);
+  pararCamera();
+  telaPainel.hidden = true;
+  telaLogin.hidden = false;
+});
+
+async function abrirPainel() {
+  telaLogin.hidden = true;
+  telaPainel.hidden = false;
+  await montarSeletorDeJogos();
+  await carregarElenco();
+  renderizarRegistros();
+}
+
+/* ---------- jogos e elenco ---------- */
+
+async function montarSeletorDeJogos() {
+  if (seletorJogo.options.length) return;
+  const liga = await carregarLiga();
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+  const jogos = ordenarPorData(liga.modalidades.flatMap((m) => m.jogos))
+    .filter((j) => !j.quando || j.quando >= hoje);
+  seletorJogo.append(el("option", { value: "", text: "Sem jogo vinculado" }),
+    ...jogos.map((j) => el("option", {
+      value: j.codigo,
+      text: `${j.codigo} — ${j.equipeA || "A definir"} x ${j.equipeB || "A definir"} (${j.data || "s/ data"})`,
+    })));
+}
+
+function normalizarElenco(linhas) {
+  return linhas.map((linha) => ({
+    nusp: String(linha.nusp ?? linha.numerousp ?? linha.codpes ?? "").replace(/\D/g, ""),
+    codigoEcard: String(linha.codigoEcard ?? linha.codigoecard ?? linha.ecard ?? "").replace(/\D/g, ""),
+    nome: linha.nome ?? linha.atleta ?? "",
+    atletica: linha.atletica ?? linha.equipe ?? "",
+    modalidade: linha.modalidade ?? "",
+    situacao: linha.situacao ?? "inscrito",
+  })).filter((a) => a.nusp || a.codigoEcard);
+}
+
+function lerCSV(texto) {
+  const linhas = texto.trim().split(/\r?\n/).filter(Boolean);
+  if (!linhas.length) return [];
+  const separador = linhas[0].includes(";") ? ";" : ",";
+  const cabecalho = linhas[0].split(separador).map((c) => c.trim().toLowerCase());
+  return linhas.slice(1).map((linha) => {
+    const celulas = linha.split(separador);
+    return Object.fromEntries(cabecalho.map((c, i) => [c, (celulas[i] ?? "").trim()]));
+  });
+}
+
+async function carregarElenco() {
+  const importado = recuperar(CHAVE_ELENCO, null);
+  if (importado) {
+    elenco = normalizarElenco(importado);
+    statusElenco.textContent = `${elenco.length} atleta(s) — lista importada neste aparelho.`;
+    return;
+  }
+  try {
+    const resposta = await fetch("data/atletas.json", { cache: "no-cache" });
+    if (!resposta.ok) throw new Error();
+    elenco = normalizarElenco(await resposta.json());
+    statusElenco.textContent = `${elenco.length} atleta(s) — lista publicada em data/atletas.json.`;
+  } catch {
+    elenco = [];
+    statusElenco.textContent = "Nenhuma lista carregada: as leituras serão apenas registradas.";
+  }
+}
+
+document.getElementById("btn-elenco").addEventListener("click", () => document.getElementById("arquivo-elenco").click());
+document.getElementById("arquivo-elenco").addEventListener("change", async (evento) => {
+  const arquivo = evento.target.files[0];
+  if (!arquivo) return;
+  const texto = await arquivo.text();
+  const linhas = arquivo.name.endsWith(".json") ? JSON.parse(texto) : lerCSV(texto);
+  elenco = normalizarElenco(linhas);
+  guardar(CHAVE_ELENCO, linhas);
+  statusElenco.textContent = `${elenco.length} atleta(s) — lista importada neste aparelho.`;
+  evento.target.value = "";
+});
+
+/* ---------- câmera ---------- */
+
+document.getElementById("btn-camera").addEventListener("click", () => (fluxo ? pararCamera() : ligarCamera()));
+
+async function ligarCamera() {
+  try {
+    fluxo = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 } },
+      audio: false,
+    });
+    video.srcObject = fluxo;
+    await video.play();
+    document.getElementById("btn-camera").textContent = "Desligar câmera";
+    statusCamera.textContent = "Câmera ligada — centralize o QR Code do e-Card.";
+    lendo = true;
+    laçoDeLeitura();
+  } catch (erro) {
+    statusCamera.textContent = `Não foi possível abrir a câmera (${erro.name}). ` +
+      "Verifique a permissão do navegador — em celulares, o site precisa estar em HTTPS.";
+  }
+}
+
+function pararCamera() {
+  lendo = false;
+  if (fluxo) for (const trilha of fluxo.getTracks()) trilha.stop();
+  fluxo = null;
+  video.srcObject = null;
+  document.getElementById("btn-camera").textContent = "Ligar câmera";
+  statusCamera.textContent = "Câmera desligada.";
+}
+
+async function laçoDeLeitura() {
+  while (lendo) {
+    if (video.readyState >= 2 && video.videoWidth) {
+      try {
+        const payload = await lerQR(video, video.videoWidth, video.videoHeight);
+        if (payload && payload !== ultimoPayload) {
+          ultimoPayload = payload;
+          processar(payload, "camera");
+          setTimeout(() => { ultimoPayload = ""; }, 2500);
+        }
+      } catch (erro) {
+        statusCamera.textContent = erro.message;
+        lendo = false;
+        break;
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 180));
+  }
+}
+
+document.getElementById("btn-foto").addEventListener("click", () => document.getElementById("arquivo").click());
+document.getElementById("arquivo").addEventListener("change", async (evento) => {
+  const arquivo = evento.target.files[0];
+  if (!arquivo) return;
+  try {
+    const payload = await lerQRDeArquivo(arquivo);
+    if (payload) processar(payload, "foto");
+    else mostrarResultado({ nivel: "erro", titulo: "QR Code não encontrado", detalhes: { Arquivo: arquivo.name } });
+  } catch (erro) {
+    mostrarResultado({ nivel: "erro", titulo: "Falha ao ler a imagem", detalhes: { Erro: erro.message } });
+  }
+  evento.target.value = "";
+});
+
+document.getElementById("btn-manual").addEventListener("click", () => {
+  const digitado = document.getElementById("nusp-manual").value.replace(/\D/g, "");
+  if (digitado) processar(digitado, "manual");
+});
+
+/* ---------- conferência ---------- */
+
+let ultimaLeitura = null;
+
+function processar(payload, origem) {
+  const { codigo, nusp } = interpretarECard(payload);
+  const atleta = elenco.find((a) =>
+    (codigo && a.codigoEcard && a.codigoEcard === codigo) ||
+    (nusp && a.nusp && a.nusp === nusp));
+
+  let nivel = "alerta";
+  let titulo = "Não encontrado na lista";
+  if (!codigo && !nusp) {
+    nivel = "erro";
+    titulo = "QR Code não reconhecido";
+  } else if (atleta && /^(inscrito|apto|ok|aprovado)$/i.test(atleta.situacao)) {
+    nivel = "ok";
+    titulo = "Liberado para jogar";
+  } else if (atleta) {
+    nivel = "erro";
+    titulo = `Impedido: ${atleta.situacao}`;
+  } else if (!elenco.length) {
+    titulo = "Leitura registrada (sem lista carregada)";
+  }
+
+  const jogo = seletorJogo.value;
+  ultimaLeitura = { codigo, nusp, atleta };
+  mostrarResultado({
+    nivel,
+    titulo,
+    detalhes: {
+      "Código do e-Card": codigo || "—",
+      "Número USP": atleta?.nusp || nusp || "—",
+      Atleta: atleta?.nome || "—",
+      Atlética: atleta?.atletica || "—",
+      Jogo: jogo || "—",
+      Origem: { camera: "Câmera", foto: "Foto", manual: "Digitado" }[origem],
+      "Conteúdo do QR": payload.slice(0, 140),
+    },
+  });
+  atualizarCaixaDeVinculo();
+
+  registros.unshift({
+    quando: new Date().toISOString(),
+    codigoEcard: codigo,
+    nusp: atleta?.nusp || nusp,
+    nome: atleta?.nome || "",
+    atletica: atleta?.atletica || "",
+    jogo,
+    situacao: titulo,
+    origem,
+    payload,
+  });
+  registros = registros.slice(0, 500);
+  guardar(CHAVE_REGISTROS, registros);
+  renderizarRegistros();
+
+  if (navigator.vibrate) navigator.vibrate(nivel === "ok" ? 60 : [60, 60, 60]);
+}
+
+/* ---------- vínculo código do e-Card ↔ atleta ---------- */
+
+function atualizarCaixaDeVinculo() {
+  const caixa = document.getElementById("caixa-vinculo");
+  const precisa = Boolean(ultimaLeitura?.codigo) && !ultimaLeitura.atleta;
+  caixa.hidden = !precisa;
+  if (!precisa) return;
+  document.getElementById("vinculo-codigo").textContent = ultimaLeitura.codigo;
+  document.getElementById("vinculo-nusp").value = ultimaLeitura.nusp || "";
+  document.getElementById("vinculo-nome").value = "";
+  document.getElementById("vinculo-atletica").value = "";
+}
+
+document.getElementById("btn-vincular").addEventListener("click", () => {
+  if (!ultimaLeitura?.codigo) return;
+  const nusp = document.getElementById("vinculo-nusp").value.replace(/\D/g, "");
+  if (!nusp) {
+    alert("Informe o número USP do atleta para gravar o vínculo.");
+    return;
+  }
+  const novo = {
+    nusp,
+    codigoEcard: ultimaLeitura.codigo,
+    nome: document.getElementById("vinculo-nome").value.trim(),
+    atletica: document.getElementById("vinculo-atletica").value.trim(),
+    modalidade: "",
+    situacao: "inscrito",
+  };
+  elenco = [...elenco.filter((a) => a.codigoEcard !== novo.codigoEcard && a.nusp !== novo.nusp), novo];
+  guardar(CHAVE_ELENCO, elenco);
+  statusElenco.textContent = `${elenco.length} atleta(s) — lista guardada neste aparelho.`;
+  document.getElementById("caixa-vinculo").hidden = true;
+  processar(ultimaLeitura.codigo, "manual");
+});
+
+document.getElementById("btn-exportar-elenco").addEventListener("click", () => {
+  baixarCSV(["nusp", "codigoEcard", "nome", "atletica", "modalidade", "situacao"], elenco,
+    `elenco-laausp-${new Date().toISOString().slice(0, 10)}.csv`);
+});
+
+function mostrarResultado({ nivel, titulo, detalhes }) {
+  caixaResultado.className = `resultado resultado--${nivel}`;
+  caixaResultado.replaceChildren(
+    el("p", { class: "resultado__titulo", text: titulo }),
+    el("dl", {}, Object.entries(detalhes).flatMap(([chave, valor]) => [
+      el("dt", { text: chave }),
+      el("dd", { text: String(valor) }),
+    ])));
+}
+
+function renderizarRegistros() {
+  contador.textContent = `${registros.length}`;
+  listaRegistros.replaceChildren(...registros.slice(0, 40).map((registro) => el("li", {},
+    el("strong", { text: registro.nusp || registro.codigoEcard || "sem identificação" }),
+    ` — ${registro.nome || "atleta não identificado"} · ${registro.situacao}`,
+    el("div", { style: "color:var(--tinta-fraca)",
+      text: `${new Date(registro.quando).toLocaleString("pt-BR")}${registro.jogo ? ` · ${registro.jogo}` : ""}` }))));
+  if (!registros.length) {
+    listaRegistros.replaceChildren(el("li", { class: "vazio", text: "Nenhuma leitura ainda." }));
+  }
+}
+
+document.getElementById("btn-exportar").addEventListener("click", () => {
+  const colunas = ["quando", "nusp", "nome", "atletica", "jogo", "situacao", "origem", "payload"];
+  const escapar = (valor) => `"${String(valor ?? "").replace(/"/g, '""')}"`;
+  const csv = [colunas.join(","), ...registros.map((r) => colunas.map((c) => escapar(r[c])).join(","))].join("\r\n");
+  const url = URL.createObjectURL(new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" }));
+  const link = el("a", { href: url, download: `leituras-ecard-${new Date().toISOString().slice(0, 10)}.csv` });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("btn-limpar").addEventListener("click", () => {
+  if (!confirm("Apagar todos os registros guardados neste aparelho?")) return;
+  registros = [];
+  guardar(CHAVE_REGISTROS, registros);
+  renderizarRegistros();
+});
+
+if (sessionStorage.getItem(CHAVE_SESSAO)) abrirPainel();
+</script>
+</body>
+</html>
