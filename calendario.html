@@ -15,6 +15,7 @@
       <a href="index.html">Início</a>
       <a href="jogos.html">Jogos</a>
       <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
       <a href="atleta.html">Atleta</a>
       <a href="restrito.html">Área restrita</a>
     </nav>
@@ -50,8 +51,10 @@
 
 <script type="module">
 import { carregarLiga, todosOsJogos, agruparPorDia, rotuloDoDia, cartaoDeJogo, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
 
 marcarNavegacao();
+montarFeedback();
 const liga = await carregarLiga();
 const jogos = todosOsJogos(liga);
 

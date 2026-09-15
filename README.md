@@ -22,6 +22,7 @@ python3 -m http.server 8000     # http://localhost:8000
 | `index.html` | Resumo da temporada, próximos jogos e últimos resultados. |
 | `jogos.html` | Tabela completa com filtros (modalidade, situação, atlética, busca) e classificação geral e por grupo. |
 | `calendario.html` | Jogos agrupados por dia, com filtro de rodada/período e exportação `.ics`. |
+| `regulamento.html` | Regulamento Oficial dos Jogos da Liga, em PDF, com leitor embutido e download. |
 | `atleta.html` | Área do atleta: carteirinha digital da LAAUSP e cartela de fidelidade da Pizzaria Europa. |
 | `restrito.html` | Área do representante: leitura do QR do e-Card **e da carteirinha LAAUSP**, conferência contra a lista de inscritos e registro das leituras. |
 
@@ -96,6 +97,26 @@ Senha atual: `liga2026`. Para trocar, gere o hash e cole em `config.js`:
 ```bash
 printf 'nova-senha' | sha256sum
 ```
+
+## Regulamento
+
+`documentos/regulamento-jogos-da-liga-2026.pdf` é o export do documento
+"Regulamento Oficial - Jogos da Liga 2026" da LAAUSP. Para atualizar, exporte o
+Google Doc em PDF e substitua o arquivo com o mesmo nome.
+
+## Feedback dos usuários
+
+Toda página tem um ícone de chat no canto inferior direito: assunto, mensagem e
+contato opcional. Como não há backend, o envio segue um de dois caminhos,
+configurados em `assets/js/config.js`:
+
+- `FEEDBACK_ENDPOINT` preenchido (Google Forms, Formspree, Apps Script) → o
+  recado vai por `POST` em JSON direto para a caixa da liga;
+- `FEEDBACK_ENDPOINT` vazio (padrão) → o site abre o e-mail do usuário já
+  preenchido para `EMAIL_FEEDBACK`.
+
+Nos dois casos a mensagem também fica guardada no `localStorage` do aparelho,
+para não se perder se o envio falhar.
 
 ## Área do atleta
 

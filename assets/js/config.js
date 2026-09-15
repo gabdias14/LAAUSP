@@ -17,7 +17,15 @@ export const HASH_SENHA_REPRESENTANTE =
 export const HASH_SENHA_PIZZARIA =
   "b524e3a759c4de0022cdcbed5545435ab160517ff9c6b8d0b00f3b1f79c59db7";
 
+// Para onde vai o feedback enviado pelo ícone de chat do site.
+// Com FEEDBACK_ENDPOINT vazio, o site abre o e-mail do usuário já preenchido.
+// Preencha com a URL de um formulário (Google Forms, Formspree, Apps Script)
+// que aceite POST em JSON para receber os recados direto na caixa da liga.
+export const FEEDBACK_ENDPOINT = "";
+export const EMAIL_FEEDBACK = "laausp@gmail.com";
+
 export const CHAVE_SESSAO = "laausp:sessao-representante";
 export const CHAVE_SESSAO_ATLETA = "laausp:sessao-atleta";
 export const CHAVE_REGISTROS = "laausp:registros-scanner";
 export const CHAVE_ELENCO = "laausp:elenco-importado";
+export const CHAVE_FEEDBACK = "laausp:feedback";

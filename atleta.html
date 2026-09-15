@@ -16,6 +16,7 @@
       <a href="index.html">Início</a>
       <a href="jogos.html">Jogos</a>
       <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
       <a href="atleta.html">Atleta</a>
       <a href="restrito.html">Área restrita</a>
     </nav>
@@ -120,12 +121,14 @@
 
 <script type="module">
 import { el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
 import { carregarFiliados, carregarAtleticas, identidadeDa, buscarAtleta, estaRegular, idDoAtleta, normalizar } from "./assets/js/atletas.js";
 import { montarCarteirinha } from "./assets/js/carteirinha.js";
 import { lerCartao, carimbar, desfazerUltimoCarimbo, resgatar, completo, montarCartela, CARIMBOS_PARA_PREMIO } from "./assets/js/fidelidade.js";
 import { HASH_SENHA_PIZZARIA, CHAVE_SESSAO_ATLETA } from "./assets/js/config.js";
 
 marcarNavegacao();
+montarFeedback();
 
 const filiados = await carregarFiliados();
 const atleticas = await carregarAtleticas();
