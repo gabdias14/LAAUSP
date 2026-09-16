@@ -33,9 +33,11 @@ em E.164, link pronto e o texto da mensagem.
 | 3 | Pendência de pagamento | D+1, reforço a cada 2 dias | pagamento em crédito (3) | fechar a compra com o responsável |
 | 4 | Conferência final da arte | D-3 do fechamento do lote | com personalização (47) | evitar erro de bordado/estampa |
 | 5 | Pedido em produção | fechamento do lote | todos | dar previsão e cortar o "chegou?" |
+| 5b | **Aviso de atraso** | quando a fábrica confirma o atraso | todos | avisar antes que perguntem, explicar a causa e dar nova previsão |
 | 6 | Chegou! Agenda de retirada | chegada do lote | todos | converter chegada em retirada |
 | 7 | Lembrete de retirada | D+3 e D+7 | quem não retirou | esvaziar o estoque parado |
 | 8 | Lembrete da 2ª parcela | D+30 do pedido | Pix em 2x (8) | cobrar a parcela em aberto |
+| 8b | **Cobrança do Pix** | D+2 do lembrete | Pix em 2x (8) | fechar a parcela com chave, valor e prazo |
 | 9 | Pós-entrega e prova social | D+2 da retirada | todos | foto para stories + nota de 0 a 10 |
 | 10 | Próximo lote e modalidades | D+30 da entrega | todos | lista de pré-venda + captação para o esporte |
 
@@ -62,7 +64,8 @@ depois do `---`. Placeholders como `{primeiro_nome}`, `{tamanho}`,
 `_itálico_` são a formatação do WhatsApp.
 
 Segmentos disponíveis: `todos`, `social`, `social_pendente`,
-`pagamento_pendente`, `parcelado`, `personalizado`, `sem_personalizacao`.
+`pagamento_pendente`, `parcelado`, `pagamento_em_aberto`, `personalizado`,
+`sem_personalizacao`.
 
 ### Atualizar os dados
 
@@ -74,6 +77,17 @@ Google Forms por aproximação, então pequenas mudanças de título não quebra
 
 `data_producao`, `data_retirada`, `horario_retirada` e `local_retirada` estão
 como "a definir" e aparecem assim nas mensagens das etapas 5, 6 e 7.
+
+Para a etapa **5b (atraso)**: preencha `nova_previsao` — é a informação que a
+pessoa está esperando, e a mensagem perde o efeito sem ela. O `motivo_atraso`
+já vem com a explicação da chuva na fábrica e pode ser ajustado ao que a
+fábrica te passou.
+
+Para a etapa **8b (cobrança do Pix)**: preencha `chave_pix` e `prazo_pagamento`.
+
+A etapa 5b adapta sozinha a linha de status: quem está com Pix parcelado ou
+crédito em aberto recebe "com a 2ª parcela ainda em aberto" em vez de "já pago",
+pra não dar quitação a quem ainda deve.
 
 ## O que o relatório apontou
 

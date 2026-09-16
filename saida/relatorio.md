@@ -16,9 +16,11 @@
 | Pendência de pagamento | D+1 (e reforço a cada 2 dias) | `pagamento_pendente` | 3 |
 | Conferência final da arte | D-3 do fechamento do lote | `personalizado` | 47 |
 | Pedido em produção | D+0 do fechamento do lote | `todos` | 63 |
+| Aviso de atraso na produção | D+0 do aviso da fábrica | `todos` | 63 |
 | Chegou! Agenda de retirada | D+0 da chegada | `todos` | 63 |
 | Lembrete de retirada | D+3 e D+7 após a abertura da retirada | `todos` | 63 |
 | Lembrete da 2ª parcela | D+30 do pedido parcelado | `parcelado` | 8 |
+| Cobrança do Pix em aberto | D+2 do primeiro lembrete | `parcelado` | 8 |
 | Pós-entrega e prova social | D+2 após a retirada | `todos` | 63 |
 | Próximo lote e modalidades | D+30 após a entrega | `todos` | 63 |
 

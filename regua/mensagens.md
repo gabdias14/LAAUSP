@@ -7,7 +7,8 @@ Placeholders disponíveis: `{primeiro_nome}` `{nome}` `{tamanho}`
 `{personalizacao}` `{personalizacao_frase}` `{instituto}` `{pagamento}`
 `{valor}` `{produto}` `{organizacao}` `{assinatura}` `{responsavel_nome}`
 `{responsavel_link}` `{prazo_pendencia}` `{data_producao}` `{data_retirada}`
-`{horario_retirada}` `{local_retirada}` `{link_form_correcao}`.
+`{horario_retirada}` `{local_retirada}` `{link_form_correcao}` `{pagamento_frase}` `{chave_pix}`
+`{prazo_pagamento}` `{nova_previsao}` `{motivo_atraso}`.
 
 Formatação do WhatsApp: `*negrito*`, `_itálico_`.
 
@@ -81,6 +82,23 @@ Seu item: tamanho *{tamanho}* · {personalizacao_frase}
 A previsão de entrega é {data_retirada}. Assim que chegar, eu te aviso por aqui com data, horário e local de retirada. Não precisa fazer nada agora 😉
 {assinatura}
 
+## 5b-atraso :: Aviso de atraso na produção :: D+0 do aviso da fábrica
+alvo: todos
+objetivo: avisar o atraso antes que perguntem, explicar a causa e dar nova previsão
+---
+Oi, {primeiro_nome}. Precisamos te dar uma notícia que não é a que a gente queria 😞
+
+Tivemos um imprevisto fora do nosso controle: {motivo_atraso}. A produção do *{produto}* ficou parada e o nosso lote *atrasou*.
+
+📅 Nova previsão de entrega: *{nova_previsao}*
+
+Sentimos muito de verdade. Sabemos que você comprou contando com o prazo que combinamos, e ficar sem resposta seria pior — por isso estamos avisando assim que a fábrica nos confirmou.
+
+Nada muda no seu pedido: tamanho *{tamanho}*, {personalizacao_frase}, {pagamento_frase}. Assim que as peças saírem da produção, você é avisado por aqui com data, horário e local de retirada.
+
+Qualquer dúvida, pode me chamar. Obrigado pela paciência 💚
+{assinatura}
+
 ## 6-retirada :: Chegou! Agenda de retirada :: D+0 da chegada
 alvo: todos
 objetivo: converter a chegada do lote em retirada efetiva
@@ -117,6 +135,25 @@ Seu pedido do *{produto}* ficou como *Pix parcelado em 2x* e a *2ª parcela* est
 
 Assim que enviar, manda o comprovante por aqui que eu dou baixa na hora 🙌
 Qualquer coisa, chama o {responsavel_nome}: {responsavel_link}
+
+## 8b-cobranca-pix :: Cobrança do Pix em aberto :: D+2 do primeiro lembrete
+alvo: parcelado
+objetivo: fechar as parcelas de Pix ainda não pagas, com chave, valor e prazo
+---
+Oi, {primeiro_nome}! Tudo bem?
+
+Passando pra fechar a pendência do seu *{produto}*: o pagamento ficou como *Pix em 2x* e a *2ª parcela ainda está em aberto* por aqui.
+
+🔑 Chave Pix: *{chave_pix}*
+💰 Valor total do pedido: {valor}
+📅 Prazo: até *{prazo_pagamento}*
+
+Assim que pagar, manda o comprovante nesta conversa que eu dou baixa na hora ✅
+
+Se você já pagou e a baixa não apareceu, me manda o comprovante mesmo assim que eu acerto aqui — pode ter passado batido.
+
+Qualquer coisa, chama o {responsavel_nome}: {responsavel_link}
+{assinatura}
 
 ## 9-pos-entrega :: Pós-entrega e prova social :: D+2 após a retirada
 alvo: todos

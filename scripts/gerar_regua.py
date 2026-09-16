@@ -211,6 +211,7 @@ SEGMENTOS = {
     "personalizado": lambda p: p.personalizado,
     "sem_personalizacao": lambda p: not p.personalizado,
     "social": lambda p: p.e_social,
+    "pagamento_em_aberto": lambda p: p.pagamento_pendente or p.parcelado,
 }
 
 
@@ -262,6 +263,13 @@ def montar_contexto(pedido: Pedido, config: dict) -> dict[str, str]:
         "instituto": pedido.instituto.strip() or "USP",
         "pagamento": pedido.pagamento.split(" - ")[0].strip() or "a confirmar",
         "valor": config["valor_social"] if pedido.e_social else config["valor_padrao"],
+        "pagamento_frase": (
+            "com o pagamento no crédito ainda a finalizar"
+            if pedido.pagamento_pendente
+            else "com a 2ª parcela do Pix ainda em aberto"
+            if pedido.parcelado
+            else "já pago e reservado no seu nome"
+        ),
     }
     for chave, valor in config.items():
         ctx.setdefault(chave, str(valor))
