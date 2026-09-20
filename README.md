@@ -98,6 +98,24 @@ A etapa 5b adapta sozinha a linha de status: quem está com Pix parcelado ou
 crédito em aberto recebe "com a 2ª parcela ainda em aberto" em vez de "já pago",
 pra não dar quitação a quem ainda deve.
 
+## Segunda base: pré-venda
+
+A pré-venda do Corta Vento LAAUSP 26 (21 pedidos) roda com o mesmo gerador,
+apontando para os arquivos dela:
+
+```bash
+python3 scripts/gerar_regua.py \
+  --csv dados/prevenda.csv \
+  --mensagens regua/mensagens_prevenda.md \
+  --config regua/config_prevenda.json \
+  --saida saida/prevenda
+```
+
+A mensagem avisa que o pedido fica pronto e pede a escolha da retirada
+(1 = terça 20h no CEPE, 2 = quinta 20h, 3 = combinar outro horário). As opções
+ficam em `opcao_1` e `opcao_2` no config, então mudar dia ou local não exige
+mexer no texto.
+
 ## Controle de envio
 
 `python3 scripts/gerar_controle.py` cruza a base com `dados/status.csv` e gera

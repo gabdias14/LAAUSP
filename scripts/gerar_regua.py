@@ -61,6 +61,7 @@ COLUNAS = {
     "pagamento": ("pagamento",),
     "comprovante": ("comprovante de pagamento",),
     "instituto": ("instituto/atletica de origem", "instituto"),
+    "pago": ("pago",),
 }
 
 
@@ -172,7 +173,9 @@ def ler_pedidos(caminho: Path) -> list[Pedido]:
                 pedido.alertas.append(alerta)
             if pedido.e_social and not pedido.atestado.strip():
                 pedido.alertas.append("lote social sem atestado de matrícula")
-            if not pedido.comprovante.strip() and not pedido.pagamento_pendente:
+            if valor("pago").strip().upper() == "FALSE":
+                pedido.alertas.append("marcado como não pago na planilha")
+            elif not pedido.comprovante.strip() and not pedido.pagamento_pendente:
                 pedido.alertas.append("sem comprovante de pagamento")
             if not pedido.tamanho.strip():
                 pedido.alertas.append("sem tamanho")
@@ -591,8 +594,12 @@ def escrever_relatorio(etapas, pedidos, contagem) -> None:
 
 
 def main() -> None:
+    global SAIDA
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--csv", type=Path, default=CSV_PADRAO, help="CSV exportado do Forms")
+    parser.add_argument("--mensagens", type=Path, default=MENSAGENS, help="arquivo de textos das etapas")
+    parser.add_argument("--config", type=Path, default=CONFIG, help="JSON com produto, valores e datas")
+    parser.add_argument("--saida", type=Path, default=SAIDA, help="pasta de saída")
     parser.add_argument("--etapa", action="append", help="gera só as etapas informadas (pode repetir)")
     parser.add_argument(
         "--todas", action="store_true",
@@ -600,9 +607,10 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    SAIDA = args.saida
+    config = json.loads(args.config.read_text(encoding="utf-8"))
     pedidos = ler_pedidos(args.csv)
-    etapas = ler_etapas(MENSAGENS)
+    etapas = ler_etapas(args.mensagens)
     if not args.todas and not args.etapa:
         etapas = [e for e in etapas if e.ativo]
     if args.etapa:
@@ -611,7 +619,7 @@ def main() -> None:
         if not etapas:
             raise SystemExit(f"Nenhuma etapa corresponde a {sorted(pedidas)}")
 
-    SAIDA.mkdir(exist_ok=True)
+    SAIDA.mkdir(parents=True, exist_ok=True)
     contagem = escrever_csvs(etapas, pedidos, config)
     escrever_painel(etapas, pedidos, config)
     escrever_relatorio(etapas, pedidos, contagem)
