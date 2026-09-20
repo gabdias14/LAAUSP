@@ -59,6 +59,8 @@ dados/pedidos.csv        export da planilha (troque por um novo export quando qu
 regua/mensagens.md       os textos das 10 etapas — é aqui que você edita a copy
 regua/config.json        produto, valores, datas, local de retirada, responsável
 scripts/gerar_regua.py   monta os disparos, o painel e o relatório
+scripts/gerar_controle.py  monta a planilha de controle de envio
+dados/status.csv         exceções do disparo (não enviada, falhou, já pagou…)
 saida/                   painel.html, disparos_<etapa>.csv e relatorio.md (gerados)
 ```
 
@@ -95,6 +97,16 @@ Para a etapa **8b (cobrança do Pix)**: preencha `chave_pix` e `prazo_pagamento`
 A etapa 5b adapta sozinha a linha de status: quem está com Pix parcelado ou
 crédito em aberto recebe "com a 2ª parcela ainda em aberto" em vez de "já pago",
 pra não dar quitação a quem ainda deve.
+
+## Controle de envio
+
+`python3 scripts/gerar_controle.py` cruza a base com `dados/status.csv` e gera
+`saida/controle_envio.csv`: uma linha por pedido, com a coluna do disparo
+(Enviada / Não enviada / Falhou), o status do pagamento e a pendência de cada um.
+
+Quem não estiver em `status.csv` entra como **Enviada**, com o status derivado do
+próprio pedido. Para registrar uma exceção, acrescente a linha em
+`dados/status.csv` (nome exatamente como está na base) e rode de novo.
 
 ## O que o relatório apontou
 
