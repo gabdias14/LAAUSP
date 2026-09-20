@@ -201,6 +201,7 @@ class Etapa:
     alvo: str
     objetivo: str
     corpo: str
+    ativo: bool = True
 
 
 SEGMENTOS = {
@@ -243,6 +244,7 @@ def ler_etapas(caminho: Path) -> list[Etapa]:
                 momento=momento,
                 alvo=alvo,
                 objetivo=meta.get("objetivo", ""),
+                ativo=meta.get("ativo", "sim").strip().lower() not in {"nao", "não", "no", "false", "0"},
                 corpo=corpo.strip("\n"),
             )
         )
@@ -307,6 +309,10 @@ def link_whatsapp(telefone: str, mensagem: str) -> str:
 
 def escrever_csvs(etapas, pedidos, config) -> dict[str, int]:
     contagem = {}
+    gerados = {f"disparos_{e.id}.csv" for e in etapas}
+    for antigo in SAIDA.glob("disparos_*.csv"):  # não deixa fila de etapa fora do disparo
+        if antigo.name not in gerados:
+            antigo.unlink()
     for etapa in etapas:
         alvos = [p for p in pedidos if SEGMENTOS[etapa.alvo](p) and p.enviavel]
         contagem[etapa.id] = len(alvos)
@@ -478,11 +484,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--csv", type=Path, default=CSV_PADRAO, help="CSV exportado do Forms")
     parser.add_argument("--etapa", action="append", help="gera só as etapas informadas (pode repetir)")
+    parser.add_argument(
+        "--todas", action="store_true",
+        help="inclui também as etapas marcadas como 'ativo: nao' (fora do disparo atual)",
+    )
     args = parser.parse_args()
 
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     pedidos = ler_pedidos(args.csv)
     etapas = ler_etapas(MENSAGENS)
+    if not args.todas and not args.etapa:
+        etapas = [e for e in etapas if e.ativo]
     if args.etapa:
         pedidas = set(args.etapa)
         etapas = [e for e in etapas if e.id in pedidas]

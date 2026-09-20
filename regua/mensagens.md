@@ -13,6 +13,7 @@ Placeholders disponíveis: `{primeiro_nome}` `{nome}` `{tamanho}`
 Formatação do WhatsApp: `*negrito*`, `_itálico_`.
 
 ## 1-confirmacao :: Confirmação do pedido :: D+0 (até 24h após o formulário)
+ativo: nao
 alvo: todos
 objetivo: dar recibo do pedido e travar as informações que vão para a produção
 ---
@@ -30,6 +31,7 @@ Confere pra mim se está tudo certo? Qualquer ajuste de tamanho ou de nome nas c
 Se estiver ok, é só responder "confirmado" 🙌
 
 ## 2-pendencia-social :: Pendência do lote social :: D+1 (e reforço a cada 2 dias)
+ativo: nao
 alvo: social_pendente
 objetivo: recuperar o atestado de matrícula que falta para validar o lote social
 ---
@@ -43,6 +45,7 @@ Qualquer dúvida é só chamar 🙏
 {assinatura}
 
 ## 3-pendencia-pagamento :: Pendência de pagamento :: D+1 (e reforço a cada 2 dias)
+ativo: nao
 alvo: pagamento_pendente
 objetivo: fechar as compras marcadas como crédito, que não se concluem sozinhas
 ---
@@ -56,6 +59,7 @@ Enquanto o pagamento não cai, o pedido não entra na lista de produção. Corre
 {assinatura}
 
 ## 4-conferencia-arte :: Conferência final da arte :: D-3 do fechamento do lote
+ativo: nao
 alvo: personalizado
 objetivo: última checagem da personalização antes de mandar para a estamparia
 ---
@@ -70,6 +74,7 @@ Tamanho: *{tamanho}*
 Confere acento, letra maiúscula e apelido. Depois que a arte for pro fornecedor não tem como alterar. Se estiver certo, responde "ok" — se quiser mudar algo, me fala hoje 🙏
 
 ## 5-producao :: Pedido em produção :: D+0 do fechamento do lote
+ativo: nao
 alvo: todos
 objetivo: avisar que o lote fechou e dar previsão, reduzindo o "chegou?"
 ---
@@ -82,24 +87,24 @@ Seu item: tamanho *{tamanho}* · {personalizacao_frase}
 A previsão de entrega é {data_retirada}. Assim que chegar, eu te aviso por aqui com data, horário e local de retirada. Não precisa fazer nada agora 😉
 {assinatura}
 
-## 5b-atraso :: Aviso de atraso na produção :: D+0 do aviso da fábrica
+## 5b-atraso :: Aviso de atraso na produção :: disparo de hoje
 alvo: todos
-objetivo: avisar o atraso antes que perguntem, explicar a causa e dar nova previsão
+ativo: sim
+objetivo: avisar o atraso antes que perguntem, assumir a causa e prometer o aviso da retirada
 ---
-Oi, {primeiro_nome}. Precisamos te dar uma notícia que não é a que a gente queria 😞
+Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 💚
 
-Tivemos um imprevisto fora do nosso controle: {motivo_atraso} que produz o *{produto}*. A linha ficou parada e o nosso lote *atrasou*.
+Passando para falar do seu *{produto}* (tamanho *{tamanho}*, {personalizacao_frase}).
 
-📅 Nova previsão de entrega: *{nova_previsao}*
+{motivo_atraso} e o nosso lote *atrasou*. Sentimos muito de verdade — sabemos que você comprou contando com o prazo que combinamos, e preferimos te contar assim que soubemos, em vez de deixar você sem resposta.
 
-Sentimos muito de verdade. Sabemos que você comprou contando com o prazo que combinamos, e ficar sem resposta seria pior — por isso estamos avisando assim que a fábrica nos confirmou.
+Seu pedido segue garantido e reservado no seu nome. *Assim que estiver disponível para retirada, eu aviso por aqui* com data, horário e local.
 
-Nada muda no seu pedido: tamanho *{tamanho}*, {personalizacao_frase}, {pagamento_frase}. Assim que as peças saírem da produção, você é avisado por aqui com data, horário e local de retirada.
-
-Qualquer dúvida, pode me chamar. Obrigado pela paciência 💚
+Qualquer dúvida, é só me chamar. Obrigado pela paciência 🙏
 {assinatura}
 
 ## 6-retirada :: Chegou! Agenda de retirada :: D+0 da chegada
+ativo: nao
 alvo: todos
 objetivo: converter a chegada do lote em retirada efetiva
 ---
@@ -114,6 +119,7 @@ Seu *{produto}* (*{tamanho}*{personalizacao_sufixo}) já está com a gente.
 É só chegar e falar seu nome. Se não conseguir vir nesse dia, responde aqui que a gente combina outro horário 🤝
 
 ## 7-retirada-lembrete :: Lembrete de retirada :: D+3 e D+7 após a abertura da retirada
+ativo: nao
 alvo: todos
 objetivo: puxar quem ainda não retirou antes que o item vire estoque parado
 ---
@@ -126,6 +132,7 @@ Seu *{produto}* (*{tamanho}*) ainda está aqui esperando você.
 Consegue passar essa semana? Se preferir, alguém pode retirar por você — só me avisa o nome da pessoa 🙏
 
 ## 8-parcela-2 :: Lembrete da 2ª parcela :: D+30 do pedido parcelado
+ativo: nao
 alvo: parcelado
 objetivo: cobrar a segunda parcela de quem escolheu Pix em 2x
 ---
@@ -136,26 +143,22 @@ Seu pedido do *{produto}* ficou como *Pix parcelado em 2x* e a *2ª parcela* est
 Assim que enviar, manda o comprovante por aqui que eu dou baixa na hora 🙌
 Qualquer coisa, chama o {responsavel_nome}: {responsavel_link}
 
-## 8b-cobranca-pix :: Cobrança do Pix em aberto :: D+2 do primeiro lembrete
+## 8b-parcela-na-retirada :: 2ª parcela fica para a retirada :: disparo de hoje, após o aviso de atraso
 alvo: parcelado
-objetivo: fechar as parcelas de Pix ainda não pagas, com chave, valor e prazo
+ativo: sim
+objetivo: tranquilizar quem tem Pix em 2x, transferindo o pagamento da 2ª parcela para a entrega
 ---
-Oi, {primeiro_nome}! Tudo bem?
+Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 💚
 
-Passando pra fechar a pendência do seu *{produto}*: o pagamento ficou como *Pix em 2x* e a *2ª parcela ainda está em aberto* por aqui.
+Um complemento sobre o seu *{produto}*: seu pagamento ficou como *Pix parcelado em 2x* e a 2ª parcela ainda está em aberto por aqui.
 
-🔑 Chave Pix: *{chave_pix}*
-💰 Valor total do pedido: {valor}
-📅 Prazo: até *{prazo_pagamento}*
+Como o lote atrasou, *não precisa pagar agora*. Você acerta a 2ª parcela *na hora da retirada*, quando o pedido chegar — assim você só termina de pagar quando estiver com o corta-vento na mão.
 
-Assim que pagar, manda o comprovante nesta conversa que eu dou baixa na hora ✅
-
-Se você já pagou e a baixa não apareceu, me manda o comprovante mesmo assim que eu acerto aqui — pode ter passado batido.
-
-Qualquer coisa, chama o {responsavel_nome}: {responsavel_link}
+Eu aviso por aqui assim que estiver disponível. Qualquer dúvida, é só me chamar 🙏
 {assinatura}
 
 ## 9-pos-entrega :: Pós-entrega e prova social :: D+2 após a retirada
+ativo: nao
 alvo: todos
 objetivo: gerar foto/depoimento e medir satisfação do lote
 ---
@@ -169,6 +172,7 @@ Seu feedback ajuda demais a acertar tamanho, tecido e prazo da próxima 💚
 {assinatura}
 
 ## 10-reengajamento :: Próximo lote e modalidades :: D+30 após a entrega
+ativo: nao
 alvo: todos
 objetivo: reaproveitar a base para o próximo produto e para o esporte
 ---

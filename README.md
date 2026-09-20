@@ -33,17 +33,24 @@ em E.164, link pronto e o texto da mensagem.
 | 3 | Pendência de pagamento | D+1, reforço a cada 2 dias | pagamento em crédito (3) | fechar a compra com o responsável |
 | 4 | Conferência final da arte | D-3 do fechamento do lote | com personalização (47) | evitar erro de bordado/estampa |
 | 5 | Pedido em produção | fechamento do lote | todos | dar previsão e cortar o "chegou?" |
-| 5b | **Aviso de atraso** | quando a fábrica confirma o atraso | todos | avisar antes que perguntem, explicar a causa e dar nova previsão |
+| 5b | **Aviso de atraso** | disparo atual | todos (63) | avisar o atraso do fornecedor e prometer o aviso da retirada |
 | 6 | Chegou! Agenda de retirada | chegada do lote | todos | converter chegada em retirada |
 | 7 | Lembrete de retirada | D+3 e D+7 | quem não retirou | esvaziar o estoque parado |
 | 8 | Lembrete da 2ª parcela | D+30 do pedido | Pix em 2x (8) | cobrar a parcela em aberto |
-| 8b | **Cobrança do Pix** | D+2 do lembrete | Pix em 2x (8) | fechar a parcela com chave, valor e prazo |
+| 8b | **2ª parcela na retirada** | disparo atual, após o 5b | Pix em 2x (8) | avisar que a 2ª parcela fica para o dia da entrega |
 | 9 | Pós-entrega e prova social | D+2 da retirada | todos | foto para stories + nota de 0 a 10 |
 | 10 | Próximo lote e modalidades | D+30 da entrega | todos | lista de pré-venda + captação para o esporte |
 
 As etapas 7 e 9 saem com o segmento `todos` porque a planilha não registra quem
 já retirou. Assim que houver essa coluna, basta apontar o `alvo` da etapa para o
 segmento novo.
+
+## Etapas ativas
+
+Cada etapa tem um campo `ativo:`. Por padrão o gerador só monta as marcadas com
+`ativo: sim` — hoje as duas do disparo atual (5b e 8b). As demais continuam
+escritas e versionadas; para vê-las de novo, rode com `--todas` ou marque
+`ativo: sim` na etapa.
 
 ## Estrutura
 
