@@ -12,7 +12,6 @@
 | Etapa | Momento | Segmento | Contatos |
 | --- | --- | --- | --- |
 | Aviso de atraso na produção | disparo de hoje | `todos` | 63 |
-| 2ª parcela fica para a retirada | disparo de hoje, após o aviso de atraso | `parcelado` | 8 |
 
 ## Grade de tamanhos
 

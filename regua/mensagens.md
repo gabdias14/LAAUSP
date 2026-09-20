@@ -7,7 +7,7 @@ Placeholders disponíveis: `{primeiro_nome}` `{nome}` `{tamanho}`
 `{personalizacao}` `{personalizacao_frase}` `{instituto}` `{pagamento}`
 `{valor}` `{produto}` `{organizacao}` `{assinatura}` `{responsavel_nome}`
 `{responsavel_link}` `{prazo_pendencia}` `{data_producao}` `{data_retirada}`
-`{horario_retirada}` `{local_retirada}` `{link_form_correcao}` `{pagamento_frase}` `{chave_pix}`
+`{horario_retirada}` `{local_retirada}` `{link_form_correcao}` `{pagamento_frase}` `{bloco_parcela}` `{chave_pix}`
 `{prazo_pagamento}` `{nova_previsao}` `{motivo_atraso}`.
 
 Formatação do WhatsApp: `*negrito*`, `_itálico_`.
@@ -90,7 +90,7 @@ A previsão de entrega é {data_retirada}. Assim que chegar, eu te aviso por aqu
 ## 5b-atraso :: Aviso de atraso na produção :: disparo de hoje
 alvo: todos
 ativo: sim
-objetivo: avisar o atraso antes que perguntem, assumir a causa e prometer o aviso da retirada
+objetivo: avisar o atraso, assumir a causa, prometer o aviso da retirada e, para quem parcelou em 2x, jogar a 2ª parcela para a entrega
 ---
 Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 💚
 
@@ -98,7 +98,10 @@ Passando para falar do seu *{produto}* (tamanho *{tamanho}*, {personalizacao_fra
 
 {motivo_atraso} e o nosso lote *atrasou*. Sentimos muito de verdade — sabemos que você comprou contando com o prazo que combinamos, e preferimos te contar assim que soubemos, em vez de deixar você sem resposta.
 
+📅 Nova previsão de entrega: *{nova_previsao}*
+
 Seu pedido segue garantido e reservado no seu nome. *Assim que estiver disponível para retirada, eu aviso por aqui* com data, horário e local.
+{bloco_parcela}
 
 Qualquer dúvida, é só me chamar. Obrigado pela paciência 🙏
 {assinatura}
@@ -143,9 +146,9 @@ Seu pedido do *{produto}* ficou como *Pix parcelado em 2x* e a *2ª parcela* est
 Assim que enviar, manda o comprovante por aqui que eu dou baixa na hora 🙌
 Qualquer coisa, chama o {responsavel_nome}: {responsavel_link}
 
-## 8b-parcela-na-retirada :: 2ª parcela fica para a retirada :: disparo de hoje, após o aviso de atraso
+## 8b-parcela-na-retirada :: 2ª parcela fica para a retirada (avulsa) :: reserva — o texto já vai dentro do 5b
 alvo: parcelado
-ativo: sim
+ativo: nao
 objetivo: tranquilizar quem tem Pix em 2x, transferindo o pagamento da 2ª parcela para a entrega
 ---
 Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 💚

@@ -278,6 +278,13 @@ def montar_contexto(pedido: Pedido, config: dict) -> dict[str, str]:
         "instituto": pedido.instituto.strip() or "USP",
         "pagamento": pedido.pagamento.split(" - ")[0].strip() or "a confirmar",
         "valor": config["valor_social"] if pedido.e_social else config["valor_padrao"],
+        "bloco_parcela": (
+            "\nSobre o pagamento: seu pedido ficou como *Pix parcelado em 2x* e a 2ª parcela "
+            "ainda está em aberto por aqui. Como o lote atrasou, *não precisa pagar agora* — "
+            "você acerta a 2ª parcela *na hora da retirada*, quando o pedido chegar.\n"
+            if pedido.parcelado
+            else ""
+        ),
         "pagamento_frase": (
             "com o pagamento no crédito ainda a finalizar"
             if pedido.pagamento_pendente
@@ -297,7 +304,9 @@ class ContextoTolerante(dict):
 
 
 def renderizar(etapa: Etapa, pedido: Pedido, config: dict) -> str:
-    return etapa.corpo.format_map(ContextoTolerante(montar_contexto(pedido, config))).strip()
+    texto = etapa.corpo.format_map(ContextoTolerante(montar_contexto(pedido, config)))
+    # blocos condicionais vazios não podem deixar buracos no meio da mensagem
+    return re.sub(r"\n{3,}", "\n\n", texto).strip()
 
 
 def link_whatsapp(telefone: str, mensagem: str) -> str:
