@@ -351,6 +351,7 @@ def escrever_painel(etapas, pedidos, config) -> None:
           <span class="meta">{html.escape(pedido.tamanho)} · {html.escape(pedido.instituto)}</span></label>
         <a class="enviar" target="_blank" rel="noopener"
            href="{html.escape(link_whatsapp(pedido.telefone, mensagem))}">Abrir no WhatsApp</a>
+        <button class="copiar" type="button">Copiar texto</button>
         <details><summary>ver mensagem</summary><pre>{html.escape(mensagem)}</pre></details>
       </li>"""
             )
@@ -420,6 +421,10 @@ def escrever_painel(etapas, pedidos, config) -> None:
                   border:1px solid var(--linha); background:var(--acento); color:#fff; cursor:pointer; }}
   #fila-pular {{ background:transparent; color:var(--fg); }}
   .contato.proximo {{ outline:2px solid var(--acento); }}
+  .copiar {{ font:inherit; font-size:.9rem; margin-left:8px; padding:6px 12px; cursor:pointer;
+             border:1px solid var(--linha); border-radius:8px; background:transparent; color:var(--fg); }}
+  #limpar {{ font:inherit; font-size:.85rem; margin-left:auto; padding:6px 10px; cursor:pointer;
+             border:1px solid var(--linha); border-radius:8px; background:transparent; color:var(--fg); }}
   .aviso {{ background:#ffb020; color:#3a2600; padding:8px 12px; border-radius:8px;
             font-size:.9rem; margin:0 0 10px; }}
   .aviso code {{ background:rgba(0,0,0,.12); padding:1px 4px; border-radius:4px; }}
@@ -435,6 +440,7 @@ def escrever_painel(etapas, pedidos, config) -> None:
     <span id="fila-txt">—</span>
     <button id="fila-btn">Abrir e marcar</button>
     <button id="fila-pular" title="Pular sem marcar">Pular</button>
+    <button id="limpar" title="Desmarcar todos os enviados">Desmarcar todos</button>
   </div>
 {chr(10).join(blocos)}
 </main>
@@ -479,6 +485,22 @@ def escrever_painel(etapas, pedidos, config) -> None:
   }});
   proximo();
   document.querySelectorAll('.feito').forEach(c => c.addEventListener('change', proximo));
+  document.querySelectorAll('.copiar').forEach(botao => {{
+    botao.addEventListener('click', async () => {{
+      const texto = botao.closest('.contato').querySelector('pre').textContent;
+      try {{ await navigator.clipboard.writeText(texto); botao.textContent = 'Copiado ✓'; }}
+      catch (e) {{ botao.textContent = 'Copie do "ver mensagem"'; }}
+      setTimeout(() => {{ botao.textContent = 'Copiar texto'; }}, 2000);
+    }});
+  }});
+  document.getElementById('limpar').addEventListener('click', () => {{
+    if (!confirm('Desmarcar todos os contatos já enviados?')) return;
+    document.querySelectorAll('.feito').forEach(c => {{
+      if (c.checked) {{ c.checked = false; c.dispatchEvent(new Event('change')); }}
+    }});
+    document.querySelectorAll('.contato').forEach(i => delete i.dataset.pulado);
+    proximo();
+  }});
   document.querySelectorAll('.enviar').forEach(link => {{
     link.addEventListener('click', () => {{
       const caixa = link.closest('.contato').querySelector('.feito');

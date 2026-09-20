@@ -92,18 +92,18 @@ alvo: todos
 ativo: sim
 objetivo: avisar o atraso, assumir a causa, prometer o aviso da retirada e, para quem parcelou em 2x, jogar a 2ª parcela para a entrega
 ---
-Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 💚
+Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 🧡💙
 
 Passando para falar do seu *{produto}* (tamanho *{tamanho}*, {personalizacao_frase}).
 
 {motivo_atraso} e o nosso lote *atrasou*. Sentimos muito de verdade — sabemos que você comprou contando com o prazo que combinamos, e preferimos te contar assim que soubemos, em vez de deixar você sem resposta.
 
-📅 Nova previsão de entrega: *{nova_previsao}*
+Nova previsão de entrega: *{nova_previsao}*
 
 Seu pedido segue garantido e reservado no seu nome. *Assim que estiver disponível para retirada, eu aviso por aqui* com data, horário e local.
 {bloco_parcela}
 
-Qualquer dúvida, é só me chamar. Obrigado pela paciência 🙏
+Qualquer dúvida, é só me chamar. Obrigado pela paciência 🦕
 {assinatura}
 
 ## 6-retirada :: Chegou! Agenda de retirada :: D+0 da chegada
