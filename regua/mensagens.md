@@ -88,7 +88,7 @@ objetivo: avisar o atraso antes que perguntem, explicar a causa e dar nova previ
 ---
 Oi, {primeiro_nome}. Precisamos te dar uma notícia que não é a que a gente queria 😞
 
-Tivemos um imprevisto fora do nosso controle: {motivo_atraso}. A produção do *{produto}* ficou parada e o nosso lote *atrasou*.
+Tivemos um imprevisto fora do nosso controle: {motivo_atraso} que produz o *{produto}*. A linha ficou parada e o nosso lote *atrasou*.
 
 📅 Nova previsão de entrega: *{nova_previsao}*
 
