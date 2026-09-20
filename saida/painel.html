@@ -33,6 +33,14 @@
   pre { white-space:pre-wrap; background:rgba(127,127,127,.1); padding:10px;
          border-radius:8px; font:14px/1.5 ui-monospace,monospace; }
   .vazio { color:var(--suave); font-size:.9rem; }
+  #fila { position:sticky; top:0; z-index:9; display:flex; gap:8px; align-items:center;
+           background:var(--bg); border:1px solid var(--linha); border-radius:10px;
+           padding:10px 12px; margin-bottom:16px; }
+  #fila-txt { flex:1; font-size:.95rem; }
+  #fila button { font:inherit; font-size:.9rem; padding:6px 12px; border-radius:8px;
+                  border:1px solid var(--linha); background:var(--acento); color:#fff; cursor:pointer; }
+  #fila-pular { background:transparent; color:var(--fg); }
+  .contato.proximo { outline:2px solid var(--acento); }
   .aviso { background:#ffb020; color:#3a2600; padding:8px 12px; border-radius:8px;
             font-size:.9rem; margin:0 0 10px; }
   .aviso code { background:rgba(0,0,0,.12); padding:1px 4px; border-radius:4px; }
@@ -44,6 +52,11 @@
   <h1>Régua de comunicação — Corta-vento G26</h1>
   <p class="sub">Abra cada contato no WhatsApp com a mensagem já escrita. O check fica salvo neste navegador.</p>
   <nav><a href="#5b-atraso">Aviso de atraso na produção</a></nav>
+  <div id="fila">
+    <span id="fila-txt">—</span>
+    <button id="fila-btn">Abrir e marcar</button>
+    <button id="fila-pular" title="Pular sem marcar">Pular</button>
+  </div>
   <section class="etapa" id="5b-atraso">
     <h2>Aviso de atraso na produção <span class="tag">disparo de hoje</span></h2>
     
@@ -1216,6 +1229,34 @@ Dias — LAAUSP</pre></details>
       item.classList.toggle('ok', caixa.checked);
     });
   });
+  const fila = () => [...document.querySelectorAll('.contato')].filter(
+    i => !i.querySelector('.feito').checked && !i.dataset.pulado);
+  const txt = document.getElementById('fila-txt');
+  const btn = document.getElementById('fila-btn');
+  function proximo() {
+    document.querySelectorAll('.contato.proximo').forEach(i => i.classList.remove('proximo'));
+    const item = fila()[0];
+    if (!item) { txt.textContent = 'Fila concluída 🎉'; btn.disabled = true; return null; }
+    item.classList.add('proximo');
+    const restantes = fila().length;
+    txt.textContent = `Próximo: ${item.querySelector('b').textContent} · faltam ${restantes}`;
+    btn.disabled = false;
+    return item;
+  }
+  btn.addEventListener('click', () => {
+    const item = fila()[0];
+    if (!item) return;
+    window.open(item.querySelector('.enviar').href, '_blank', 'noopener');
+    const caixa = item.querySelector('.feito');
+    caixa.checked = true; caixa.dispatchEvent(new Event('change'));
+    proximo();
+  });
+  document.getElementById('fila-pular').addEventListener('click', () => {
+    const item = fila()[0];
+    if (item) { item.dataset.pulado = '1'; proximo(); }
+  });
+  proximo();
+  document.querySelectorAll('.feito').forEach(c => c.addEventListener('change', proximo));
   document.querySelectorAll('.enviar').forEach(link => {
     link.addEventListener('click', () => {
       const caixa = link.closest('.contato').querySelector('.feito');
