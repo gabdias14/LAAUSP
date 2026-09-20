@@ -3,7 +3,7 @@
    Objetivo principal: a carteirinha abrir no ginásio, onde quase nunca há
    sinal. As páginas e os dados ficam em cache; as leituras seguem online. */
 
-const CACHE = "laausp-v2";
+const CACHE = "laausp-v3";
 
 const ESSENCIAIS = [
   "./",

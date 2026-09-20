@@ -9,13 +9,13 @@
      printf 'nova-senha' | sha256sum
 */
 
-// Hash de "liga2026".
+// Senha do representante. O valor em claro nao fica no repositorio.
 export const HASH_SENHA_REPRESENTANTE =
-  "60edaaa578a1df0775ae01af93d47031e96c7cb4a9e153fb6e910a262ece934a";
+  "cda0b2813f74574c7f7b70154cfdf971d82d54bc70b4fd00875d2a8ae085b4a2";
 
-// Hash de "europa2026" — senha do caixa da Pizzaria Europa para carimbar.
+// Senha do caixa da Pizzaria Europa para carimbar. Idem: sem valor em claro aqui.
 export const HASH_SENHA_PIZZARIA =
-  "b524e3a759c4de0022cdcbed5545435ab160517ff9c6b8d0b00f3b1f79c59db7";
+  "244629b330883e18459a719ba2575e6b072d4c2311acd92a9ef995bb968b0c62";
 
 // Para onde vai o feedback enviado pelo ícone de chat do site.
 // Com FEEDBACK_ENDPOINT vazio, o site abre o e-mail do usuário já preenchido.

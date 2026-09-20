@@ -68,7 +68,7 @@ Isso cobre o piloto: peça aos atletas a foto do e-Card, leia todas pela opção
 Formato da lista de inscritos (`data/atletas.json`, ou CSV/JSON importado):
 
 ```json
-[{ "nusp": "11918672", "codigoEcard": "1051139627", "nome": "Fulana de Tal",
+[{ "nusp": "10000001", "codigoEcard": "9000000001", "nome": "Fulana de Tal",
    "atletica": "EACH", "modalidade": "FM", "situacao": "inscrito" }]
 ```
 
@@ -93,7 +93,8 @@ segurança de verdade**. Serve para o piloto do scanner; antes de guardar dados
 de atletas de forma permanente é preciso um backend com autenticação real
 (login por atlética, papéis de representante/gestão) e banco de dados.
 
-Senha atual: `liga2026`. Para trocar, gere o hash e cole em `config.js`:
+A senha nao fica em claro no repositorio — so o hash SHA-256, em
+`config.js`. Para trocar, gere o hash do novo valor e cole la:
 
 ```bash
 printf 'nova-senha' | sha256sum
@@ -248,7 +249,7 @@ sem mudança nenhuma.
 ### Fidelidade Pizzaria Europa
 
 Cartela de 8 casas: **7 pizzas carimbadas e a 8ª é grátis**. O carimbo é dado
-pelo caixa da pizzaria, que digita a senha (`europa2026`, em
+pelo caixa da pizzaria, que digita a senha (hash em
 `assets/js/config.js`) no aparelho do atleta; há botão de desfazer o último
 carimbo e de resgatar a pizza grátis, que zera a cartela e guarda o histórico.
 
