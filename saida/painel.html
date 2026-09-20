@@ -33,6 +33,10 @@
   pre { white-space:pre-wrap; background:rgba(127,127,127,.1); padding:10px;
          border-radius:8px; font:14px/1.5 ui-monospace,monospace; }
   .vazio { color:var(--suave); font-size:.9rem; }
+  .aviso { background:#ffb020; color:#3a2600; padding:8px 12px; border-radius:8px;
+            font-size:.9rem; margin:0 0 10px; }
+  .aviso code { background:rgba(0,0,0,.12); padding:1px 4px; border-radius:4px; }
+  .bloqueada .enviar { background:#8b949e; }
 </style>
 </head>
 <body>
@@ -42,6 +46,7 @@
   <nav><a href="#1-confirmacao">Confirmação do pedido</a><a href="#2-pendencia-social">Pendência do lote social</a><a href="#3-pendencia-pagamento">Pendência de pagamento</a><a href="#4-conferencia-arte">Conferência final da arte</a><a href="#5-producao">Pedido em produção</a><a href="#5b-atraso">Aviso de atraso na produção</a><a href="#6-retirada">Chegou! Agenda de retirada</a><a href="#7-retirada-lembrete">Lembrete de retirada</a><a href="#8-parcela-2">Lembrete da 2ª parcela</a><a href="#8b-cobranca-pix">Cobrança do Pix em aberto</a><a href="#9-pos-entrega">Pós-entrega e prova social</a><a href="#10-reengajamento">Próximo lote e modalidades</a></nav>
   <section class="etapa" id="1-confirmacao">
     <h2>Confirmação do pedido <span class="tag">D+0 (até 24h após o formulário)</span></h2>
+    
     <p class="objetivo">dar recibo do pedido e travar as informações que vão para a produção</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -1183,6 +1188,7 @@ Se estiver ok, é só responder &quot;confirmado&quot; 🙌</pre></details>
   </section>
   <section class="etapa" id="2-pendencia-social">
     <h2>Pendência do lote social <span class="tag">D+1 (e reforço a cada 2 dias)</span></h2>
+    
     <p class="objetivo">recuperar o atestado de matrícula que falta para validar o lote social</p>
     <p class="contagem"><b>10</b> contatos · segmento <code>social_pendente</code></p>
     <ul>
@@ -1330,6 +1336,7 @@ Equipe LAAUSP</pre></details>
   </section>
   <section class="etapa" id="3-pendencia-pagamento">
     <h2>Pendência de pagamento <span class="tag">D+1 (e reforço a cada 2 dias)</span></h2>
+    
     <p class="objetivo">fechar as compras marcadas como crédito, que não se concluem sozinhas</p>
     <p class="contagem"><b>3</b> contatos · segmento <code>pagamento_pendente</code></p>
     <ul>
@@ -1379,6 +1386,7 @@ Equipe LAAUSP</pre></details>
   </section>
   <section class="etapa" id="4-conferencia-arte">
     <h2>Conferência final da arte <span class="tag">D-3 do fechamento do lote</span></h2>
+    
     <p class="objetivo">última checagem da personalização antes de mandar para a estamparia</p>
     <p class="contagem"><b>47</b> contatos · segmento <code>personalizado</code></p>
     <ul>
@@ -2089,8 +2097,9 @@ Confere acento, letra maiúscula e apelido. Depois que a arte for pro fornecedor
       </li>
     </ul>
   </section>
-  <section class="etapa" id="5-producao">
+  <section class="etapa bloqueada" id="5-producao">
     <h2>Pedido em produção <span class="tag">D+0 do fechamento do lote</span></h2>
+    <p class="aviso">⚠ Não dispare ainda: preencha <code>data_producao</code>, <code>data_retirada</code> em <code>regua/config.json</code> e gere de novo.</p>
     <p class="objetivo">avisar que o lote fechou e dar previsão, reduzindo o &quot;chegou?&quot;</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -2978,8 +2987,9 @@ Equipe LAAUSP</pre></details>
       </li>
     </ul>
   </section>
-  <section class="etapa" id="5b-atraso">
+  <section class="etapa bloqueada" id="5b-atraso">
     <h2>Aviso de atraso na produção <span class="tag">D+0 do aviso da fábrica</span></h2>
+    <p class="aviso">⚠ Não dispare ainda: preencha <code>nova_previsao</code> em <code>regua/config.json</code> e gere de novo.</p>
     <p class="objetivo">avisar o atraso antes que perguntem, explicar a causa e dar nova previsão</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -4119,8 +4129,9 @@ Equipe LAAUSP</pre></details>
       </li>
     </ul>
   </section>
-  <section class="etapa" id="6-retirada">
+  <section class="etapa bloqueada" id="6-retirada">
     <h2>Chegou! Agenda de retirada <span class="tag">D+0 da chegada</span></h2>
+    <p class="aviso">⚠ Não dispare ainda: preencha <code>data_retirada</code>, <code>horario_retirada</code>, <code>local_retirada</code> em <code>regua/config.json</code> e gere de novo.</p>
     <p class="objetivo">converter a chegada do lote em retirada efetiva</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -5071,8 +5082,9 @@ Seu *Corta-vento G26* (*G*, Manuga) já está com a gente.
       </li>
     </ul>
   </section>
-  <section class="etapa" id="7-retirada-lembrete">
+  <section class="etapa bloqueada" id="7-retirada-lembrete">
     <h2>Lembrete de retirada <span class="tag">D+3 e D+7 após a abertura da retirada</span></h2>
+    <p class="aviso">⚠ Não dispare ainda: preencha <code>horario_retirada</code>, <code>local_retirada</code> em <code>regua/config.json</code> e gere de novo.</p>
     <p class="objetivo">puxar quem ainda não retirou antes que o item vire estoque parado</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -5899,6 +5911,7 @@ Consegue passar essa semana? Se preferir, alguém pode retirar por você — só
   </section>
   <section class="etapa" id="8-parcela-2">
     <h2>Lembrete da 2ª parcela <span class="tag">D+30 do pedido parcelado</span></h2>
+    
     <p class="objetivo">cobrar a segunda parcela de quem escolheu Pix em 2x</p>
     <p class="contagem"><b>8</b> contatos · segmento <code>parcelado</code></p>
     <ul>
@@ -6000,8 +6013,9 @@ Qualquer coisa, chama o Gabriel Dias: https://wa.link/ld5syp</pre></details>
       </li>
     </ul>
   </section>
-  <section class="etapa" id="8b-cobranca-pix">
+  <section class="etapa bloqueada" id="8b-cobranca-pix">
     <h2>Cobrança do Pix em aberto <span class="tag">D+2 do primeiro lembrete</span></h2>
+    <p class="aviso">⚠ Não dispare ainda: preencha <code>chave_pix</code> em <code>regua/config.json</code> e gere de novo.</p>
     <p class="objetivo">fechar as parcelas de Pix ainda não pagas, com chave, valor e prazo</p>
     <p class="contagem"><b>8</b> contatos · segmento <code>parcelado</code></p>
     <ul>
@@ -6169,6 +6183,7 @@ Equipe LAAUSP</pre></details>
   </section>
   <section class="etapa" id="9-pos-entrega">
     <h2>Pós-entrega e prova social <span class="tag">D+2 após a retirada</span></h2>
+    
     <p class="objetivo">gerar foto/depoimento e medir satisfação do lote</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>
@@ -7058,6 +7073,7 @@ Equipe LAAUSP</pre></details>
   </section>
   <section class="etapa" id="10-reengajamento">
     <h2>Próximo lote e modalidades <span class="tag">D+30 após a entrega</span></h2>
+    
     <p class="objetivo">reaproveitar a base para o próximo produto e para o esporte</p>
     <p class="contagem"><b>63</b> contatos · segmento <code>todos</code></p>
     <ul>

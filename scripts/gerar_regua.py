@@ -249,6 +249,19 @@ def ler_etapas(caminho: Path) -> list[Etapa]:
     return etapas
 
 
+PENDENTE = "a definir"
+
+
+def campos_pendentes(etapa: "Etapa", config: dict) -> list[str]:
+    """Chaves do config que a etapa usa e que ainda estão como 'a definir'."""
+    usados = set(re.findall(r"{(\w+)}", etapa.corpo))
+    return sorted(
+        chave
+        for chave in usados
+        if str(config.get(chave, "")).strip().lower() == PENDENTE
+    )
+
+
 def montar_contexto(pedido: Pedido, config: dict) -> dict[str, str]:
     personalizacao = pedido.personalizacao.strip()
     ctx = {
@@ -326,9 +339,18 @@ def escrever_painel(etapas, pedidos, config) -> None:
         <details><summary>ver mensagem</summary><pre>{html.escape(mensagem)}</pre></details>
       </li>"""
             )
+        pendentes = campos_pendentes(etapa, config)
+        aviso = (
+            '<p class="aviso">⚠ Não dispare ainda: preencha <code>'
+            + "</code>, <code>".join(html.escape(c) for c in pendentes)
+            + "</code> em <code>regua/config.json</code> e gere de novo.</p>"
+            if pendentes
+            else ""
+        )
         blocos.append(
-            f"""  <section class="etapa" id="{html.escape(etapa.id)}">
+            f"""  <section class="etapa{' bloqueada' if pendentes else ''}" id="{html.escape(etapa.id)}">
     <h2>{html.escape(etapa.titulo)} <span class="tag">{html.escape(etapa.momento)}</span></h2>
+    {aviso}
     <p class="objetivo">{html.escape(etapa.objetivo)}</p>
     <p class="contagem"><b>{len(alvos)}</b> contatos · segmento <code>{html.escape(etapa.alvo)}</code></p>
     <ul>
@@ -375,6 +397,10 @@ def escrever_painel(etapas, pedidos, config) -> None:
   pre {{ white-space:pre-wrap; background:rgba(127,127,127,.1); padding:10px;
          border-radius:8px; font:14px/1.5 ui-monospace,monospace; }}
   .vazio {{ color:var(--suave); font-size:.9rem; }}
+  .aviso {{ background:#ffb020; color:#3a2600; padding:8px 12px; border-radius:8px;
+            font-size:.9rem; margin:0 0 10px; }}
+  .aviso code {{ background:rgba(0,0,0,.12); padding:1px 4px; border-radius:4px; }}
+  .bloqueada .enviar {{ background:#8b949e; }}
 </style>
 </head>
 <body>
@@ -469,8 +495,16 @@ def main() -> None:
     escrever_relatorio(etapas, pedidos, contagem)
 
     print(f"{len(pedidos)} pedidos · {len(etapas)} etapas")
+    bloqueadas = []
     for etapa in etapas:
-        print(f"  {etapa.id:<22} {contagem.get(etapa.id, 0):>3} contatos  ({etapa.alvo})")
+        pendentes = campos_pendentes(etapa, config)
+        marca = "  ⚠ falta preencher: " + ", ".join(pendentes) if pendentes else ""
+        if pendentes:
+            bloqueadas.append(etapa)
+        print(f"  {etapa.id:<22} {contagem.get(etapa.id, 0):>3} contatos  ({etapa.alvo}){marca}")
+    if bloqueadas:
+        nomes = ", ".join(e.id for e in bloqueadas)
+        print(f"\n⚠ NÃO dispare {nomes} antes de preencher regua/config.json.")
     print(f"\nSaída em {SAIDA}/ — abra painel.html para disparar.")
 
 
