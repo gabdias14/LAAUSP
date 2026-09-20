@@ -319,12 +319,19 @@ def link_whatsapp(telefone: str, mensagem: str) -> str:
 def escrever_csvs(etapas, pedidos, config) -> dict[str, int]:
     contagem = {}
     gerados = {f"disparos_{e.id}.csv" for e in etapas}
-    for antigo in SAIDA.glob("disparos_*.csv"):  # não deixa fila de etapa fora do disparo
-        if antigo.name not in gerados:
-            antigo.unlink()
+    gerados |= {f"mensagens_{e.id}.txt" for e in etapas}
+    for padrao in ("disparos_*.csv", "mensagens_*.txt"):  # não deixa fila de etapa fora do disparo
+        for antigo in SAIDA.glob(padrao):
+            if antigo.name not in gerados:
+                antigo.unlink()
     for etapa in etapas:
         alvos = [p for p in pedidos if SEGMENTOS[etapa.alvo](p) and p.enviavel]
         contagem[etapa.id] = len(alvos)
+        # .txt em UTF-8: rota de cópia manual que não depende do navegador nem do Excel
+        with (SAIDA / f"mensagens_{etapa.id}.txt").open("w", encoding="utf-8") as txt:
+            for pedido in alvos:
+                txt.write(f"===== {pedido.nome} · +{pedido.telefone} =====\n")
+                txt.write(renderizar(etapa, pedido, config) + "\n\n")
         destino = SAIDA / f"disparos_{etapa.id}.csv"
         with destino.open("w", encoding="utf-8", newline="") as fh:
             escritor = csv.writer(fh)
@@ -485,12 +492,43 @@ def escrever_painel(etapas, pedidos, config) -> None:
   }});
   proximo();
   document.querySelectorAll('.feito').forEach(c => c.addEventListener('change', proximo));
+  // clipboard falha em file:// e dentro de iframe sandbox: três rotas, da melhor para a manual
+  function copiarTexto(texto, alvo) {{
+    const area = document.createElement('textarea');
+    area.value = texto;
+    area.setAttribute('readonly', '');
+    area.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(area);
+    area.select();
+    area.setSelectionRange(0, texto.length);
+    let ok = false;
+    try {{ ok = document.execCommand('copy'); }} catch (e) {{ ok = false; }}
+    document.body.removeChild(area);
+    if (ok) return Promise.resolve('Copiado ✓');
+    if (navigator.clipboard && navigator.clipboard.writeText) {{
+      return navigator.clipboard.writeText(texto)
+        .then(() => 'Copiado ✓')
+        .catch(() => selecionar(alvo));
+    }}
+    return Promise.resolve(selecionar(alvo));
+  }}
+  function selecionar(alvo) {{  // última rota: deixa o texto selecionado para o Ctrl+C
+    const pre = alvo.closest('.contato').querySelector('pre');
+    alvo.closest('.contato').querySelector('details').open = true;
+    const faixa = document.createRange();
+    faixa.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(faixa);
+    return 'Selecionado — Ctrl+C';
+  }}
   document.querySelectorAll('.copiar').forEach(botao => {{
-    botao.addEventListener('click', async () => {{
+    botao.addEventListener('click', () => {{
       const texto = botao.closest('.contato').querySelector('pre').textContent;
-      try {{ await navigator.clipboard.writeText(texto); botao.textContent = 'Copiado ✓'; }}
-      catch (e) {{ botao.textContent = 'Copie do "ver mensagem"'; }}
-      setTimeout(() => {{ botao.textContent = 'Copiar texto'; }}, 2000);
+      copiarTexto(texto, botao).then(msg => {{
+        botao.textContent = msg;
+        setTimeout(() => {{ botao.textContent = 'Copiar texto'; }}, 2500);
+      }});
     }});
   }});
   document.getElementById('limpar').addEventListener('click', () => {{
