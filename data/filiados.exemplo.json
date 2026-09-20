@@ -1,14 +1,14 @@
 {
   "temporada": "2026",
-  "observacao": "Arquivo de EXEMPLO. O primeiro registro é real, para demonstração; os demais são fictícios. Gere o arquivo completo com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
+  "observacao": "Arquivo de EXEMPLO — todos os registros sao ficticios. Gere o arquivo completo com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
   "total": 9,
   "atletas": [
     {
       "atletica": "EACH",
-      "nome": "Gabriel Dias Bulow",
-      "nusp": "11918672",
-      "codigoEcard": "1051139627",
-      "email": "gabriel.bulow@usp.br",
+      "nome": "Gabriel Exemplo da Silva",
+      "nusp": "10000001",
+      "codigoEcard": "9000000001",
+      "email": "gabriel.exemplo@usp.br",
       "vinculo": "Aluno - Graduação",
       "naipe": "Masculino",
       "modalidades": [
