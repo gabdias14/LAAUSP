@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LAAUSP — Liga das Atléticas da USP</title>
+<meta name="description" content="Tabela, calendário e resultados dos Jogos da Liga das Atléticas da USP.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <h1>Jogos da Liga <span id="temporada"></span></h1>
+  <p class="subtitulo">
+    Tabela, classificação e calendário das modalidades da Liga das Atléticas da USP,
+    alimentados pela planilha pública da organização.
+  </p>
+
+  <section class="grade" id="resumo"></section>
+
+  <h2>Próximos jogos</h2>
+  <div class="jogos" id="proximos"></div>
+
+  <h2>Últimos resultados</h2>
+  <div class="jogos" id="ultimos"></div>
+</main>
+
+<footer class="rodape"><div>
+  LAAUSP · dados da planilha pública dos Jogos da Liga ·
+  <a id="link-planilha" href="#">ver planilha</a>
+</div></footer>
+
+<script type="module">
+import { carregarLiga, todosOsJogos, ordenarPorData, cartaoDeJogo, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
+
+marcarNavegacao();
+montarFeedback();
+
+const liga = await carregarLiga();
+document.getElementById("temporada").textContent = liga.temporada;
+document.getElementById("link-planilha").href = liga.fonte;
+
+const jogos = todosOsJogos(liga);
+const encerrados = jogos.filter((j) => j.encerrado);
+
+const resumo = document.getElementById("resumo");
+for (const [rotulo, valor] of [
+  ["Modalidades", liga.modalidades.length],
+  ["Jogos na tabela", jogos.length],
+  ["Jogos realizados", encerrados.length],
+  ["Atléticas em quadra", new Set(jogos.flatMap((j) => [j.equipeA, j.equipeB]).filter(Boolean)).size],
+]) {
+  resumo.append(el("div", { class: "cartao" },
+    el("h3", { text: rotulo }),
+    el("strong", { style: "font-size:30px", text: String(valor) })));
+}
+
+const agora = new Date();
+const proximos = ordenarPorData(jogos.filter((j) => !j.encerrado && (!j.quando || j.quando >= agora))).slice(0, 8);
+const ultimos = ordenarPorData(encerrados).reverse().slice(0, 8);
+
+const preencher = (id, lista, vazio) => {
+  const alvo = document.getElementById(id);
+  if (!lista.length) return alvo.append(el("p", { class: "vazio", text: vazio }));
+  for (const jogo of lista) alvo.append(cartaoDeJogo(jogo));
+};
+
+preencher("proximos", proximos, "Nenhum jogo futuro na tabela.");
+preencher("ultimos", ultimos, "Nenhum resultado lançado ainda.");
+</script>
+</body>
+</html>

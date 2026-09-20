@@ -1,0 +1,15 @@
+# Lista real de filiados: contém dados pessoais dos atletas e não vai para o
+# repositório. Gere com scripts/parse-filiados.py quando for publicar o site.
+data/filiados.json
+
+# Exports brutos das planilhas de filiação (contêm CPF).
+scripts/export-filiados*.md
+
+# Passes de wallet gerados em lote: um arquivo por atleta, com dados pessoais.
+documentos/wallet/
+
+# Certificados de assinatura da Apple e do Google.
+certificados/
+
+# Exportações do cruzamento por partida: derivam da filiação e têm dados pessoais.
+data/elenco-*.json

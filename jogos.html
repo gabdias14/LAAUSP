@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jogos e classificação — LAAUSP</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <h1>Tabela dos Jogos da Liga</h1>
+  <p class="subtitulo">Resultados, próximos confrontos e classificação por modalidade.</p>
+
+  <div class="filtros">
+    <label class="campo">Modalidade
+      <select id="f-modalidade"></select>
+    </label>
+    <label class="campo">Situação
+      <select id="f-situacao">
+        <option value="todos">Todos os jogos</option>
+        <option value="pendentes">A realizar</option>
+        <option value="encerrados">Realizados</option>
+      </select>
+    </label>
+    <label class="campo">Atlética
+      <select id="f-equipe"></select>
+    </label>
+    <label class="campo">Buscar
+      <input type="search" id="f-busca" placeholder="Código, local, atlética…">
+    </label>
+  </div>
+
+  <div class="jogos" id="lista"></div>
+
+  <h2>Classificação</h2>
+  <div id="classificacao"></div>
+</main>
+
+<footer class="rodape"><div>LAAUSP · dados da planilha pública dos Jogos da Liga</div></footer>
+
+<script type="module">
+import { carregarLiga, ordenarPorData, cartaoDeJogo, corDaEquipe, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
+
+marcarNavegacao();
+montarFeedback();
+const liga = await carregarLiga();
+
+const fModalidade = document.getElementById("f-modalidade");
+const fSituacao = document.getElementById("f-situacao");
+const fEquipe = document.getElementById("f-equipe");
+const fBusca = document.getElementById("f-busca");
+const lista = document.getElementById("lista");
+const classificacao = document.getElementById("classificacao");
+
+fModalidade.append(el("option", { value: "todas", text: "Todas as modalidades" }));
+for (const m of liga.modalidades) fModalidade.append(el("option", { value: m.id, text: m.nome }));
+
+const parametros = new URLSearchParams(location.search);
+if (parametros.get("modalidade")) fModalidade.value = parametros.get("modalidade");
+
+function modalidadesVisiveis() {
+  return fModalidade.value === "todas"
+    ? liga.modalidades
+    : liga.modalidades.filter((m) => m.id === fModalidade.value);
+}
+
+function atualizarEquipes() {
+  const anterior = fEquipe.value;
+  const equipes = [...new Set(modalidadesVisiveis()
+    .flatMap((m) => m.jogos)
+    .flatMap((j) => [j.equipeA, j.equipeB])
+    .filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+  fEquipe.replaceChildren(el("option", { value: "todas", text: "Todas as atléticas" }),
+    ...equipes.map((e) => el("option", { value: e, text: e })));
+  if (equipes.includes(anterior)) fEquipe.value = anterior;
+}
+
+function renderizarJogos() {
+  const busca = fBusca.value.trim().toLowerCase();
+  let jogos = modalidadesVisiveis().flatMap((m) => m.jogos);
+
+  if (fSituacao.value === "pendentes") jogos = jogos.filter((j) => !j.encerrado);
+  if (fSituacao.value === "encerrados") jogos = jogos.filter((j) => j.encerrado);
+  if (fEquipe.value !== "todas") {
+    jogos = jogos.filter((j) => j.equipeA === fEquipe.value || j.equipeB === fEquipe.value);
+  }
+  if (busca) {
+    jogos = jogos.filter((j) => [j.codigo, j.local, j.equipeA, j.equipeB, j.rodada, j.modalidadeNome]
+      .filter(Boolean).join(" ").toLowerCase().includes(busca));
+  }
+
+  jogos = ordenarPorData(jogos);
+  lista.replaceChildren();
+  if (!jogos.length) {
+    lista.append(el("p", { class: "vazio", text: "Nenhum jogo encontrado com esses filtros." }));
+    return;
+  }
+  for (const jogo of jogos) lista.append(cartaoDeJogo(jogo, { mostrarModalidade: fModalidade.value === "todas" }));
+}
+
+function tabelaDeClassificacao(tabela) {
+  if (!tabela.length) return null;
+  const colunas = Object.keys(tabela[0]).filter((c) => c !== "equipe");
+  return el("div", { class: "tabela-envelope" },
+    el("table", {},
+      el("thead", {}, el("tr", {},
+        el("th", { text: "Atlética" }),
+        ...colunas.map((c) => el("th", { text: c })))),
+      el("tbody", {}, tabela.map((linha) => el("tr", {},
+        el("td", {}, corDaEquipe(linha.equipe), linha.equipe),
+        ...colunas.map((c) => el("td", { text: linha[c] || "—" })))))));
+}
+
+function renderizarClassificacao() {
+  classificacao.replaceChildren();
+  for (const modalidade of modalidadesVisiveis()) {
+    const geral = tabelaDeClassificacao(modalidade.classificacaoGeral);
+    const grupos = modalidade.grupos
+      .map((g) => [g, tabelaDeClassificacao(g.tabela)])
+      .filter(([, t]) => t);
+    if (!geral && !grupos.length) continue;
+
+    classificacao.append(el("h3", { style: "margin-top:28px", text: modalidade.nome }));
+    if (geral) {
+      classificacao.append(el("p", { class: "subtitulo", style: "margin:0 0 8px", text: "Classificação geral" }), geral);
+    }
+    for (const [grupo, tabela] of grupos) {
+      classificacao.append(el("p", { class: "subtitulo", style: "margin:16px 0 8px", text: grupo.nome }), tabela);
+    }
+  }
+  if (!classificacao.children.length) {
+    classificacao.append(el("p", { class: "vazio", text: "Classificação ainda não publicada." }));
+  }
+}
+
+function renderizar() {
+  renderizarJogos();
+  renderizarClassificacao();
+}
+
+fModalidade.addEventListener("change", () => { atualizarEquipes(); renderizar(); });
+for (const campo of [fSituacao, fEquipe]) campo.addEventListener("change", renderizarJogos);
+fBusca.addEventListener("input", renderizarJogos);
+
+atualizarEquipes();
+renderizar();
+</script>
+</body>
+</html>

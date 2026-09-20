@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feedback e solicitações — LAAUSP</title>
+<meta name="description" content="Envie sugestões, solicitações e reclamações para a Liga das Atléticas da USP.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <h1>Feedback e solicitações</h1>
+  <p class="subtitulo">
+    Canal aberto a atletas, atléticas e público. Serve tanto para falar do site
+    quanto da liga: sugestões, solicitações, dúvidas sobre o regulamento e
+    reclamações chegam todas por aqui.
+  </p>
+
+  <div class="grade" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items:start">
+    <form class="cartao" id="form-contato">
+      <h3>Enviar mensagem</h3>
+
+      <label class="campo" style="margin-bottom:12px">Assunto
+        <select id="tipo" required></select>
+      </label>
+
+      <label class="campo" style="margin-bottom:12px">Atlética
+        <select id="atletica"></select>
+      </label>
+
+      <label class="campo" style="margin-bottom:12px">Mensagem
+        <textarea id="mensagem" required
+          placeholder="Conte o que aconteceu ou o que você precisa. Se for sobre um jogo, cite o código (ex.: HM-14)."></textarea>
+      </label>
+
+      <div class="grade" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:14px">
+        <label class="campo">Nome
+          <input type="text" id="nome" autocomplete="name" placeholder="Opcional">
+        </label>
+        <label class="campo">Contato
+          <input type="text" id="contato" autocomplete="email" placeholder="E-mail ou @ (opcional)">
+        </label>
+      </div>
+
+      <button type="submit">Enviar</button>
+      <p id="aviso" class="feedback-aviso" hidden style="margin-top:12px"></p>
+    </form>
+
+    <div class="coluna-cartoes">
+      <div class="cartao">
+        <h3>O que a liga faz com cada mensagem</h3>
+        <ul class="lista-canais">
+          <li>
+            <strong>Sugestões e erros no site</strong> vão para quem cuida do site e
+            entram na fila de melhorias — várias mudanças desta versão saíram daí.
+          </li>
+          <li>
+            <strong>Solicitações</strong> (quadra, material, parceria, apoio a evento)
+            são encaminhadas à diretoria responsável.
+          </li>
+          <li>
+            <strong>Dúvidas sobre regulamento e tabela</strong> são respondidas pela
+            comissão organizadora dos Jogos da Liga.
+          </li>
+          <li>
+            <strong>Reclamações</strong> chegam à diretoria executiva. Questões
+            disciplinares de partida seguem o rito do regulamento: protesto na súmula
+            e análise da Comissão Disciplinar.
+          </li>
+        </ul>
+      </div>
+
+      <div class="cartao">
+        <h3>Outros caminhos</h3>
+        <p style="margin:0 0 10px;font-size:14px">
+          Assuntos formais da sua atlética — filiação, inscrição de atleta, reserva de
+          quadra — devem ser tratados pela diretoria da atlética junto à LAAUSP.
+        </p>
+        <p style="margin:0;font-size:14px">
+          E-mail: <a id="link-email" href="#">carregando…</a><br>
+          Instagram: <a href="https://instagram.com/dino.laausp" target="_blank" rel="noopener">@dino.laausp</a>
+        </p>
+      </div>
+
+      <div class="cartao">
+        <h3>Regulamento</h3>
+        <p style="margin:0 0 12px;font-size:14px">
+          Antes de perguntar sobre forma de disputa, pontuação ou penalidades, vale
+          conferir: quase tudo está no regulamento oficial.
+        </p>
+        <a class="botao botao--secundario" href="regulamento.html">Abrir o regulamento</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape"><div>LAAUSP · canal de feedback e solicitações</div></footer>
+
+<script type="module">
+import { el, marcarNavegacao } from "./assets/js/liga.js";
+import { carregarCores } from "./assets/js/cores.js";
+import { TIPOS, registrarEEnviar } from "./assets/js/feedback.js";
+import { EMAIL_FEEDBACK } from "./assets/js/config.js";
+
+marcarNavegacao();
+
+const seletorTipo = document.getElementById("tipo");
+seletorTipo.append(...TIPOS.map(([valor, rotulo]) => el("option", { value: valor, text: rotulo })));
+
+const parametros = new URLSearchParams(location.search);
+if (parametros.get("tipo") && TIPOS.some(([v]) => v === parametros.get("tipo"))) {
+  seletorTipo.value = parametros.get("tipo");
+}
+
+const seletorAtletica = document.getElementById("atletica");
+const cores = await carregarCores().catch(() => null);
+seletorAtletica.append(
+  el("option", { value: "", text: "Não sou de nenhuma / prefiro não dizer" }),
+  ...[...(cores?.porSigla.keys() || [])].sort().map((s) => el("option", { value: s, text: s })));
+
+const email = document.getElementById("link-email");
+email.href = `mailto:${EMAIL_FEEDBACK}`;
+email.textContent = EMAIL_FEEDBACK;
+
+const aviso = document.getElementById("aviso");
+
+document.getElementById("form-contato").addEventListener("submit", async (evento) => {
+  evento.preventDefault();
+  const botao = evento.target.querySelector("button[type=submit]");
+  const registro = {
+    tipo: seletorTipo.value,
+    atletica: seletorAtletica.value,
+    mensagem: document.getElementById("mensagem").value.trim(),
+    nome: document.getElementById("nome").value.trim(),
+    contato: document.getElementById("contato").value.trim(),
+    pagina: "contato.html",
+    quando: new Date().toISOString(),
+  };
+  if (!registro.mensagem) return;
+
+  aviso.hidden = false;
+  aviso.className = "feedback-aviso";
+  aviso.textContent = "Enviando…";
+  botao.disabled = true;
+
+  try {
+    const caminho = await registrarEEnviar(registro);
+    aviso.className = "feedback-aviso feedback-aviso--ok";
+    aviso.textContent = caminho === "email"
+      ? "Abrimos seu e-mail com a mensagem pronta — é só enviar. Obrigado!"
+      : "Recebemos sua mensagem. Obrigado por ajudar a melhorar a liga!";
+    document.getElementById("mensagem").value = "";
+  } catch (erro) {
+    aviso.className = "feedback-aviso feedback-aviso--erro";
+    aviso.textContent = `${erro.message} Sua mensagem ficou salva neste aparelho — ` +
+      `você também pode escrever para ${EMAIL_FEEDBACK}.`;
+  } finally {
+    botao.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

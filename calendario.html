@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calendário — LAAUSP</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <h1>Calendário da Liga</h1>
+  <p class="subtitulo">Todos os jogos organizados por data de realização.</p>
+
+  <div class="filtros">
+    <label class="campo">Modalidade
+      <select id="f-modalidade"></select>
+    </label>
+    <label class="campo">Rodada
+      <select id="f-rodada"></select>
+    </label>
+    <label class="campo">Período
+      <select id="f-periodo">
+        <option value="futuros">De hoje em diante</option>
+        <option value="todos">Temporada inteira</option>
+        <option value="passados">Já realizados</option>
+      </select>
+    </label>
+    <button id="baixar-ics" class="secundario" type="button">Baixar calendário (.ics)</button>
+  </div>
+
+  <div id="calendario"></div>
+</main>
+
+<footer class="rodape"><div>LAAUSP · dados da planilha pública dos Jogos da Liga</div></footer>
+
+<script type="module">
+import { carregarLiga, todosOsJogos, agruparPorDia, rotuloDoDia, cartaoDeJogo, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
+
+marcarNavegacao();
+montarFeedback();
+const liga = await carregarLiga();
+const jogos = todosOsJogos(liga);
+
+const fModalidade = document.getElementById("f-modalidade");
+const fRodada = document.getElementById("f-rodada");
+const fPeriodo = document.getElementById("f-periodo");
+const alvo = document.getElementById("calendario");
+
+fModalidade.append(el("option", { value: "todas", text: "Todas as modalidades" }),
+  ...liga.modalidades.map((m) => el("option", { value: m.id, text: m.nome })));
+
+const rodadas = [...new Set(jogos.map((j) => j.rodada).filter(Boolean))]
+  .sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+fRodada.append(el("option", { value: "todas", text: "Todas as rodadas" }),
+  ...rodadas.map((r) => el("option", { value: r, text: r })));
+
+const inicioDeHoje = new Date();
+inicioDeHoje.setHours(0, 0, 0, 0);
+
+function filtrar() {
+  let resultado = jogos;
+  if (fModalidade.value !== "todas") resultado = resultado.filter((j) => j.modalidade === fModalidade.value);
+  if (fRodada.value !== "todas") resultado = resultado.filter((j) => j.rodada === fRodada.value);
+  if (fPeriodo.value === "futuros") resultado = resultado.filter((j) => !j.quando || j.quando >= inicioDeHoje);
+  if (fPeriodo.value === "passados") resultado = resultado.filter((j) => j.quando && j.quando < inicioDeHoje);
+  return resultado;
+}
+
+function renderizar() {
+  const dias = agruparPorDia(filtrar());
+  alvo.replaceChildren();
+  if (!dias.length) {
+    alvo.append(el("p", { class: "vazio", text: "Nenhum jogo nesse recorte." }));
+    return;
+  }
+  for (const dia of dias) {
+    alvo.append(el("h2", { class: "dia-titulo", text: rotuloDoDia(dia.data) }));
+    const bloco = el("div", { class: "jogos" });
+    for (const jogo of dia.jogos) bloco.append(cartaoDeJogo(jogo));
+    alvo.append(bloco);
+  }
+}
+
+function paraICS(lista) {
+  const formatar = (data) => data.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const linhas = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//LAAUSP//Jogos da Liga//PT-BR"];
+  for (const jogo of lista) {
+    if (!jogo.quando) continue;
+    const fim = new Date(jogo.quando.getTime() + 80 * 60 * 1000);
+    linhas.push("BEGIN:VEVENT",
+      `UID:${jogo.codigo}@laausp`,
+      `DTSTAMP:${formatar(new Date())}`,
+      `DTSTART:${formatar(jogo.quando)}`,
+      `DTEND:${formatar(fim)}`,
+      `SUMMARY:${jogo.modalidadeNome}: ${jogo.equipeA || "A definir"} x ${jogo.equipeB || "A definir"}`,
+      `LOCATION:${jogo.local || ""}`,
+      `DESCRIPTION:Jogos da Liga ${liga.temporada} — ${jogo.codigo}${jogo.rodada ? ` — ${jogo.rodada}` : ""}`,
+      "END:VEVENT");
+  }
+  linhas.push("END:VCALENDAR");
+  return linhas.join("\r\n");
+}
+
+document.getElementById("baixar-ics").addEventListener("click", () => {
+  const blob = new Blob([paraICS(filtrar())], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = el("a", { href: url, download: `jogos-da-liga-${liga.temporada}.ics` });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+for (const campo of [fModalidade, fRodada, fPeriodo]) campo.addEventListener("change", renderizar);
+renderizar();
+</script>
+</body>
+</html>

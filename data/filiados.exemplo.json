@@ -1,0 +1,130 @@
+{
+  "temporada": "2026",
+  "observacao": "Arquivo de EXEMPLO. O primeiro registro é real, para demonstração; os demais são fictícios. Gere o arquivo completo com scripts/parse-filiados.py e salve como data/filiados.json (ignorado pelo git).",
+  "total": 9,
+  "atletas": [
+    {
+      "atletica": "EACH",
+      "nome": "Gabriel Dias Bulow",
+      "nusp": "11918672",
+      "codigoEcard": "1051139627",
+      "email": "gabriel.bulow@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Futsal",
+        "Futebol de Campo"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "EACH",
+      "nome": "Ana Fictícia de Souza",
+      "nusp": "11111111",
+      "email": "ana.ficticia@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Feminino",
+      "modalidades": [
+        "Futsal",
+        "Vôlei"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "EACH",
+      "nome": "Bruno Exemplo Lima",
+      "nusp": "22222222",
+      "email": "bruno.exemplo@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Futebol de Campo"
+      ],
+      "situacao": "IRREGULAR",
+      "pagamento": "NÃO PAGO"
+    },
+    {
+      "atletica": "POLI",
+      "nome": "Carla Teste Ribeiro",
+      "nusp": "33333333",
+      "email": "carla.teste@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Feminino",
+      "modalidades": [
+        "Basquete"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "MED",
+      "nome": "Diego Modelo Alves",
+      "nusp": "44444444",
+      "email": "diego.modelo@usp.br",
+      "vinculo": "Aluno - Pós-Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Handebol"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO PAPFE"
+    },
+    {
+      "atletica": "SANFRAN",
+      "nome": "Elisa Amostra Costa",
+      "nusp": "55555555",
+      "email": "elisa.amostra@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Feminino",
+      "modalidades": [
+        "Tênis de Campo"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "FEA",
+      "nome": "Fábio Demonstração Rocha",
+      "nusp": "66666666",
+      "email": "fabio.demo@usp.br",
+      "vinculo": "Formado",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Futsal"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "EACH",
+      "nome": "Heitor Exemplo Nakagawa",
+      "nusp": "77777777",
+      "codigoEcard": "",
+      "email": "heitor.exemplo@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Handebol"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    },
+    {
+      "atletica": "POLI",
+      "nome": "Igor Fictício Barreto",
+      "nusp": "88888888",
+      "codigoEcard": "",
+      "email": "igor.ficticio@usp.br",
+      "vinculo": "Aluno - Graduação",
+      "naipe": "Masculino",
+      "modalidades": [
+        "Handebol",
+        "Futsal"
+      ],
+      "situacao": "REGULAR",
+      "pagamento": "PAGO"
+    }
+  ]
+}

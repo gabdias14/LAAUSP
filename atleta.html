@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Área do atleta — LAAUSP</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#142156">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LAAUSP">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <section id="tela-login">
+    <h1>Área do atleta</h1>
+    <p class="subtitulo">
+      Acesso para atletas filiados à LAAUSP. Entre com seu número USP ou com sua
+      atlética e nome completo, como constam na ficha de filiação.
+    </p>
+
+    <form class="cartao" id="form-login" style="max-width:520px">
+      <label class="campo" style="margin-bottom:12px">Número USP
+        <input type="text" id="login-nusp" inputmode="numeric" autocomplete="username">
+      </label>
+      <p style="margin:0 0 12px;color:var(--tinta-fraca);font-size:13px">ou</p>
+      <label class="campo" style="margin-bottom:12px">Atlética
+        <select id="login-atletica"></select>
+      </label>
+      <label class="campo" style="margin-bottom:16px">Nome completo
+        <input type="text" id="login-nome" list="lista-nomes" autocomplete="name" style="min-width:min(100%,340px)">
+        <datalist id="lista-nomes"></datalist>
+      </label>
+      <button type="submit">Entrar</button>
+      <p id="erro-login" hidden style="color:var(--vermelho);margin:12px 0 0"></p>
+    </form>
+
+    <p class="aviso" style="margin-top:20px;max-width:640px">
+      Versão piloto: a conferência é feita no próprio navegador, contra a lista de
+      filiados publicada com o site. Não há senha individual ainda — isso depende
+      do login por servidor previsto para a próxima etapa.
+    </p>
+  </section>
+
+  <section id="tela-atleta" hidden>
+    <div class="filtros" style="margin-bottom:8px">
+      <h1 id="saudacao" style="margin:0"></h1>
+      <button id="btn-sair" class="secundario" type="button" style="margin-left:auto">Sair</button>
+    </div>
+
+    <div class="abas" role="tablist">
+      <button class="aba" role="tab" data-painel="painel-carteirinha" aria-selected="true">Carteirinha</button>
+      <button class="aba" role="tab" data-painel="painel-fidelidade" aria-selected="false">Pizzaria Europa</button>
+    </div>
+
+    <div id="painel-carteirinha" class="painel" role="tabpanel">
+      <div class="grade grade--carteirinha" style="align-items:start">
+        <div id="area-carteirinha"></div>
+        <div class="coluna-cartoes">
+        <div class="cartao">
+          <h3>Como usar</h3>
+          <p style="margin:0 0 10px;font-size:14px">
+            Mostre o QR Code da carteirinha para o representante na mesa. Ele lê o
+            código pelo scanner da LAAUSP e confirma sua situação na hora.
+          </p>
+          <p id="aviso-situacao" style="margin:0;font-size:14px"></p>
+        </div>
+
+        <div class="cartao">
+          <h3>Levar no celular</h3>
+          <p style="margin:0 0 12px;font-size:14px;color:var(--tinta-fraca)">
+            Ginásio quase nunca tem sinal — deixe a carteirinha salva antes do jogo.
+          </p>
+          <div class="linha-botoes">
+            <button id="btn-imagem" type="button">Salvar como imagem</button>
+            <button id="btn-compartilhar" class="secundario" type="button" hidden>Compartilhar</button>
+            <button id="btn-instalar" class="secundario" type="button" hidden>Instalar na tela de início</button>
+            <a id="link-apple" class="botao botao--secundario" hidden>Adicionar à Apple Wallet</a>
+            <a id="link-google" class="botao botao--secundario" hidden target="_blank" rel="noopener">Adicionar ao Google Wallet</a>
+            <button id="btn-imprimir" class="secundario" type="button">Imprimir</button>
+          </div>
+          <p id="aviso-wallet" style="margin:12px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="painel-fidelidade" class="painel" hidden role="tabpanel">
+      <div class="grade" style="align-items:start">
+        <div class="cartao cartao--pizzaria">
+          <div class="faixa-retro" style="margin:-16px -16px 14px"></div>
+          <h3>Pizzaria Europa · Clube do Atleta</h3>
+          <p style="margin:0 0 16px;font-size:14px">
+            A cada 7 pizzas consumidas, a 8ª é por nossa conta. Peça o carimbo no
+            caixa ao fechar a conta.
+          </p>
+          <div id="cartela"></div>
+          <p id="status-fidelidade" style="margin:16px 0 0;font-weight:650"></p>
+        </div>
+
+        <div class="cartao">
+          <h3>Carimbar</h3>
+          <p style="margin:0 0 10px;font-size:14px;color:var(--tinta-fraca)">
+            O caixa da pizzaria digita a senha para registrar a pizza.
+          </p>
+          <div class="linha-botoes">
+            <input type="password" id="senha-pizzaria" placeholder="Senha do caixa" autocomplete="off">
+            <button id="btn-carimbar" type="button">Carimbar pizza</button>
+          </div>
+          <p id="erro-pizzaria" hidden style="color:var(--vermelho);margin:12px 0 0;font-size:14px"></p>
+          <div class="linha-botoes" style="margin-top:14px">
+            <button id="btn-resgatar" type="button" hidden>Resgatar pizza grátis</button>
+            <button id="btn-desfazer" class="secundario" type="button">Desfazer último</button>
+          </div>
+          <p id="historico" style="margin:14px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape"><div>LAAUSP · área do atleta</div></footer>
+
+<script type="module">
+import { el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
+import { carregarFiliados, carregarAtleticas, identidadeDa, buscarAtleta, estaRegular, idDoAtleta, normalizar } from "./assets/js/atletas.js";
+import { montarCarteirinha } from "./assets/js/carteirinha.js";
+import { baixarCarteirinhaPNG, compartilharCarteirinha, enderecosDeWallet, passeDisponivel } from "./assets/js/wallet.js";
+import { lerCartao, carimbar, desfazerUltimoCarimbo, resgatar, completo, montarCartela, CARIMBOS_PARA_PREMIO } from "./assets/js/fidelidade.js";
+import { HASH_SENHA_PIZZARIA, CHAVE_SESSAO_ATLETA } from "./assets/js/config.js";
+
+marcarNavegacao();
+montarFeedback();
+
+const filiados = await carregarFiliados();
+const atleticas = await carregarAtleticas();
+let atleta = null;
+
+const seletorAtletica = document.getElementById("login-atletica");
+const listaNomes = document.getElementById("lista-nomes");
+const campoNome = document.getElementById("login-nome");
+
+const siglas = [...new Set(filiados.atletas.map((a) => a.atletica))].sort();
+seletorAtletica.append(el("option", { value: "", text: "Selecione…" }),
+  ...siglas.map((s) => el("option", { value: s, text: s })));
+
+function atualizarSugestoes() {
+  const sigla = seletorAtletica.value;
+  const nomes = filiados.atletas
+    .filter((a) => !sigla || a.atletica === sigla)
+    .map((a) => a.nome)
+    .slice(0, 1200);
+  listaNomes.replaceChildren(...nomes.map((n) => el("option", { value: n })));
+}
+seletorAtletica.addEventListener("change", atualizarSugestoes);
+atualizarSugestoes();
+
+/* ---------- entrada ---------- */
+
+document.getElementById("form-login").addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const erro = document.getElementById("erro-login");
+  erro.hidden = true;
+
+  const achado = buscarAtleta(filiados, {
+    nusp: document.getElementById("login-nusp").value,
+    nome: campoNome.value,
+    atletica: seletorAtletica.value,
+  });
+
+  if (!achado) {
+    erro.textContent = "Não encontramos você na lista de filiados. " +
+      "Confira o número USP ou o nome exatamente como está na ficha de filiação.";
+    erro.hidden = false;
+    return;
+  }
+  if (achado.ambiguo) {
+    erro.textContent = "Há mais de um atleta com esse nome. Entre pelo número USP.";
+    erro.hidden = false;
+    return;
+  }
+  sessionStorage.setItem(CHAVE_SESSAO_ATLETA, idDoAtleta(achado));
+  abrirPainel(achado);
+});
+
+document.getElementById("btn-sair").addEventListener("click", () => {
+  sessionStorage.removeItem(CHAVE_SESSAO_ATLETA);
+  atleta = null;
+  document.getElementById("tela-atleta").hidden = true;
+  document.getElementById("tela-login").hidden = false;
+});
+
+async function abrirPainel(encontrado) {
+  atleta = encontrado;
+  document.getElementById("tela-login").hidden = true;
+  document.getElementById("tela-atleta").hidden = false;
+  document.getElementById("saudacao").textContent = `Olá, ${atleta.nome.split(" ")[0]}`;
+
+  identidadeAtual = identidadeDa(atleta.atletica, atleticas);
+  const area = document.getElementById("area-carteirinha");
+  area.replaceChildren(await montarCarteirinha(atleta, identidadeAtual, filiados.temporada));
+  await prepararWallet();
+
+  const aviso = document.getElementById("aviso-situacao");
+  aviso.textContent = estaRegular(atleta)
+    ? "Sua filiação está regular — você pode ser escalado nos Jogos da Liga."
+    : "Sua filiação consta como irregular. Procure a diretoria da sua atlética antes do jogo.";
+  aviso.style.color = estaRegular(atleta) ? "var(--verde)" : "var(--vermelho)";
+
+  renderizarFidelidade();
+}
+
+document.getElementById("btn-imprimir").addEventListener("click", () => window.print());
+
+/* ---------- levar no celular ---------- */
+
+let identidadeAtual = null;
+let promptDeInstalacao = null;
+
+const avisoWallet = document.getElementById("aviso-wallet");
+const botaoCompartilhar = document.getElementById("btn-compartilhar");
+const botaoInstalar = document.getElementById("btn-instalar");
+
+document.getElementById("btn-imagem").addEventListener("click", async () => {
+  try {
+    const nome = await baixarCarteirinhaPNG(atleta, identidadeAtual, filiados.temporada);
+    avisoWallet.textContent = `Imagem salva como ${nome}.`;
+  } catch (erro) {
+    avisoWallet.textContent = `Não deu para gerar a imagem: ${erro.message}`;
+  }
+});
+
+botaoCompartilhar.addEventListener("click", async () => {
+  try {
+    const compartilhou = await compartilharCarteirinha(atleta, identidadeAtual, filiados.temporada);
+    if (!compartilhou) avisoWallet.textContent = "Este navegador não abre o menu de compartilhar.";
+  } catch (erro) {
+    if (erro.name !== "AbortError") avisoWallet.textContent = `Falha ao compartilhar: ${erro.message}`;
+  }
+});
+
+window.addEventListener("beforeinstallprompt", (evento) => {
+  evento.preventDefault();
+  promptDeInstalacao = evento;
+  botaoInstalar.hidden = false;
+});
+
+botaoInstalar.addEventListener("click", async () => {
+  if (!promptDeInstalacao) return;
+  promptDeInstalacao.prompt();
+  await promptDeInstalacao.userChoice;
+  promptDeInstalacao = null;
+  botaoInstalar.hidden = true;
+});
+
+async function prepararWallet() {
+  botaoCompartilhar.hidden = !navigator.canShare;
+
+  const enderecos = enderecosDeWallet(atleta);
+  const apple = document.getElementById("link-apple");
+  const google = document.getElementById("link-google");
+
+  const [temApple, temGoogle] = await Promise.all([
+    passeDisponivel(enderecos.apple),
+    passeDisponivel(enderecos.google),
+  ]);
+
+  if (temApple) {
+    apple.href = enderecos.apple;
+    apple.hidden = false;
+  }
+  if (temGoogle) {
+    // O arquivo guarda o link "Salvar no Google Wallet" já assinado.
+    const resposta = await fetch(enderecos.google);
+    google.href = (await resposta.text()).trim();
+    google.hidden = false;
+  }
+  if (!temApple && !temGoogle) {
+    avisoWallet.textContent = "Apple Wallet e Google Wallet dependem do certificado da liga — " +
+      "enquanto isso, salve a imagem ou instale o atalho na tela de início.";
+  }
+}
+
+/* ---------- abas ---------- */
+
+for (const aba of document.querySelectorAll(".aba")) {
+  aba.addEventListener("click", () => {
+    for (const outra of document.querySelectorAll(".aba")) {
+      const ativa = outra === aba;
+      outra.setAttribute("aria-selected", String(ativa));
+      document.getElementById(outra.dataset.painel).hidden = !ativa;
+    }
+  });
+}
+
+/* ---------- fidelidade ---------- */
+
+function renderizarFidelidade() {
+  const cartao = lerCartao(idDoAtleta(atleta));
+  document.getElementById("cartela").replaceChildren(montarCartela(cartao));
+
+  const faltam = CARIMBOS_PARA_PREMIO - cartao.carimbos.length;
+  const status = document.getElementById("status-fidelidade");
+  status.textContent = completo(cartao)
+    ? "Cartela completa — sua 8ª pizza é por conta da casa!"
+    : `${cartao.carimbos.length} de ${CARIMBOS_PARA_PREMIO} carimbos · ` +
+      `${faltam === 1 ? "falta 1 pizza" : `faltam ${faltam} pizzas`} para a grátis.`;
+
+  document.getElementById("btn-resgatar").hidden = !completo(cartao);
+  document.getElementById("btn-carimbar").disabled = completo(cartao);
+  document.getElementById("btn-desfazer").disabled = !cartao.carimbos.length;
+  document.getElementById("historico").textContent = cartao.resgates.length
+    ? `${cartao.resgates.length} pizza(s) grátis resgatada(s). Última em ` +
+      new Date(cartao.resgates.at(-1).quando).toLocaleDateString("pt-BR")
+    : "Nenhum resgate ainda.";
+}
+
+async function hashDe(texto) {
+  const resumo = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
+  return [...new Uint8Array(resumo)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+document.getElementById("btn-carimbar").addEventListener("click", async () => {
+  const campo = document.getElementById("senha-pizzaria");
+  const erro = document.getElementById("erro-pizzaria");
+  if (await hashDe(campo.value) !== HASH_SENHA_PIZZARIA) {
+    erro.textContent = "Senha do caixa incorreta.";
+    erro.hidden = false;
+    return;
+  }
+  erro.hidden = true;
+  campo.value = "";
+  carimbar(idDoAtleta(atleta));
+  renderizarFidelidade();
+});
+
+document.getElementById("btn-desfazer").addEventListener("click", () => {
+  desfazerUltimoCarimbo(idDoAtleta(atleta));
+  renderizarFidelidade();
+});
+
+document.getElementById("btn-resgatar").addEventListener("click", () => {
+  if (!confirm("Confirmar o resgate da pizza grátis? A cartela recomeça do zero.")) return;
+  resgatar(idDoAtleta(atleta));
+  renderizarFidelidade();
+});
+
+/* ---------- sessão salva ---------- */
+
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js").catch(() => {
+    /* sem service worker o site segue funcionando, só não abre offline */
+  });
+}
+
+const sessao = sessionStorage.getItem(CHAVE_SESSAO_ATLETA);
+if (sessao) {
+  const salvo = filiados.atletas.find((a) => idDoAtleta(a) === sessao);
+  if (salvo) await abrirPainel(salvo);
+}
+</script>
+</body>
+</html>

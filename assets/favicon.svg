@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#142156"/>
+  <rect x="0" y="46" width="64" height="4" fill="#ef8a3c"/>
+  <rect x="0" y="50" width="64" height="4" fill="#afdbf4"/>
+  <rect x="0" y="54" width="64" height="4" fill="#5c7dde"/>
+  <text x="32" y="38" font-family="Helvetica, Arial, sans-serif" font-size="25"
+        font-weight="bold" fill="#fff" text-anchor="middle">LA</text>
+</svg>

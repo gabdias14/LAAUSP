@@ -1,0 +1,15 @@
+{
+  "name": "LAAUSP — Liga das Atléticas da USP",
+  "short_name": "LAAUSP",
+  "description": "Carteirinha do atleta, tabela e calendário dos Jogos da Liga.",
+  "start_url": "atleta.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#142156",
+  "theme_color": "#142156",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

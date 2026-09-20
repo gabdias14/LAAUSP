@@ -1,0 +1,156 @@
+{
+  "fonte": "Cores lidas do cabeçalho de cada aba do PLANILHÃO - ATLETAS REGULARES.",
+  "apelidos": {
+    "QUIM": "QUÍMICA",
+    "QUIMICA": "QUÍMICA",
+    "RI": "IRI",
+    "ICBIO": "ICBIÓ",
+    "GW": "AAAGW"
+  },
+  "atleticas": [
+    {
+      "sigla": "AAAGW",
+      "unidade": "",
+      "corPrimaria": "#073763",
+      "corSecundaria": "#f1c232"
+    },
+    {
+      "sigla": "EACH",
+      "unidade": "Escola de Artes, Ciências e Humanidades",
+      "corPrimaria": "#ff0000",
+      "corSecundaria": "#ffff00"
+    },
+    {
+      "sigla": "ECA",
+      "unidade": "Escola de Comunicações e Artes",
+      "corPrimaria": "#674ea7",
+      "corSecundaria": "#ffd966"
+    },
+    {
+      "sigla": "EDUCA",
+      "unidade": "Faculdade de Educação",
+      "corPrimaria": "#9fc5e8",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "EEFE",
+      "unidade": "Escola de Educação Física e Esporte",
+      "corPrimaria": "#073763",
+      "corSecundaria": "#ff00ff"
+    },
+    {
+      "sigla": "EEL",
+      "unidade": "Escola de Engenharia de Lorena",
+      "corPrimaria": "#1c4587",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "ENF",
+      "unidade": "Escola de Enfermagem",
+      "corPrimaria": "#5b0f00",
+      "corSecundaria": "#ff0000"
+    },
+    {
+      "sigla": "FARMA",
+      "unidade": "Faculdade de Ciências Farmacêuticas",
+      "corPrimaria": "#85200c",
+      "corSecundaria": "#ffd966"
+    },
+    {
+      "sigla": "FAU",
+      "unidade": "Faculdade de Arquitetura e Urbanismo",
+      "corPrimaria": "#274e13",
+      "corSecundaria": "#cfe2f3"
+    },
+    {
+      "sigla": "FEA",
+      "unidade": "Faculdade de Economia, Administração e Contabilidade",
+      "corPrimaria": "#073763",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "FFLCH",
+      "unidade": "Faculdade de Filosofia, Letras e Ciências Humanas",
+      "corPrimaria": "#ff9900",
+      "corSecundaria": "#000000"
+    },
+    {
+      "sigla": "FOFITO",
+      "unidade": "Fonoaudiologia, Fisioterapia e Terapia Ocupacional",
+      "corPrimaria": "#073763",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "FSP",
+      "unidade": "Faculdade de Saúde Pública",
+      "corPrimaria": "#00ff00",
+      "corSecundaria": "#0000ff"
+    },
+    {
+      "sigla": "GEO",
+      "unidade": "Instituto de Geociências",
+      "corPrimaria": "#000000",
+      "corSecundaria": "#ffff00"
+    },
+    {
+      "sigla": "ICBIÓ",
+      "unidade": "Instituto de Ciências Biomédicas",
+      "corPrimaria": "#073763",
+      "corSecundaria": "#00ff00"
+    },
+    {
+      "sigla": "IME",
+      "unidade": "Instituto de Matemática e Estatística",
+      "corPrimaria": "#ff0000",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "IRI",
+      "unidade": "Instituto de Relações Internacionais",
+      "corPrimaria": "#00ffff",
+      "corSecundaria": "#000000"
+    },
+    {
+      "sigla": "MED",
+      "unidade": "Faculdade de Medicina",
+      "corPrimaria": "#274e13",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "ODONTO",
+      "unidade": "Faculdade de Odontologia",
+      "corPrimaria": "#1c4587",
+      "corSecundaria": "#cc4125"
+    },
+    {
+      "sigla": "POLI",
+      "unidade": "Escola Politécnica",
+      "corPrimaria": "#ffff00",
+      "corSecundaria": "#0000ff"
+    },
+    {
+      "sigla": "PSICO",
+      "unidade": "Instituto de Psicologia",
+      "corPrimaria": "#f1c232",
+      "corSecundaria": "#000000"
+    },
+    {
+      "sigla": "QUÍMICA",
+      "unidade": "Instituto de Química",
+      "corPrimaria": "#1155cc",
+      "corSecundaria": "#ffffff"
+    },
+    {
+      "sigla": "SANFRAN",
+      "unidade": "Faculdade de Direito (Largo São Francisco)",
+      "corPrimaria": "#000000",
+      "corSecundaria": "#ff0000"
+    },
+    {
+      "sigla": "VET",
+      "unidade": "Faculdade de Medicina Veterinária e Zootecnia",
+      "corPrimaria": "#cc4125",
+      "corSecundaria": "#000000"
+    }
+  ]
+}
