@@ -130,14 +130,14 @@ a base legal e o texto de consentimento no formulário de filiação atual?
 `gabdias14.github.io/LAAUSP`, que é uma conta pessoal — ruim para uma ferramenta
 oficial.
 
-**D7 — Estrutura da planilha.** Para automatizar a leitura é preciso saber como
-as abas estão organizadas no arquivo original (nomes, posição das tabelas,
-mesclagens). O export em markdown no repositório é um retrato, não a fonte.
-
 **D6 — Formato do e-Card.** O QR do aplicativo da USP traz um código de cartão
 de 10 dígitos, não o número USP; na Apple Wallet o mesmo cartão vira Code 128
 com o número USP. O código de 10 dígitos muda quando a pessoa perde o cartão e
 tira a segunda via?
+
+**D7 — Estrutura da planilha.** Para automatizar a leitura é preciso saber como
+as abas estão organizadas no arquivo original (nomes, posição das tabelas,
+mesclagens). O export em markdown no repositório é um retrato, não a fonte.
 
 ---
 
