@@ -69,12 +69,38 @@ anônima. O resto (esquema, RLS, migração dos dados, cliente no site) eu monto
 | 4 | Caixa de entrada do feedback | Hoje abre o e-mail da pessoa; quem não apertar "enviar" some sem deixar rastro | Google Forms (decidido) ou backend |
 | 5 | Aba própria de classificação | Hoje ela fica no fim de `jogos.html`, embaixo de 169 jogos e com 11 modalidades empilhadas | — |
 | 6 | Simulador de mata-mata | Artigo 16 define séries Ouro/Prata e o chaveamento | Dúvida D1 |
-| 7 | Atualização automática dos dados | Segunda 18h e sexta 23h, pedido da liga | Backend (item 1) |
+| 7 | Atualização automática dos dados | Segunda 18h e sexta 23h, pedido da liga | Fazer os scripts buscarem a planilha (ver abaixo) |
 | 8 | Fidelidade da pizzaria fora do `localStorage` | Some ao trocar de aparelho e é forjável pelo próprio atleta | Backend |
 | 9 | Limpar o histórico do git | O repositório é público e o histórico ainda tem número USP, e-mail USP e código de e-Card reais | Decisão sua (reescrita é destrutiva) |
 | 10 | Testes automatizados | Não existe nenhum; toda validação até aqui foi manual no navegador | — |
 | 11 | Reservas de quadra | Planilha `[CONTROLE 2026] RESERVAS QUADRAS`, fora do MVP | Backend |
 | 12 | Envio de súmulas pelos representantes | Fora do MVP | Backend |
+
+### Detalhe do item 7 — por que a atualização semanal ainda não existe
+
+Pedido: atualizar segunda às 18h e sexta às 23h. Em UTC, que é o fuso do cron do
+GitHub Actions, isso é `0 21 * * 1` e `0 2 * * 6` — a sexta 23h BRT cai no sábado
+em UTC, então o dia da semana muda.
+
+O que impede, e não é só uma decisão:
+
+1. **Os scripts não buscam nada.** `scripts/parse-sheet.py` consome um export
+   manual em markdown (`scripts/export-planilha.md`), com marcadores
+   `\[merged\]` de célula mesclada. Para rodar sozinho, ele precisaria ler a
+   planilha direto — o caminho provável é `export?format=xlsx` mais openpyxl,
+   que traz todas as abas e preserva as mesclagens numa requisição só.
+2. **Não dá para escrever isso às cegas.** O ambiente onde este código foi
+   desenvolvido bloqueia `docs.google.com` no proxy, então não foi possível
+   inspecionar a estrutura real do arquivo nem testar o parser. Subir um
+   workflow agendado com parser não verificado só produziria falha silenciosa
+   duas vezes por semana.
+3. **A metade do atleta não pode ser commitada.** O status do atleta vem de
+   `data/filiados.json`, com ~3.200 pessoas. Com o repositório público, um
+   workflow que commite esse arquivo expõe a base inteira. Essa metade depende
+   do backend (seção 1), não de ajuste no script.
+
+Ou seja: a parte de jogos e classificação é viável assim que o parser buscar a
+planilha, e vale fazer. A parte do status do atleta não é viável sem backend.
 
 ---
 
@@ -103,6 +129,10 @@ a base legal e o texto de consentimento no formulário de filiação atual?
 **D5 — Domínio e hospedagem.** A liga tem domínio próprio? Hoje está em
 `gabdias14.github.io/LAAUSP`, que é uma conta pessoal — ruim para uma ferramenta
 oficial.
+
+**D7 — Estrutura da planilha.** Para automatizar a leitura é preciso saber como
+as abas estão organizadas no arquivo original (nomes, posição das tabelas,
+mesclagens). O export em markdown no repositório é um retrato, não a fonte.
 
 **D6 — Formato do e-Card.** O QR do aplicativo da USP traz um código de cartão
 de 10 dígitos, não o número USP; na Apple Wallet o mesmo cartão vira Code 128
