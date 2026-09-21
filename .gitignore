@@ -5,8 +5,6 @@ data/filiados.json
 # Exports brutos das planilhas de filiação (contêm CPF).
 scripts/export-filiados*.md
 
-# Passes de wallet gerados em lote: um arquivo por atleta, com dados pessoais.
-documentos/wallet/
 
 # Certificados de assinatura da Apple e do Google.
 certificados/

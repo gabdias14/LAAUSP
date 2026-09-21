@@ -24,13 +24,6 @@ export const HASH_SENHA_PIZZARIA =
 export const FEEDBACK_ENDPOINT = "";
 export const EMAIL_FEEDBACK = "laausp@gmail.com";
 
-// Passes de carteirinha para Apple Wallet e Google Wallet, gerados em lote por
-// scripts/gerar-wallet.py. Aponte para a pasta onde os arquivos foram
-// publicados; vazio esconde os botões.
-//   WALLET_APPLE_BASE + "<numeroUSP>.pkpass"
-//   WALLET_GOOGLE_BASE + "<numeroUSP>.txt"  (arquivo com o link de salvar)
-export const WALLET_APPLE_BASE = "";
-export const WALLET_GOOGLE_BASE = "";
 
 export const CHAVE_SESSAO = "laausp:sessao-representante";
 export const CHAVE_SESSAO_ATLETA = "laausp:sessao-atleta";
