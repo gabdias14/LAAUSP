@@ -1,13 +1,12 @@
 /* Ícone de feedback presente em todas as páginas.
 
-   Sem backend, o envio tem dois caminhos: se FEEDBACK_ENDPOINT estiver
-   configurado (um formulário do Google, Formspree ou qualquer URL que aceite
-   POST), o recado vai por ali; senão, o site abre o e-mail do usuário já
-   preenchido para a LAAUSP. Em ambos os casos o texto fica guardado no
-   aparelho, para nada se perder se o envio falhar. */
+   Sem backend, o envio tenta três caminhos em ordem: o Google Forms da liga,
+   um endpoint JSON qualquer, e por último o e-mail do usuário já preenchido.
+   Em todos eles o texto fica guardado no aparelho, para nada se perder se o
+   envio falhar. */
 
 import { el } from "./liga.js";
-import { FEEDBACK_ENDPOINT, EMAIL_FEEDBACK, CHAVE_FEEDBACK } from "./config.js";
+import { FEEDBACK_GOOGLE_FORM, FEEDBACK_ENDPOINT, EMAIL_FEEDBACK, CHAVE_FEEDBACK } from "./config.js";
 
 export const TIPOS = [
   ["sugestao", "Sugestão de melhoria"],
@@ -56,7 +55,27 @@ function corpoDoEmail({ tipo, mensagem, contato, pagina, atletica, nome }) {
   ].filter((linha) => linha !== null).join("\n");
 }
 
+function formularioConfigurado() {
+  const { url, campos } = FEEDBACK_GOOGLE_FORM;
+  return Boolean(url) && Boolean(campos?.mensagem);
+}
+
+/* O Google Forms não aceita JSON nem responde com CORS: o envio é
+   form-encoded para /formResponse, em no-cors. A resposta vem opaca, então não
+   dá para conferir o status — sem exceção, tratamos como enviado. Só os campos
+   mapeados em config.js viajam. */
+async function enviarAoFormulario(registro) {
+  const { url, campos } = FEEDBACK_GOOGLE_FORM;
+  const corpo = new URLSearchParams();
+  for (const [chave, entry] of Object.entries(campos)) {
+    if (entry && registro[chave]) corpo.append(entry, registro[chave]);
+  }
+  await fetch(url, { method: "POST", mode: "no-cors", body: corpo });
+  return "formulario";
+}
+
 async function enviar(registro) {
+  if (formularioConfigurado()) return enviarAoFormulario(registro);
   if (!FEEDBACK_ENDPOINT) return "email";
   const resposta = await fetch(FEEDBACK_ENDPOINT, {
     method: "POST",

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classificação — LAAUSP</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="classificacao.html">Classificação</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <h1>Classificação</h1>
+  <p class="subtitulo">Classificação geral e por grupo, e simulação da fase de eliminatórias.</p>
+
+  <div class="filtros">
+    <label class="campo">Modalidade
+      <select id="f-modalidade"></select>
+    </label>
+  </div>
+
+  <div class="abas" role="tablist">
+    <button class="aba" role="tab" data-painel="painel-tabelas" aria-selected="true">Tabelas</button>
+    <button class="aba" role="tab" data-painel="painel-chave" aria-selected="false">Simular mata-mata</button>
+  </div>
+
+  <div id="painel-tabelas" class="painel" role="tabpanel">
+    <div id="tabelas"></div>
+  </div>
+
+  <div id="painel-chave" class="painel" role="tabpanel" hidden>
+    <div class="cartao" style="margin-bottom:16px">
+      <h3>Como a divisão foi feita</h3>
+      <p id="regra-series" style="margin:0 0 12px;font-size:14px"></p>
+      <label class="campo" style="max-width:340px">Equipes na série Ouro
+        <input type="number" id="corte" min="2" step="1">
+      </label>
+      <p style="margin:10px 0 0;font-size:13px;color:var(--tinta-fraca)">
+        O Artigo 16 põe teto de 8 na série Ouro, mas o §4 descreve um chaveamento
+        de 16, e nem o §1 nem o §2 alcançam modalidades com 17 inscritas. Enquanto
+        a liga não confirma como faz na prática, o corte fica ajustável aqui.
+      </p>
+    </div>
+
+    <div class="filtros">
+      <label class="campo">Série
+        <select id="f-serie">
+          <option value="ouro">Série Ouro</option>
+          <option value="prata">Série Prata</option>
+        </select>
+      </label>
+      <button id="btn-zerar" class="secundario" type="button" style="margin-left:auto">Zerar simulação</button>
+    </div>
+
+    <div class="grade" style="align-items:start;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="cartao">
+        <h3>Ordem de classificação</h3>
+        <p style="margin:0 0 10px;font-size:13px;color:var(--tinta-fraca)">
+          Vem da classificação geral. Reordene para testar outro resultado da fase de grupos.
+        </p>
+        <ol id="semeadura" class="semeadura"></ol>
+      </div>
+      <div class="cartao" style="grid-column:span 2;min-width:0">
+        <h3>Chave</h3>
+        <p style="margin:0 0 10px;font-size:13px;color:var(--tinta-fraca)">
+          Clique na equipe que vence cada confronto. Quem não tem adversário passa direto (§5).
+        </p>
+        <div id="chave" class="chave"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape"><div>LAAUSP · dados da planilha pública dos Jogos da Liga</div></footer>
+
+<script type="module">
+import { carregarLiga, corDaEquipe, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback } from "./assets/js/feedback.js";
+import { dividirSeries, montarChave, propagar, nomeDaFase } from "./assets/js/mata-mata.js";
+
+marcarNavegacao();
+montarFeedback();
+const liga = await carregarLiga();
+
+const fModalidade = document.getElementById("f-modalidade");
+const fSerie = document.getElementById("f-serie");
+const corte = document.getElementById("corte");
+const regraSeries = document.getElementById("regra-series");
+const tabelas = document.getElementById("tabelas");
+const semeadura = document.getElementById("semeadura");
+const chaveEl = document.getElementById("chave");
+
+for (const m of liga.modalidades) fModalidade.append(el("option", { value: m.id, text: m.nome }));
+
+const parametros = new URLSearchParams(location.search);
+if (parametros.get("modalidade")) fModalidade.value = parametros.get("modalidade");
+
+/** Ordem em simulação. Redefinida ao trocar de modalidade ou ao zerar. */
+let ordem = [];
+let fases = [];
+
+function modalidade() {
+  return liga.modalidades.find((m) => m.id === fModalidade.value);
+}
+
+/* ---------- tabelas ---------- */
+
+function tabelaDeClassificacao(tabela) {
+  if (!tabela.length) return null;
+  const colunas = Object.keys(tabela[0]).filter((c) => c !== "equipe");
+  return el("div", { class: "tabela-envelope" },
+    el("table", {},
+      el("thead", {}, el("tr", {},
+        el("th", { text: "#" }),
+        el("th", { text: "Atlética" }),
+        ...colunas.map((c) => el("th", { text: c })))),
+      el("tbody", {}, tabela.map((linha, i) => el("tr", {},
+        el("td", { text: String(i + 1) }),
+        el("td", {}, corDaEquipe(linha.equipe), linha.equipe),
+        ...colunas.map((c) => el("td", { text: linha[c] || "—" })))))));
+}
+
+function renderizarTabelas() {
+  const m = modalidade();
+  tabelas.replaceChildren();
+
+  const geral = tabelaDeClassificacao(m.classificacaoGeral);
+  if (geral) {
+    tabelas.append(el("h2", { style: "margin-top:8px", text: "Classificação geral" }), geral);
+  }
+
+  const grupos = m.grupos.map((g) => [g, tabelaDeClassificacao(g.tabela)]).filter(([, t]) => t);
+  if (grupos.length) {
+    tabelas.append(el("h2", { style: "margin-top:28px", text: "Por grupo" }));
+    for (const [grupo, tabela] of grupos) {
+      tabelas.append(el("h3", { style: "margin:18px 0 8px", text: grupo.nome }), tabela);
+    }
+  }
+
+  if (!tabelas.children.length) {
+    tabelas.append(el("p", { class: "vazio", text: "Classificação ainda não publicada para esta modalidade." }));
+  }
+}
+
+/* ---------- simulação ---------- */
+
+function reiniciarOrdem() {
+  ordem = modalidade().classificacaoGeral.map((l) => l.equipe);
+  const divisao = dividirSeries(ordem.length);
+  corte.value = String(divisao.ouro);
+  corte.max = String(Math.max(2, ordem.length));
+  regraSeries.textContent = ordem.length
+    ? `${ordem.length} equipes classificadas — ${divisao.regra}. Série Ouro com ${divisao.ouro}, Prata com ${divisao.prata}.`
+    : "Esta modalidade ainda não tem classificação geral publicada.";
+}
+
+function equipesDaSerie() {
+  const n = Math.max(0, Math.min(Number(corte.value) || 0, ordem.length));
+  return fSerie.value === "ouro" ? ordem.slice(0, n) : ordem.slice(n);
+}
+
+function remontarChave() {
+  fases = propagar(montarChave(equipesDaSerie()));
+  renderizarChave();
+}
+
+function renderizarSemeadura() {
+  const n = Math.max(0, Math.min(Number(corte.value) || 0, ordem.length));
+  semeadura.replaceChildren(...ordem.map((equipe, i) => el("li", {
+    class: i < n ? "semeadura__item semeadura__item--ouro" : "semeadura__item",
+  },
+    el("span", { class: "semeadura__pos", text: String(i + 1) }),
+    corDaEquipe(equipe),
+    el("span", { class: "semeadura__nome", text: equipe }),
+    el("button", {
+      class: "semeadura__mover", type: "button", title: "Subir",
+      "aria-label": `Subir ${equipe}`, disabled: i === 0 ? "disabled" : null,
+    }, "↑"),
+    el("button", {
+      class: "semeadura__mover", type: "button", title: "Descer",
+      "aria-label": `Descer ${equipe}`, disabled: i === ordem.length - 1 ? "disabled" : null,
+    }, "↓"))));
+}
+
+semeadura.addEventListener("click", (evento) => {
+  const botao = evento.target.closest(".semeadura__mover");
+  if (!botao) return;
+  const item = botao.closest("li");
+  const i = [...semeadura.children].indexOf(item);
+  const j = botao.title === "Subir" ? i - 1 : i + 1;
+  if (j < 0 || j >= ordem.length) return;
+  [ordem[i], ordem[j]] = [ordem[j], ordem[i]];
+  renderizarSemeadura();
+  remontarChave();
+});
+
+function lado(confronto, qual) {
+  const time = confronto[qual];
+  if (!time) return el("div", { class: "confronto__lado confronto__lado--vazio", text: "a definir" });
+
+  const venceu = confronto.vencedor === qual;
+  const botao = el("button", {
+    class: `confronto__lado${venceu ? " confronto__lado--venceu" : ""}`,
+    type: "button",
+    "aria-pressed": String(venceu),
+  },
+    el("span", { class: "confronto__seed", text: String(time.seed) }),
+    corDaEquipe(time.nome),
+    el("span", { text: time.nome }));
+
+  const outroLado = qual === "a" ? "b" : "a";
+  if (!confronto[outroLado]) {
+    botao.disabled = true;
+    botao.classList.add("confronto__lado--bye");
+    botao.title = "Passa direto: não há adversário nesta colocação (§5)";
+  } else {
+    botao.addEventListener("click", () => {
+      confronto.vencedor = confronto.vencedor === qual ? null : qual;
+      propagar(fases);
+      renderizarChave();
+    });
+  }
+  return botao;
+}
+
+function renderizarChave() {
+  chaveEl.replaceChildren();
+  if (!fases.length) {
+    chaveEl.append(el("p", { class: "vazio", text: "Esta série não tem equipes suficientes para uma chave." }));
+    return;
+  }
+  for (const fase of fases) {
+    chaveEl.append(el("div", { class: "chave__fase" },
+      el("h4", { class: "chave__titulo", text: nomeDaFase(fase.length) }),
+      ...fase.map((confronto) => el("div", { class: "confronto" },
+        lado(confronto, "a"),
+        el("span", { class: "confronto__x", text: "×" }),
+        lado(confronto, "b")))));
+  }
+
+  const final = fases[fases.length - 1][0];
+  if (final?.vencedor) {
+    chaveEl.append(el("p", { class: "chave__campeao" },
+      "Campeã simulada: ", el("strong", { text: final[final.vencedor].nome })));
+  }
+}
+
+/* ---------- eventos ---------- */
+
+function trocarModalidade() {
+  renderizarTabelas();
+  reiniciarOrdem();
+  renderizarSemeadura();
+  remontarChave();
+}
+
+fModalidade.addEventListener("change", trocarModalidade);
+fSerie.addEventListener("change", remontarChave);
+corte.addEventListener("input", () => { renderizarSemeadura(); remontarChave(); });
+document.getElementById("btn-zerar").addEventListener("click", () => {
+  reiniciarOrdem();
+  renderizarSemeadura();
+  remontarChave();
+});
+
+for (const aba of document.querySelectorAll(".aba")) {
+  aba.addEventListener("click", () => {
+    for (const outra of document.querySelectorAll(".aba")) {
+      const ativa = outra === aba;
+      outra.setAttribute("aria-selected", String(ativa));
+      document.getElementById(outra.dataset.painel).hidden = !ativa;
+    }
+  });
+}
+
+trocarModalidade();
+</script>
+</body>
+</html>

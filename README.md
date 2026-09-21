@@ -109,16 +109,57 @@ Google Doc em PDF e substitua o arquivo com o mesmo nome.
 ## Feedback dos usuários
 
 Toda página tem um ícone de chat no canto inferior direito: assunto, mensagem e
-contato opcional. Como não há backend, o envio segue um de dois caminhos,
-configurados em `assets/js/config.js`:
+contato opcional. A página `contato.html` pede também nome e atlética. Como não
+há backend, o envio tenta três caminhos em ordem, configurados em
+`assets/js/config.js`:
 
-- `FEEDBACK_ENDPOINT` preenchido (Google Forms, Formspree, Apps Script) → o
-  recado vai por `POST` em JSON direto para a caixa da liga;
-- `FEEDBACK_ENDPOINT` vazio (padrão) → o site abre o e-mail do usuário já
-  preenchido para `EMAIL_FEEDBACK`.
+1. **`FEEDBACK_GOOGLE_FORM`** preenchido → o recado vai para um Google Forms e
+   cai na planilha de respostas;
+2. **`FEEDBACK_ENDPOINT`** preenchido → `POST` em JSON para qualquer URL;
+3. **nenhum dos dois** (padrão de hoje) → o site abre o e-mail do usuário já
+   preenchido para `EMAIL_FEEDBACK`.
 
-Nos dois casos a mensagem também fica guardada no `localStorage` do aparelho,
-para não se perder se o envio falhar.
+O terceiro caminho **perde mensagens em silêncio**: quem não apertar "enviar" no
+aplicativo de e-mail, ou não tiver um configurado no celular, não chega à liga.
+Por isso vale configurar o formulário.
+
+Nos três casos a mensagem fica guardada no `localStorage` do aparelho, para não
+se perder se o envio falhar.
+
+### Receber o feedback num Google Forms
+
+1. Crie um formulário no Google Forms com **um campo de resposta curta ou
+   parágrafo para cada informação** que quiser receber: assunto, mensagem,
+   nome, atlética, contato, página e data. Deixe todos como não obrigatórios —
+   o site só manda o que a pessoa preencheu.
+2. Abra o formulário publicado (**Enviar → link**) e veja o código-fonte da
+   página. Cada campo aparece como `entry.123456789`. Anote qual `entry`
+   corresponde a qual pergunta.
+3. Em `assets/js/config.js`, preencha:
+
+```js
+export const FEEDBACK_GOOGLE_FORM = {
+  url: "https://docs.google.com/forms/d/e/SEU_ID/formResponse",
+  campos: {
+    tipo: "entry.111111111",
+    mensagem: "entry.222222222",
+    nome: "entry.333333333",
+    atletica: "entry.444444444",
+    contato: "entry.555555555",
+    pagina: "entry.666666666",
+    quando: "entry.777777777",
+  },
+};
+```
+
+A `url` é a do formulário trocando `/viewform` por `/formResponse`. Campos
+deixados em branco no `campos` simplesmente não são enviados.
+
+O envio é `form-encoded` em `mode: "no-cors"`, porque o Google Forms não aceita
+JSON nem responde com CORS. Isso tem uma consequência: **a resposta vem opaca e
+o site não consegue saber se o Google aceitou** — sem erro de rede, a mensagem é
+tratada como enviada. Vale conferir a planilha de respostas depois do primeiro
+teste.
 
 ## Quem pode jogar cada partida
 

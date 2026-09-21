@@ -17,10 +17,29 @@ export const HASH_SENHA_REPRESENTANTE =
 export const HASH_SENHA_PIZZARIA =
   "244629b330883e18459a719ba2575e6b072d4c2311acd92a9ef995bb968b0c62";
 
-// Para onde vai o feedback enviado pelo ícone de chat do site.
-// Com FEEDBACK_ENDPOINT vazio, o site abre o e-mail do usuário já preenchido.
-// Preencha com a URL de um formulário (Google Forms, Formspree, Apps Script)
-// que aceite POST em JSON para receber os recados direto na caixa da liga.
+/* Para onde vai o feedback enviado pelo ícone de chat e pela página de contato.
+
+   O site tenta, nesta ordem: o Google Forms, depois FEEDBACK_ENDPOINT, e por
+   último abre o e-mail do usuário já preenchido. O caminho do e-mail perde
+   quem não apertar "enviar" no aplicativo, então vale configurar o formulário.
+
+   Como preencher FEEDBACK_GOOGLE_FORM: veja "Receber o feedback num Google
+   Forms" no README — em resumo, a url é a do formulário trocando /viewform por
+   /formResponse, e cada entry.N sai do HTML do formulário publicado. */
+export const FEEDBACK_GOOGLE_FORM = {
+  url: "",
+  campos: {
+    tipo: "",
+    mensagem: "",
+    nome: "",
+    atletica: "",
+    contato: "",
+    pagina: "",
+    quando: "",
+  },
+};
+
+// Alternativa ao Google Forms: qualquer URL que aceite POST em JSON.
 export const FEEDBACK_ENDPOINT = "";
 export const EMAIL_FEEDBACK = "laausp@gmail.com";
 
