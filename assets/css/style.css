@@ -450,9 +450,32 @@ tbody tr:nth-child(odd) td { background: rgba(20, 33, 86, .03); }
 .casa--premio.casa--carimbada .casa__icone { opacity: 1; }
 
 @media print {
-  .cabecalho, .rodape, .abas, .filtros, .cartao:not(#area-carteirinha .cartao) { display: none !important; }
+  @page { margin: 12mm; }
+
+  .cabecalho, .rodape, .abas, .filtros, .coluna-cartoes,
+  .feedback-abrir, .feedback-painel,
+  .cartao:not(#area-carteirinha .cartao) { display: none !important; }
+
   body { background: #fff; }
-  .carteirinha { box-shadow: none; }
+
+  /* Sem isto o navegador descarta o fundo azul e sobra texto branco no papel. */
+  .carteirinha {
+    box-shadow: none;
+    width: 104mm;
+    max-width: 104mm;
+    margin: 0;
+    break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* O QR é absoluto e o corpo reserva 150px para ele. No papel a carteirinha é
+     estreita, a coluna dos valores fica com ~1 caractere e o texto quebra letra
+     a letra — então aqui o QR volta ao fluxo, como no layout de celular. */
+  .grade--carteirinha { display: block; }
+  .carteirinha__corpo, .carteirinha__rodape { padding-right: 18px; }
+  .carteirinha__qr { position: static; margin: 0 18px 18px; display: inline-block; }
+  .carteirinha__dados dd { overflow-wrap: normal; }
 }
 
 /* Selo com as cores oficiais da atlética (lidas do planilhão) */

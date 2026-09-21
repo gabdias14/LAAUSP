@@ -194,57 +194,26 @@ está em `textoSobre()`, em `assets/js/cores.js`.
 
 ### Levar a carteirinha no celular
 
-Três caminhos, na aba da carteirinha:
+Dois caminhos, na aba da carteirinha:
 
 1. **Salvar como imagem** — a carteirinha é desenhada num `canvas` e baixada em
-   PNG (`assets/js/wallet.js`). Funciona em qualquer celular, sem depender de
-   nada da liga. Onde o navegador permite, o botão **Compartilhar** manda a
+   PNG (`assets/js/cartao-imagem.js`). Funciona em qualquer celular, sem depender
+   de nada da liga. Onde o navegador permite, o botão **Compartilhar** manda a
    mesma imagem pelo menu nativo.
 2. **Instalar na tela de início** — `manifest.webmanifest` e `sw.js` fazem o
    site abrir como aplicativo e **funcionar sem sinal**, que é a situação real
    do ginásio. As páginas e os dados ficam em cache; a filiação é revalidada
    quando há rede.
-3. **Apple Wallet e Google Wallet** — dependem de assinatura com a chave da
-   liga, então os passes são gerados em lote (veja abaixo) e os botões só
-   aparecem quando o passe daquele atleta existe.
 
-### Passes para Apple Wallet e Google Wallet
+Também dá para **imprimir** a carteirinha: o `@media print` do `style.css` tira
+a navegação e os cartões de apoio, solta o QR do posicionamento absoluto e força
+a impressão do fundo, para o cartão sair inteiro em uma página.
 
-`scripts/gerar-wallet.py` gera um `.pkpass` (Apple) e um link "Salvar no Google
-Wallet" por atleta. Os dois formatos exigem assinatura com chave privada — que
-não pode ir para um site estático —, por isso os arquivos são gerados uma vez e
-publicados prontos.
-
-O que é preciso ter antes:
-
-| | Apple Wallet | Google Wallet |
-| --- | --- | --- |
-| Conta | Apple Developer Program | Google Wallet Console |
-| Custo | US$ 99/ano | gratuito |
-| Credencial | certificado do Pass Type ID (.pem) + AppleWWDRCAG4.pem | chave de conta de serviço (JSON) |
-
-```bash
-python3 scripts/gerar-wallet.py --filiados data/filiados.json \
-    --saida documentos/wallet \
-    --apple-pass-type pass.br.com.laausp.carteirinha \
-    --apple-team ABCDE12345 \
-    --apple-cert certificados/pass.pem \
-    --apple-wwdr certificados/AppleWWDRCAG4.pem \
-    --google-conta certificados/service-account.json \
-    --google-emissor 3388000000022000000 \
-    --google-classe carteirinha_2026
-```
-
-Depois aponte `WALLET_APPLE_BASE` e `WALLET_GOOGLE_BASE` (em
-`assets/js/config.js`) para a pasta publicada. O site confere se o passe do
-atleta existe antes de mostrar o botão.
-
-O passe carrega o mesmo QR Code da carteirinha na tela
-(`LAAUSP|<temporada>|<número USP>`), então o scanner do representante lê os dois
-sem mudança nenhuma.
-
-> A pasta de saída tem um arquivo por atleta, com nome, número USP e situação —
-> dados pessoais. Ela está no `.gitignore`, junto com `certificados/`.
+Apple Wallet e Google Wallet foram removidos: os dois exigem assinatura com
+certificado da liga (Apple Developer Program, US$ 99/ano, e Google Wallet
+Console), que não existe. Os botões nunca funcionavam. O gerador de passes está
+no histórico do git, em `scripts/gerar-wallet.py`, se a liga tirar as
+credenciais um dia.
 
 ### Fidelidade Pizzaria Europa
 

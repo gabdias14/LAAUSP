@@ -93,11 +93,9 @@
             <button id="btn-imagem" type="button">Salvar como imagem</button>
             <button id="btn-compartilhar" class="secundario" type="button" hidden>Compartilhar</button>
             <button id="btn-instalar" class="secundario" type="button" hidden>Instalar na tela de início</button>
-            <a id="link-apple" class="botao botao--secundario" hidden>Adicionar à Apple Wallet</a>
-            <a id="link-google" class="botao botao--secundario" hidden target="_blank" rel="noopener">Adicionar ao Google Wallet</a>
             <button id="btn-imprimir" class="secundario" type="button">Imprimir</button>
           </div>
-          <p id="aviso-wallet" style="margin:12px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
+          <p id="aviso-carteirinha" style="margin:12px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
         </div>
         </div>
       </div>
@@ -144,7 +142,7 @@ import { el, marcarNavegacao } from "./assets/js/liga.js";
 import { montarFeedback } from "./assets/js/feedback.js";
 import { carregarFiliados, carregarAtleticas, identidadeDa, buscarAtleta, estaRegular, idDoAtleta, normalizar } from "./assets/js/atletas.js";
 import { montarCarteirinha } from "./assets/js/carteirinha.js";
-import { baixarCarteirinhaPNG, compartilharCarteirinha, enderecosDeWallet, passeDisponivel } from "./assets/js/wallet.js";
+import { baixarCarteirinhaPNG, compartilharCarteirinha } from "./assets/js/cartao-imagem.js";
 import { lerCartao, carimbar, desfazerUltimoCarimbo, resgatar, completo, montarCartela, CARIMBOS_PARA_PREMIO } from "./assets/js/fidelidade.js";
 import { HASH_SENHA_PIZZARIA, CHAVE_SESSAO_ATLETA } from "./assets/js/config.js";
 
@@ -218,7 +216,7 @@ async function abrirPainel(encontrado) {
   identidadeAtual = identidadeDa(atleta.atletica, atleticas);
   const area = document.getElementById("area-carteirinha");
   area.replaceChildren(await montarCarteirinha(atleta, identidadeAtual, filiados.temporada));
-  await prepararWallet();
+  prepararBotoes();
 
   const aviso = document.getElementById("aviso-situacao");
   aviso.textContent = estaRegular(atleta)
@@ -236,25 +234,25 @@ document.getElementById("btn-imprimir").addEventListener("click", () => window.p
 let identidadeAtual = null;
 let promptDeInstalacao = null;
 
-const avisoWallet = document.getElementById("aviso-wallet");
+const avisoCarteirinha = document.getElementById("aviso-carteirinha");
 const botaoCompartilhar = document.getElementById("btn-compartilhar");
 const botaoInstalar = document.getElementById("btn-instalar");
 
 document.getElementById("btn-imagem").addEventListener("click", async () => {
   try {
     const nome = await baixarCarteirinhaPNG(atleta, identidadeAtual, filiados.temporada);
-    avisoWallet.textContent = `Imagem salva como ${nome}.`;
+    avisoCarteirinha.textContent = `Imagem salva como ${nome}.`;
   } catch (erro) {
-    avisoWallet.textContent = `Não deu para gerar a imagem: ${erro.message}`;
+    avisoCarteirinha.textContent = `Não deu para gerar a imagem: ${erro.message}`;
   }
 });
 
 botaoCompartilhar.addEventListener("click", async () => {
   try {
     const compartilhou = await compartilharCarteirinha(atleta, identidadeAtual, filiados.temporada);
-    if (!compartilhou) avisoWallet.textContent = "Este navegador não abre o menu de compartilhar.";
+    if (!compartilhou) avisoCarteirinha.textContent = "Este navegador não abre o menu de compartilhar.";
   } catch (erro) {
-    if (erro.name !== "AbortError") avisoWallet.textContent = `Falha ao compartilhar: ${erro.message}`;
+    if (erro.name !== "AbortError") avisoCarteirinha.textContent = `Falha ao compartilhar: ${erro.message}`;
   }
 });
 
@@ -272,32 +270,8 @@ botaoInstalar.addEventListener("click", async () => {
   botaoInstalar.hidden = true;
 });
 
-async function prepararWallet() {
+function prepararBotoes() {
   botaoCompartilhar.hidden = !navigator.canShare;
-
-  const enderecos = enderecosDeWallet(atleta);
-  const apple = document.getElementById("link-apple");
-  const google = document.getElementById("link-google");
-
-  const [temApple, temGoogle] = await Promise.all([
-    passeDisponivel(enderecos.apple),
-    passeDisponivel(enderecos.google),
-  ]);
-
-  if (temApple) {
-    apple.href = enderecos.apple;
-    apple.hidden = false;
-  }
-  if (temGoogle) {
-    // O arquivo guarda o link "Salvar no Google Wallet" já assinado.
-    const resposta = await fetch(enderecos.google);
-    google.href = (await resposta.text()).trim();
-    google.hidden = false;
-  }
-  if (!temApple && !temGoogle) {
-    avisoWallet.textContent = "Apple Wallet e Google Wallet dependem do certificado da liga — " +
-      "enquanto isso, salve a imagem ou instale o atalho na tela de início.";
-  }
 }
 
 /* ---------- abas ---------- */

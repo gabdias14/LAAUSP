@@ -1,20 +1,13 @@
 /* Levar a carteirinha para o celular.
 
-   Três caminhos, do que funciona hoje ao que depende de certificado:
-
-   1. imagem PNG — desenhada no canvas, salva na galeria ou nos favoritos;
-   2. atalho na tela de início (PWA), que abre a carteirinha mesmo sem sinal —
-      importante porque ginásio costuma não ter rede;
-   3. Apple Wallet (.pkpass) e Google Wallet, que exigem assinatura com o
-      certificado da liga e por isso são gerados em lote por
-      scripts/gerar-wallet.py. Os botões aparecem quando os passes existem.
-*/
+   Dois caminhos: a imagem PNG desenhada no canvas, que salva na galeria ou vai
+   pelo compartilhar; e o atalho na tela de início (PWA), que abre a carteirinha
+   mesmo sem sinal — importante porque ginásio costuma não ter rede. */
 
 import { el } from "./liga.js";
 import { estaRegular, iniciais } from "./atletas.js";
 import { textoSobre } from "./cores.js";
 import { desenharQR, payloadDaCarteirinha } from "./carteirinha.js";
-import { WALLET_APPLE_BASE, WALLET_GOOGLE_BASE } from "./config.js";
 
 const LARGURA = 1000;
 const ALTURA = 630;
@@ -201,24 +194,4 @@ export async function compartilharCarteirinha(atleta, identidade, temporada) {
     return true;
   }
   return false;
-}
-
-/** Endereço do passe do atleta, quando a liga já gerou os passes assinados. */
-export function enderecosDeWallet(atleta) {
-  const id = atleta.nusp || "";
-  return {
-    apple: WALLET_APPLE_BASE && id ? `${WALLET_APPLE_BASE}${id}.pkpass` : "",
-    google: WALLET_GOOGLE_BASE && id ? `${WALLET_GOOGLE_BASE}${id}.txt` : "",
-  };
-}
-
-/** Confere se o passe existe antes de mostrar o botão, para não oferecer link quebrado. */
-export async function passeDisponivel(endereco) {
-  if (!endereco) return false;
-  try {
-    const resposta = await fetch(endereco, { method: "HEAD" });
-    return resposta.ok;
-  } catch {
-    return false;
-  }
 }
