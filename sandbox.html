@@ -21,6 +21,18 @@
   .confrontos { margin: 0; padding: 0; list-style: none; font-size: 14px; }
   .confrontos li { padding: 6px 0; border-bottom: 1px solid var(--borda); display: flex; gap: 8px; align-items: center; }
   .confrontos .seed { font-variant-numeric: tabular-nums; font-weight: 800; min-width: 2.2em; }
+  .grade-reservas { display: grid; gap: 2px; padding: 8px; min-width: 640px; font-size: 12px; }
+  .grade-reservas__hora { color: var(--tinta-fraca); font-variant-numeric: tabular-nums; padding-right: 6px;
+    text-align: right; transform: translateY(-7px); }
+  .grade-reservas__espaco { font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: 11px;
+    color: var(--tinta-fraca); padding: 4px 6px; }
+  .grade-reservas__fundo { border-top: 1px dashed var(--borda); }
+  .bloco { border-radius: 7px; padding: 4px 7px; overflow: hidden; line-height: 1.25; border: 2px solid transparent; }
+  .bloco strong { display: block; font-size: 12px; }
+  .bloco small { opacity: .85; }
+  .bloco--selecao { background: var(--navy); color: #fff; }
+  .bloco--alerta { border-color: var(--laranja); border-style: dashed; }
+  .ipr-partes { color: var(--tinta-fraca); font-size: 12px; display: block; white-space: nowrap; }
   pre.carga { margin: 0; padding: 12px; border-radius: 9px; background: var(--areia); border: 1px solid var(--borda);
     font-size: 12.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
   input[type="number"] { font: inherit; padding: 9px 12px; border-radius: 9px; border: 1px solid var(--borda);
@@ -52,8 +64,8 @@
   <div class="sandbox-faixa"><span class="etiqueta">Modo sandbox</span></div>
   <h1>Tudo o que a LAAUSP faz, para testar</h1>
   <p class="subtitulo">
-    Carteirinha, conferência na mesa, fidelidade da pizzaria, mata-mata e feedback, sem senha e
-    com atletas fictícios. Serve para mostrar a plataforma às atléticas e para treinar quem vai
+    Carteirinha, conferência na mesa, fidelidade da pizzaria, mata-mata, reservas de quadra e
+    feedback, sem senha e com atletas e pedidos fictícios. Serve para mostrar a plataforma às atléticas e para treinar quem vai
     operar a mesa antes do jogo.
   </p>
   <p class="aviso" style="max-width:760px">
@@ -68,6 +80,7 @@
     <button class="aba" role="tab" data-painel="painel-mesa" aria-selected="false">Mesa do jogo</button>
     <button class="aba" role="tab" data-painel="painel-pizzaria" aria-selected="false">Pizzaria Europa</button>
     <button class="aba" role="tab" data-painel="painel-chave" aria-selected="false">Mata-mata</button>
+    <button class="aba" role="tab" data-painel="painel-reservas" aria-selected="false">Reservas de quadra</button>
     <button class="aba" role="tab" data-painel="painel-feedback" aria-selected="false">Feedback</button>
   </div>
 
@@ -94,6 +107,11 @@
         <h3>Fidelidade da pizzaria</h3>
         <p>Cartela da Pizzaria Europa: 7 pizzas carimbadas pelo caixa e a 8ª é grátis, com desfazer e histórico de resgates.</p>
         <button type="button" data-ir="painel-pizzaria">Carimbar pizzas</button>
+      </div>
+      <div class="cartao">
+        <h3>Reservas de quadra</h3>
+        <p>Distribuição mensal das quadras do CEPEUSP pelo Índice de Prioridade de Reserva (IPR), sem sorteio. É a proposta da gestão para o CdP, ainda não votada.</p>
+        <button type="button" data-ir="painel-reservas">Montar a grade</button>
       </div>
       <div class="cartao">
         <h3>Mata-mata</h3>
@@ -140,7 +158,7 @@
       <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.7">
         <li>Login individual para atleta, representante e diretoria</li>
         <li>Base real de filiados publicada sem expor dados pessoais</li>
-        <li>Reservas de quadra pelas atléticas</li>
+        <li>Pedidos de reserva enviados pelas próprias atléticas (o sandbox só simula a distribuição)</li>
         <li>Envio de súmulas pelos representantes depois do jogo</li>
         <li>Carimbos da pizzaria guardados no servidor, à prova de troca de celular</li>
         <li>Painel da gestão para editar jogos, filiações e resultados</li>
@@ -320,6 +338,85 @@
     </div>
   </div>
 
+  <!-- ---------- reservas ---------- -->
+  <div id="painel-reservas" class="painel" role="tabpanel" hidden>
+    <p class="aviso" style="max-width:760px">
+      Proposta da gestão para o CdP (Arts. 35-A a 35-D), <strong>ainda não votada</strong>. Os pedidos
+      são fictícios: atléticas, técnicos, horários e históricos foram sorteados e não vêm da planilha
+      CONTROLE 2026 RESERVAS QUADRAS.
+    </p>
+
+    <div class="grade" style="align-items:start;margin-bottom:20px">
+      <div class="cartao">
+        <h3>As 5 regras, nesta ordem</h3>
+        <ol style="margin:0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Seleção USP primeiro (horários fixos).</li>
+          <li>1 hora garantida para todo pedido, dentro do horário pedido, antes de qualquer extensão.</li>
+          <li>Módulo por IPR, do maior para o menor.</li>
+          <li>Se não couber: deslocar até 1 hora, depois velódromo, depois meia quadra, a partir do menor IPR.</li>
+          <li>Sem sorteio. O mesmo técnico nunca em dois treinos ao mesmo tempo.</li>
+        </ol>
+        <p style="margin:10px 0 0;font-size:13px;color:var(--tinta-fraca)">O espaço que sobra vira extensão para 1h30, de novo por IPR.</p>
+      </div>
+      <div class="cartao">
+        <h3>IPR, de 0 a 100</h3>
+        <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Até 40 pontos: menos horas de módulo desde fevereiro, mais pontos.</li>
+          <li>25 pontos: o dia pedido é a prioridade 1 (ODP 1) do time.</li>
+          <li>15 pontos: o time tem uma única reserva semanal.</li>
+          <li>10 pontos por mês sem reserva naquele dia e 5 por mês no velódromo ou em meia quadra, nos 2 meses anteriores.</li>
+        </ul>
+        <p style="margin:10px 0 0;font-size:13px;color:var(--tinta-fraca)">
+          O texto diz "proporcionalmente inversos às horas da modalidade". Aqui, dentro de cada
+          modalidade, quem tem zero hora leva 40 e quem mais treinou em módulo leva zero.
+        </p>
+      </div>
+    </div>
+
+    <div class="filtros">
+      <label class="campo">Dia
+        <select id="res-dia"></select>
+      </label>
+      <button id="btn-novo-pedido" class="secundario" type="button">Novo pedido</button>
+      <button id="btn-restaurar-pedidos" class="secundario" type="button">Restaurar exemplo</button>
+      <p id="res-resumo" style="margin:0;font-size:14px;flex-basis:100%"></p>
+    </div>
+
+    <form id="form-pedido" class="cartao" hidden style="margin-bottom:20px">
+      <h3>Novo pedido fictício</h3>
+      <div class="filtros" style="margin-bottom:12px">
+        <label class="campo">Atlética <select id="np-atletica"></select></label>
+        <label class="campo">Modalidade <select id="np-modalidade"></select></label>
+        <label class="campo">Técnico <input type="text" id="np-tecnico" placeholder="Técnico Z"></label>
+        <label class="campo">Dia <select id="np-dia"></select></label>
+        <label class="campo">Das <select id="np-inicio"></select></label>
+        <label class="campo">Até <select id="np-fim"></select></label>
+        <label class="campo">Prioridade do dia (ODP)
+          <select id="np-odp"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+        </label>
+        <label class="campo">Horas de módulo <input type="number" id="np-horas" min="0" value="0"></label>
+        <label class="campo">Meses sem reserva <input type="number" id="np-sem" min="0" max="2" value="0"></label>
+        <label class="campo">Meses no velódromo/meia <input type="number" id="np-precario" min="0" max="2" value="0"></label>
+      </div>
+      <button type="submit">Adicionar e redistribuir</button>
+      <p id="np-erro" hidden style="color:var(--vermelho);margin:12px 0 0;font-size:14px"></p>
+    </form>
+
+    <div class="tabela-envelope" style="margin-bottom:24px">
+      <div id="res-grade" class="grade-reservas"></div>
+    </div>
+
+    <h2>Pedidos do dia, por IPR</h2>
+    <div class="tabela-envelope">
+      <table>
+        <thead><tr>
+          <th>IPR</th><th>Time</th><th>Técnico</th><th>Pediu</th><th>Ficou</th><th>Situação</th><th></th>
+        </tr></thead>
+        <tbody id="res-tabela"></tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- ---------- mata-mata ---------- -->
   <div id="painel-chave" class="painel" role="tabpanel" hidden>
     <div class="filtros">
@@ -376,16 +473,17 @@
 <footer class="rodape"><div>LAAUSP · sandbox com dados fictícios</div></footer>
 
 <script type="module">
-import { carregarLiga, ordenarPorData, todosOsJogos, el, marcarNavegacao } from "./assets/js/liga.js";
+import { carregarLiga, ordenarPorData, todosOsJogos, corDaEquipe, el, marcarNavegacao } from "./assets/js/liga.js";
 import { montarFeedback, TIPOS, rotuloDoTipo } from "./assets/js/feedback.js";
 import { carregarAtleticas, identidadeDa, idDoAtleta, estaRegular } from "./assets/js/atletas.js";
 import { montarCarteirinha, payloadDaCarteirinha, desenharQR } from "./assets/js/carteirinha.js";
 import { baixarCarteirinhaPNG } from "./assets/js/cartao-imagem.js";
 import { montarCartela, completo, CARIMBOS_PARA_PREMIO } from "./assets/js/fidelidade.js";
 import { lerCodigo, lerCodigoDeArquivo, interpretarECard } from "./assets/js/scanner.js";
-import { carregarCores, acharAtletica, semAcento } from "./assets/js/cores.js";
+import { carregarCores, acharAtletica, semAcento, textoSobre } from "./assets/js/cores.js";
 import { dividirSeries, montarChave, propagar } from "./assets/js/mata-mata.js";
 import { FEEDBACK_GOOGLE_FORM, FEEDBACK_ENDPOINT, EMAIL_FEEDBACK } from "./assets/js/config.js";
+import { alocar, resumir, paraMinutos, paraHora, DIAS } from "./assets/js/reservas.js";
 
 marcarNavegacao();
 montarFeedback();
@@ -944,11 +1042,170 @@ document.getElementById("form-feedback").addEventListener("submit", (evento) => 
   }
 });
 
+/* ---------- reservas de quadra ---------- */
+
+const exemploReservas = await (await fetch("data/reservas.exemplo.json", { cache: "no-cache" })).json();
+let pedidosReserva = structuredClone(exemploReservas.pedidos);
+let proximoPedido = pedidosReserva.length + 1;
+
+const seletorDia = document.getElementById("res-dia");
+seletorDia.append(...DIAS.map(([valor, nome]) => el("option", { value: valor, text: nome })));
+seletorDia.value = "qui";
+
+const SITUACAO_NIVEL = { "no horário": "ok", "sem reserva": "erro" };
+
+function corDoTime(atletica) {
+  const partes = atletica.split("+").map((s) => acharAtletica(s.trim(), cores)).filter(Boolean);
+  if (!partes.length) return { fundo: "var(--azul-claro)", texto: "#14192b" };
+  return { fundo: partes[0].corPrimaria, texto: textoSobre(partes[0].corPrimaria, partes[0].corSecundaria) };
+}
+
+function renderizarReservas() {
+  const { reservas, selecao } = alocar({
+    espacos: exemploReservas.espacos, selecao: exemploReservas.selecao, pedidos: pedidosReserva });
+  const dia = seletorDia.value;
+  const doDia = reservas.filter((r) => r.pedido.dia === dia);
+
+  const contagem = resumir(reservas);
+  const estendidas = reservas.filter((r) => r.estendida).length;
+  document.getElementById("res-resumo").textContent =
+    `${exemploReservas.mes} · ${reservas.length} pedidos semanais: ` +
+    Object.entries(contagem).map(([situacao, n]) => `${n} ${situacao}`).join(", ") +
+    ` · ${estendidas} estendida(s) para 1h30.`;
+
+  // Grade do dia: uma linha por meia hora, uma coluna por espaço.
+  const espacos = exemploReservas.espacos;
+  const abre = Math.min(...espacos.map((e) => paraMinutos(e.abre)));
+  const fecha = Math.max(...espacos.map((e) => paraMinutos(e.fecha)));
+  const linha = (minutos) => 2 + (minutos - abre) / 30;
+  const coluna = (id) => 2 + espacos.findIndex((e) => e.id === id);
+  const grade = document.getElementById("res-grade");
+  grade.style.gridTemplateColumns = `48px repeat(${espacos.length}, minmax(110px, 1fr))`;
+  grade.style.gridTemplateRows = `auto repeat(${(fecha - abre) / 30}, 26px)`;
+  const posicionar = (no, espaco, inicio, fim) => {
+    no.style.gridColumn = String(coluna(espaco));
+    no.style.gridRow = `${linha(inicio)} / ${linha(fim)}`;
+    return no;
+  };
+
+  const celulas = [el("div")];
+  for (const e of espacos) celulas.push(el("div", { class: "grade-reservas__espaco", text: e.nome }));
+  for (let t = abre; t < fecha; t += 30) {
+    const fundo = el("div", { class: "grade-reservas__fundo" });
+    fundo.style.gridColumn = `2 / ${espacos.length + 2}`;
+    fundo.style.gridRow = String(linha(t));
+    celulas.push(fundo);
+    const hora = el("div", { class: "grade-reservas__hora", text: t % 60 ? "" : paraHora(t) });
+    hora.style.gridColumn = "1";
+    hora.style.gridRow = String(linha(t));
+    celulas.push(hora);
+  }
+  for (const bloco of selecao.filter((b) => b.dia === dia)) {
+    celulas.push(posicionar(el("div", { class: "bloco bloco--selecao" },
+      el("strong", { text: bloco.nome || "Seleção USP" }), el("small", { text: "horário fixo" })),
+    bloco.espaco, bloco.inicio, bloco.fim));
+  }
+  for (const r of doDia.filter((x) => x.espaco)) {
+    const cor = corDoTime(r.pedido.atletica);
+    const bloco = el("div", {
+      class: `bloco${r.situacao === "no horário" ? "" : " bloco--alerta"}`,
+      title: `${r.pedido.atletica} ${r.pedido.modalidade} · IPR ${r.ipr.total} · ${r.situacao}`,
+    },
+      el("strong", { text: `${r.pedido.atletica} · ${r.pedido.modalidade}` }),
+      el("small", { text: `IPR ${r.ipr.total}${r.situacao === "no horário" ? "" : ` · ${r.situacao}`}` }));
+    bloco.style.background = cor.fundo;
+    bloco.style.color = cor.texto;
+    celulas.push(posicionar(bloco, r.espaco, r.inicio, r.fim));
+  }
+  grade.replaceChildren(...celulas);
+
+  const nomeEspaco = (id) => espacos.find((e) => e.id === id)?.nome || "—";
+  const tabela = document.getElementById("res-tabela");
+  tabela.replaceChildren(...doDia.map((r) => {
+    const { partes } = r.ipr;
+    const remover = el("button", { class: "secundario", type: "button", text: "Remover",
+      style: "padding:4px 10px;font-size:13px" });
+    remover.addEventListener("click", () => {
+      pedidosReserva = pedidosReserva.filter((p) => p.id !== r.pedido.id);
+      renderizarReservas();
+    });
+    return el("tr", {},
+      el("td", {}, el("strong", { text: String(r.ipr.total) }),
+        el("span", { class: "ipr-partes",
+          text: `${partes.modulo} + ${partes.odp} + ${partes.unica} + ${partes.historico}` })),
+      el("td", {}, corDaEquipe(r.pedido.atletica), `${r.pedido.atletica} · ${r.pedido.modalidade}`),
+      el("td", { text: r.pedido.tecnico || "—" }),
+      el("td", { text: `${r.pedido.inicio}–${r.pedido.fim} · ODP ${r.pedido.odp}` }),
+      el("td", { text: r.espaco ? `${nomeEspaco(r.espaco)}, ${paraHora(r.inicio)}–${paraHora(r.fim)}` : "—" }),
+      el("td", {}, el("span", {
+        class: `selo ${SITUACAO_NIVEL[r.situacao] === "ok" ? "selo--ok" : SITUACAO_NIVEL[r.situacao] === "erro" ? "selo--erro" : ""}`,
+        text: r.situacao + (r.estendida ? " · 1h30" : "") })),
+      el("td", {}, remover));
+  }));
+  if (!doDia.length) {
+    tabela.replaceChildren(el("tr", {}, el("td", { colspan: "7", class: "vazio", text: "Nenhum pedido para este dia." })));
+  }
+}
+
+seletorDia.addEventListener("change", renderizarReservas);
+document.getElementById("btn-restaurar-pedidos").addEventListener("click", () => {
+  pedidosReserva = structuredClone(exemploReservas.pedidos);
+  proximoPedido = pedidosReserva.length + 1;
+  renderizarReservas();
+});
+
+const formPedido = document.getElementById("form-pedido");
+document.getElementById("btn-novo-pedido").addEventListener("click", () => {
+  formPedido.hidden = !formPedido.hidden;
+  document.getElementById("np-dia").value = seletorDia.value;
+});
+document.getElementById("np-atletica").append(...atleticas.map((a) => el("option", { value: a.sigla, text: a.sigla })));
+document.getElementById("np-modalidade").append(...[...new Set(exemploReservas.pedidos.map((p) => p.modalidade))].sort()
+  .map((m) => el("option", { value: m, text: m })));
+document.getElementById("np-dia").append(...DIAS.map(([valor, nome]) => el("option", { value: valor, text: nome })));
+const meiasHoras = [];
+// Faixa noturna em que a LAAUSP distribui as reservas (Manual de DGEs 2026).
+for (let t = paraMinutos("17:00"); t <= paraMinutos("21:00"); t += 30) meiasHoras.push(paraHora(t));
+document.getElementById("np-inicio").append(...meiasHoras.slice(0, -2).map((h) => el("option", { value: h, text: h })));
+document.getElementById("np-fim").append(...meiasHoras.slice(2).map((h) => el("option", { value: h, text: h })));
+document.getElementById("np-inicio").value = "19:00";
+document.getElementById("np-fim").value = "21:00";
+
+formPedido.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const valor = (id) => document.getElementById(id).value;
+  const erro = document.getElementById("np-erro");
+  if (paraMinutos(valor("np-fim")) - paraMinutos(valor("np-inicio")) < 60) {
+    erro.textContent = "O horário pedido precisa ter pelo menos 1 hora.";
+    erro.hidden = false;
+    return;
+  }
+  erro.hidden = true;
+  const numero = (id, maximo = Infinity) => Math.max(0, Math.min(maximo, Number(valor(id)) || 0));
+  pedidosReserva.push({
+    id: `N${String(proximoPedido++).padStart(2, "0")}`,
+    atletica: valor("np-atletica"),
+    modalidade: valor("np-modalidade"),
+    tecnico: valor("np-tecnico").trim(),
+    dia: valor("np-dia"),
+    inicio: valor("np-inicio"),
+    fim: valor("np-fim"),
+    odp: Number(valor("np-odp")),
+    horasModulo: numero("np-horas"),
+    mesesSemReserva: numero("np-sem", 2),
+    mesesVelodromoOuMeia: numero("np-precario", 2),
+  });
+  seletorDia.value = valor("np-dia");
+  formPedido.hidden = true;
+  renderizarReservas();
+});
+
 /* ---------- início ---------- */
 
 preencherSeletores();
 renderizarRegistros();
 renderizarChave();
+renderizarReservas();
 escolherAtleta(atualId);
 </script>
 </body>
