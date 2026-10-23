@@ -656,16 +656,20 @@ function renderizarRegistros() {
   }
 }
 
-document.getElementById("btn-exportar").addEventListener("click", () => {
-  const colunas = ["quando", "nusp", "nome", "atletica", "jogo", "situacao", "origem", "payload"];
+function baixarCSV(colunas, linhas, nomeDoArquivo) {
   const escapar = (valor) => `"${String(valor ?? "").replace(/"/g, '""')}"`;
-  const csv = [colunas.join(","), ...registros.map((r) => colunas.map((c) => escapar(r[c])).join(","))].join("\r\n");
-  const url = URL.createObjectURL(new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" }));
-  const link = el("a", { href: url, download: `leituras-ecard-${new Date().toISOString().slice(0, 10)}.csv` });
+  const csv = [colunas.join(","), ...linhas.map((linha) => colunas.map((c) => escapar(linha[c])).join(","))].join("\r\n");
+  const url = URL.createObjectURL(new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" }));
+  const link = el("a", { href: url, download: nomeDoArquivo });
   document.body.append(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
+}
+
+document.getElementById("btn-exportar").addEventListener("click", () => {
+  baixarCSV(["quando", "nusp", "nome", "atletica", "jogo", "situacao", "origem", "payload"], registros,
+    `leituras-ecard-${new Date().toISOString().slice(0, 10)}.csv`);
 });
 
 document.getElementById("btn-limpar").addEventListener("click", () => {
