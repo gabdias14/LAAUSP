@@ -26,6 +26,7 @@ python3 -m http.server 8000     # http://localhost:8000
 | `contato.html` | Feedback e solicitações: canal público para sugestões, solicitações, dúvidas e reclamações. |
 | `atleta.html` | Área do atleta: carteirinha digital da LAAUSP e cartela de fidelidade da Pizzaria Europa. |
 | `restrito.html` | Área do representante: leitura do QR do e-Card **e da carteirinha LAAUSP**, conferência contra a lista de inscritos e registro das leituras. |
+| `sandbox.html` | Sandbox: todas as funções acima para testar sem senha, com os atletas fictícios de `data/filiados.exemplo.json` — carteirinha, conferência na mesa (com cenários prontos), vínculo do e-Card, fidelidade, mata-mata e feedback. Nada é enviado nem gravado no aparelho. |
 
 ## Dados dos jogos
 

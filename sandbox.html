@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sandbox — LAAUSP</title>
+<meta name="description" content="Todas as funções da plataforma da LAAUSP para testar com atletas fictícios, sem senha.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .sandbox-faixa { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0 0 8px; }
+  .sandbox-faixa .etiqueta { background: var(--laranja); color: #14192b; }
+  .funcoes .cartao { display: flex; flex-direction: column; gap: 10px; }
+  .funcoes .cartao p { margin: 0; font-size: 14px; }
+  .funcoes .cartao button, .funcoes .cartao a.botao { margin-top: auto; align-self: flex-start; }
+  .cenarios button { font-size: 14px; padding: 8px 12px; }
+  .visor { display: grid; place-items: center; min-height: 260px; background: #fff; border-radius: var(--raio);
+    border: 1px dashed var(--borda); padding: 12px; }
+  .visor p { color: #5d6785; font-size: 13px; text-align: center; margin: 0; }
+  .visor video { width: 100%; max-height: 360px; border-radius: 9px; background: #000; }
+  .confrontos { margin: 0; padding: 0; list-style: none; font-size: 14px; }
+  .confrontos li { padding: 6px 0; border-bottom: 1px solid var(--borda); display: flex; gap: 8px; align-items: center; }
+  .confrontos .seed { font-variant-numeric: tabular-nums; font-weight: 800; min-width: 2.2em; }
+  pre.carga { margin: 0; padding: 12px; border-radius: 9px; background: var(--areia); border: 1px solid var(--borda);
+    font-size: 12.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  input[type="number"] { font: inherit; padding: 9px 12px; border-radius: 9px; border: 1px solid var(--borda);
+    background: var(--papel); color: var(--tinta); width: 120px; }
+  textarea { font: inherit; padding: 9px 12px; border-radius: 9px; border: 1px solid var(--borda);
+    background: var(--papel); color: var(--tinta); width: 100%; min-height: 90px; box-sizing: border-box; }
+</style>
+</head>
+<body data-base="">
+<header class="cabecalho">
+  <div class="cabecalho__interno">
+    <a class="marca" href="index.html">LAAUSP <span>Liga das Atléticas da USP</span></a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="jogos.html">Jogos</a>
+      <a href="classificacao.html">Classificação</a>
+      <a href="calendario.html">Calendário</a>
+      <a href="regulamento.html">Regulamento</a>
+      <a href="contato.html">Feedback</a>
+      <a href="atleta.html">Atleta</a>
+      <a href="restrito.html">Área restrita</a>
+      <a href="sandbox.html">Sandbox</a>
+    </nav>
+  </div>
+  <div class="faixa-retro"></div>
+</header>
+
+<main>
+  <div class="sandbox-faixa"><span class="etiqueta">Modo sandbox</span></div>
+  <h1>Tudo o que a LAAUSP faz, para testar</h1>
+  <p class="subtitulo">
+    Carteirinha, conferência na mesa, fidelidade da pizzaria, mata-mata e feedback, sem senha e
+    com atletas fictícios. Serve para mostrar a plataforma às atléticas e para treinar quem vai
+    operar a mesa antes do jogo.
+  </p>
+  <p class="aviso" style="max-width:760px">
+    Nada aqui é de verdade: os atletas são os do arquivo de exemplo (nenhum dado real é carregado),
+    nada é enviado e nada fica gravado no aparelho. Recarregar a página zera tudo. Os jogos, sim,
+    são os da tabela oficial — para a conferência valer contra partidas reais.
+  </p>
+
+  <div class="abas" role="tablist">
+    <button class="aba" role="tab" data-painel="painel-geral" aria-selected="true">Visão geral</button>
+    <button class="aba" role="tab" data-painel="painel-atleta" aria-selected="false">Carteirinha</button>
+    <button class="aba" role="tab" data-painel="painel-mesa" aria-selected="false">Mesa do jogo</button>
+    <button class="aba" role="tab" data-painel="painel-pizzaria" aria-selected="false">Pizzaria Europa</button>
+    <button class="aba" role="tab" data-painel="painel-chave" aria-selected="false">Mata-mata</button>
+    <button class="aba" role="tab" data-painel="painel-feedback" aria-selected="false">Feedback</button>
+  </div>
+
+  <!-- ---------- visão geral ---------- -->
+  <div id="painel-geral" class="painel" role="tabpanel">
+    <h2 style="margin-top:0">Para testar aqui</h2>
+    <div class="grade funcoes">
+      <div class="cartao">
+        <h3>Carteirinha digital</h3>
+        <p>Cada filiado tem uma carteirinha com as cores da atlética, selo de regular/irregular e um QR Code próprio. Dá para salvar como imagem e levar no celular, sem sinal.</p>
+        <button type="button" data-ir="painel-atleta">Ver carteirinha</button>
+      </div>
+      <div class="cartao">
+        <h3>Conferência na mesa</h3>
+        <p>O representante lê a carteirinha ou o e-Card USP e o site diz na hora se a pessoa pode entrar na súmula <em>daquela</em> partida, pela regra de filiação dos Artigos 7 e 8.</p>
+        <button type="button" data-ir="painel-mesa">Simular a mesa</button>
+      </div>
+      <div class="cartao">
+        <h3>Vínculo do e-Card</h3>
+        <p>O QR do e-Card só traz o código do cartão, não o número USP. Na primeira leitura o operador liga o código ao atleta, e daí em diante ele é reconhecido.</p>
+        <button type="button" data-ir="painel-mesa" data-cenario="desconhecido">Ler um e-Card novo</button>
+      </div>
+      <div class="cartao">
+        <h3>Fidelidade da pizzaria</h3>
+        <p>Cartela da Pizzaria Europa: 7 pizzas carimbadas pelo caixa e a 8ª é grátis, com desfazer e histórico de resgates.</p>
+        <button type="button" data-ir="painel-pizzaria">Carimbar pizzas</button>
+      </div>
+      <div class="cartao">
+        <h3>Mata-mata</h3>
+        <p>Divisão entre séries Ouro e Prata e o chaveamento do Artigo 16, para qualquer número de equipes, com os byes do §5.</p>
+        <button type="button" data-ir="painel-chave">Montar uma chave</button>
+      </div>
+      <div class="cartao">
+        <h3>Feedback</h3>
+        <p>Sugestões, dúvidas e reclamações vão para a liga pelo Google Forms, por um endpoint ou pelo e-mail. Veja exatamente o que seria enviado.</p>
+        <button type="button" data-ir="painel-feedback">Escrever um recado</button>
+      </div>
+    </div>
+
+    <h2>Já no ar, abertas a todos</h2>
+    <div class="grade funcoes">
+      <div class="cartao">
+        <h3>Tabela dos jogos</h3>
+        <p>Todos os jogos com filtros por modalidade, situação, atlética e busca.</p>
+        <a class="botao" href="jogos.html">Abrir jogos</a>
+      </div>
+      <div class="cartao">
+        <h3>Classificação</h3>
+        <p>Classificação geral e por grupo, com o simulador de mata-mata sobre a tabela real.</p>
+        <a class="botao" href="classificacao.html">Abrir classificação</a>
+      </div>
+      <div class="cartao">
+        <h3>Calendário</h3>
+        <p>Jogos por dia, com filtro de rodada e exportação para a agenda do celular (.ics).</p>
+        <a class="botao" href="calendario.html">Abrir calendário</a>
+      </div>
+      <div class="cartao">
+        <h3>Regulamento</h3>
+        <p>Regulamento Oficial dos Jogos da Liga em PDF, com leitor e download.</p>
+        <a class="botao" href="regulamento.html">Abrir regulamento</a>
+      </div>
+    </div>
+
+    <h2>Ainda não existe</h2>
+    <div class="cartao">
+      <p style="margin:0 0 10px;font-size:14px">
+        Estas funções estão no roadmap e dependem de um backend com login de verdade, que o site
+        estático de hoje não tem:
+      </p>
+      <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.7">
+        <li>Login individual para atleta, representante e diretoria</li>
+        <li>Base real de filiados publicada sem expor dados pessoais</li>
+        <li>Reservas de quadra pelas atléticas</li>
+        <li>Envio de súmulas pelos representantes depois do jogo</li>
+        <li>Carimbos da pizzaria guardados no servidor, à prova de troca de celular</li>
+        <li>Painel da gestão para editar jogos, filiações e resultados</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ---------- carteirinha ---------- -->
+  <div id="painel-atleta" class="painel" role="tabpanel" hidden>
+    <div class="filtros">
+      <label class="campo">Atleta fictício
+        <select id="atleta-atual" data-seletor-atleta></select>
+      </label>
+      <button id="btn-novo" class="secundario" type="button">Criar atleta fictício</button>
+    </div>
+
+    <form id="form-novo" class="cartao" hidden style="margin-bottom:20px;max-width:760px">
+      <h3>Novo atleta fictício</h3>
+      <div class="filtros" style="margin-bottom:12px">
+        <label class="campo">Nome
+          <input type="text" id="novo-nome" required placeholder="Fulana Exemplo">
+        </label>
+        <label class="campo">Atlética
+          <select id="novo-atletica"></select>
+        </label>
+        <label class="campo">Situação
+          <select id="novo-situacao">
+            <option value="REGULAR">Regular</option>
+            <option value="IRREGULAR">Irregular</option>
+          </select>
+        </label>
+        <label class="campo">Nº USP (opcional)
+          <input type="text" id="novo-nusp" inputmode="numeric" placeholder="sem número">
+        </label>
+      </div>
+      <p style="margin:0 0 12px;font-size:13px;color:var(--tinta-fraca)">
+        Sem número USP é o caso da maioria dos filiados de hoje: a carteirinha identifica a pessoa
+        pela atlética e pelo nome.
+      </p>
+      <button type="submit">Criar</button>
+    </form>
+
+    <div class="grade grade--carteirinha" style="align-items:start">
+      <div id="area-carteirinha"></div>
+      <div class="coluna-cartoes">
+        <div class="cartao">
+          <h3>O que dá para fazer</h3>
+          <p id="aviso-situacao" style="margin:0 0 12px;font-size:14px"></p>
+          <div class="linha-botoes">
+            <button id="btn-imagem" type="button">Salvar como imagem</button>
+            <button id="btn-para-mesa" class="secundario" type="button">Apresentar na mesa</button>
+            <button id="btn-para-pizzaria" class="secundario" type="button">Abrir a cartela</button>
+          </div>
+          <p id="aviso-carteirinha" style="margin:12px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
+        </div>
+        <div class="cartao">
+          <h3>Conteúdo do QR</h3>
+          <p style="margin:0 0 8px;font-size:13px;color:var(--tinta-fraca)">
+            É isto que o scanner da mesa lê. Não leva nome nem e-mail, só a temporada e o identificador.
+          </p>
+          <pre class="carga" id="payload-qr"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- mesa ---------- -->
+  <div id="painel-mesa" class="painel" role="tabpanel" hidden>
+    <div class="cartao" style="margin-bottom:16px">
+      <h3>Cenários prontos</h3>
+      <p style="margin:0 0 10px;font-size:14px;color:var(--tinta-fraca)">
+        Um clique escolhe o jogo e o atleta e faz a leitura — para ver cada resposta que a mesa pode dar.
+      </p>
+      <div class="linha-botoes cenarios">
+        <button type="button" data-cenario="liberado">Liberado para jogar</button>
+        <button type="button" data-cenario="irregular" class="secundario">Filiação irregular</button>
+        <button type="button" data-cenario="outra-equipe" class="secundario">De outra atlética</button>
+        <button type="button" data-cenario="ecard" class="secundario">e-Card já vinculado</button>
+        <button type="button" data-cenario="desconhecido" class="secundario">e-Card desconhecido</button>
+      </div>
+    </div>
+
+    <div class="filtros">
+      <label class="campo">Jogo
+        <select id="mesa-jogo"></select>
+      </label>
+      <label class="campo">Quem chega na mesa
+        <select id="mesa-atleta" data-seletor-atleta></select>
+      </label>
+      <button id="btn-apresentar" type="button">Ler a carteirinha</button>
+      <button id="btn-ecard" class="secundario" type="button">Ler o e-Card</button>
+      <p id="status-jogo" style="margin:0;font-size:13px;color:var(--tinta-fraca);flex-basis:100%"></p>
+    </div>
+
+    <div class="scanner">
+      <div>
+        <div class="visor" id="visor">
+          <p>Escolha um atleta e clique em <strong>Ler a carteirinha</strong>. O QR é desenhado aqui e
+            lido pelo mesmo leitor que a mesa usa com a câmera.</p>
+        </div>
+        <div class="linha-botoes" style="margin-top:12px">
+          <button id="btn-camera" class="secundario" type="button">Usar a câmera</button>
+          <button id="btn-foto" class="secundario" type="button">Ler de uma foto</button>
+          <input type="file" id="arquivo" accept="image/*" hidden>
+        </div>
+        <p id="status-camera" style="margin:8px 0 0;font-size:13px;color:var(--tinta-fraca)">
+          A câmera lê qualquer carteirinha desta página aberta em outro aparelho.
+        </p>
+      </div>
+
+      <div>
+        <div id="resultado" class="resultado">
+          <p class="resultado__titulo">Aguardando leitura</p>
+          <p style="margin:0;color:var(--tinta-fraca)">O resultado da conferência aparece aqui.</p>
+        </div>
+
+        <div class="cartao" style="margin-top:16px">
+          <h3>Conferência manual</h3>
+          <div class="linha-botoes">
+            <input type="text" id="manual" placeholder="Nº USP, código do e-Card ou LAAUSP|…">
+            <button id="btn-manual" class="secundario" type="button">Conferir</button>
+          </div>
+        </div>
+
+        <div class="cartao" style="margin-top:16px" id="caixa-vinculo" hidden>
+          <h3>Vincular e-Card a um atleta</h3>
+          <p style="margin:0 0 10px;color:var(--tinta-fraca);font-size:14px">
+            Este código de cartão <strong id="vinculo-codigo"></strong> ainda não é de ninguém.
+            Escolha o dono e a próxima leitura já o reconhece.
+          </p>
+          <div class="linha-botoes">
+            <select id="vinculo-atleta" data-seletor-atleta></select>
+            <button id="btn-vincular" type="button">Vincular e ler de novo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Leituras <span id="contador" class="etiqueta">0</span></h2>
+    <div class="linha-botoes" style="margin-bottom:12px">
+      <button id="btn-exportar" class="secundario" type="button">Exportar CSV</button>
+      <button id="btn-limpar" class="secundario" type="button">Limpar</button>
+    </div>
+    <ul class="registros" id="registros"></ul>
+  </div>
+
+  <!-- ---------- pizzaria ---------- -->
+  <div id="painel-pizzaria" class="painel" role="tabpanel" hidden>
+    <div class="filtros">
+      <label class="campo">Atleta fictício
+        <select id="pizzaria-atleta" data-seletor-atleta></select>
+      </label>
+    </div>
+    <div class="grade" style="align-items:start">
+      <div class="cartao cartao--pizzaria">
+        <div class="faixa-retro" style="margin:-16px -16px 14px"></div>
+        <h3>Pizzaria Europa · Clube do Atleta</h3>
+        <p style="margin:0 0 16px;font-size:14px">
+          A cada 7 pizzas consumidas, a 8ª é por nossa conta.
+        </p>
+        <div id="cartela"></div>
+        <p id="status-fidelidade" style="margin:16px 0 0;font-weight:650"></p>
+      </div>
+      <div class="cartao">
+        <h3>Caixa da pizzaria</h3>
+        <p style="margin:0 0 12px;font-size:14px;color:var(--tinta-fraca)">
+          No site de verdade o caixa digita a senha da pizzaria antes de cada carimbo. No sandbox
+          não precisa.
+        </p>
+        <div class="linha-botoes">
+          <button id="btn-carimbar" type="button">Carimbar pizza</button>
+          <button id="btn-resgatar" type="button" hidden>Resgatar pizza grátis</button>
+          <button id="btn-desfazer" class="secundario" type="button">Desfazer último</button>
+        </div>
+        <p id="historico" style="margin:14px 0 0;font-size:13px;color:var(--tinta-fraca)"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- mata-mata ---------- -->
+  <div id="painel-chave" class="painel" role="tabpanel" hidden>
+    <div class="filtros">
+      <label class="campo">Equipes classificadas
+        <input type="number" id="n-equipes" min="2" max="32" step="1" value="17">
+      </label>
+      <a class="botao" href="classificacao.html" style="margin-left:auto">Simular com a classificação real</a>
+    </div>
+    <p id="regra" class="aviso" style="max-width:760px"></p>
+    <div class="grade" style="align-items:start">
+      <div class="cartao">
+        <h3>Série Ouro — primeira fase</h3>
+        <ul class="confrontos" id="confrontos-ouro"></ul>
+      </div>
+      <div class="cartao">
+        <h3>Série Prata — primeira fase</h3>
+        <ul class="confrontos" id="confrontos-prata"></ul>
+      </div>
+    </div>
+    <p style="margin:16px 0 0;font-size:13px;color:var(--tinta-fraca);max-width:760px">
+      Com 17 inscritas, nem o §1 nem o §2 do Artigo 16 se aplicam e só vale o teto de 8 na Ouro.
+      Essa dúvida está em aberto com a liga (D1 no roadmap).
+    </p>
+  </div>
+
+  <!-- ---------- feedback ---------- -->
+  <div id="painel-feedback" class="painel" role="tabpanel" hidden>
+    <div class="grade" style="align-items:start">
+      <form id="form-feedback" class="cartao">
+        <h3>Recado de teste</h3>
+        <label class="campo" style="margin-bottom:12px">Assunto
+          <select id="fb-tipo"></select>
+        </label>
+        <label class="campo" style="margin-bottom:12px">Mensagem
+          <textarea id="fb-mensagem" required>Testando o canal de feedback pelo sandbox.</textarea>
+        </label>
+        <label class="campo" style="margin-bottom:16px">Contato (opcional)
+          <input type="text" id="fb-contato" placeholder="e-mail ou telefone">
+        </label>
+        <button type="submit">Ver o que seria enviado</button>
+      </form>
+      <div class="cartao">
+        <h3>Para onde iria</h3>
+        <p id="fb-caminho" style="margin:0 0 12px;font-size:14px">Preencha e clique no botão ao lado.</p>
+        <pre class="carga" id="fb-carga" hidden></pre>
+        <p style="margin:12px 0 0;font-size:13px;color:var(--tinta-fraca)">
+          Nada sai desta página. Para mandar um recado de verdade, use o ícone de chat no canto da tela.
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape"><div>LAAUSP · sandbox com dados fictícios</div></footer>
+
+<script type="module">
+import { carregarLiga, ordenarPorData, todosOsJogos, el, marcarNavegacao } from "./assets/js/liga.js";
+import { montarFeedback, TIPOS, rotuloDoTipo } from "./assets/js/feedback.js";
+import { carregarAtleticas, identidadeDa, idDoAtleta, estaRegular } from "./assets/js/atletas.js";
+import { montarCarteirinha, payloadDaCarteirinha, desenharQR } from "./assets/js/carteirinha.js";
+import { baixarCarteirinhaPNG } from "./assets/js/cartao-imagem.js";
+import { montarCartela, completo, CARIMBOS_PARA_PREMIO } from "./assets/js/fidelidade.js";
+import { lerCodigo, lerCodigoDeArquivo, interpretarECard } from "./assets/js/scanner.js";
+import { carregarCores, acharAtletica, semAcento } from "./assets/js/cores.js";
+import { dividirSeries, montarChave, propagar } from "./assets/js/mata-mata.js";
+import { FEEDBACK_GOOGLE_FORM, FEEDBACK_ENDPOINT, EMAIL_FEEDBACK } from "./assets/js/config.js";
+
+marcarNavegacao();
+montarFeedback();
+
+/* Todo o estado do sandbox mora nesta aba. Nada vai para o localStorage, para
+   não misturar com a cartela, as leituras e o elenco de quem usa o site de
+   verdade no mesmo aparelho. A base é sempre o arquivo de exemplo, mesmo que
+   data/filiados.json exista no servidor. */
+
+const exemplo = await (await fetch("data/filiados.exemplo.json", { cache: "no-cache" })).json();
+const temporada = exemplo.temporada;
+const atletas = exemplo.atletas.map((a) => ({ ...a }));
+const atleticas = await carregarAtleticas();
+const cores = await carregarCores().catch(() => null);
+const liga = await carregarLiga();
+const jogos = ordenarPorData(todosOsJogos(liga));
+
+const cartelas = new Map();
+let registros = [];
+let atualId = idDoAtleta(atletas[0]);
+
+const atual = () => atletas.find((a) => idDoAtleta(a) === atualId);
+const porId = (id) => atletas.find((a) => idDoAtleta(a) === id);
+
+/* ---------- abas ---------- */
+
+function abrirAba(painel) {
+  for (const aba of document.querySelectorAll(".aba")) {
+    const ativa = aba.dataset.painel === painel;
+    aba.setAttribute("aria-selected", String(ativa));
+    document.getElementById(aba.dataset.painel).hidden = !ativa;
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+for (const aba of document.querySelectorAll(".aba")) {
+  aba.addEventListener("click", () => abrirAba(aba.dataset.painel));
+}
+
+for (const botao of document.querySelectorAll("[data-ir]")) {
+  botao.addEventListener("click", () => {
+    abrirAba(botao.dataset.ir);
+    if (botao.dataset.cenario) rodarCenario(botao.dataset.cenario);
+  });
+}
+
+/* ---------- seletores de atleta ---------- */
+
+function preencherSeletores() {
+  for (const seletor of document.querySelectorAll("[data-seletor-atleta]")) {
+    const anterior = seletor.value;
+    seletor.replaceChildren(...atletas.map((a) => el("option", {
+      value: idDoAtleta(a),
+      text: `${a.nome} · ${a.atletica}${estaRegular(a) ? "" : " · irregular"}`,
+    })));
+    seletor.value = seletor.id === "vinculo-atleta" ? (anterior || atualId) : atualId;
+  }
+}
+
+function escolherAtleta(id) {
+  atualId = id;
+  for (const seletor of document.querySelectorAll("[data-seletor-atleta]")) {
+    if (seletor.id !== "vinculo-atleta") seletor.value = id;
+  }
+  renderizarCarteirinha();
+  renderizarCartela();
+  sugerirJogo();
+}
+
+for (const id of ["atleta-atual", "pizzaria-atleta", "mesa-atleta"]) {
+  document.getElementById(id).addEventListener("change", (e) => escolherAtleta(e.target.value));
+}
+
+/* ---------- carteirinha ---------- */
+
+const seletorNovaAtletica = document.getElementById("novo-atletica");
+seletorNovaAtletica.append(...atleticas.map((a) => el("option", { value: a.sigla, text: a.sigla })));
+
+document.getElementById("btn-novo").addEventListener("click", () => {
+  const form = document.getElementById("form-novo");
+  form.hidden = !form.hidden;
+});
+
+document.getElementById("form-novo").addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const nome = document.getElementById("novo-nome").value.trim();
+  if (!nome) return;
+  const novo = {
+    atletica: seletorNovaAtletica.value,
+    nome,
+    nusp: document.getElementById("novo-nusp").value.replace(/\D/g, ""),
+    codigoEcard: "",
+    vinculo: "Aluno - Graduação",
+    modalidades: [],
+    situacao: document.getElementById("novo-situacao").value,
+  };
+  // Mesmo identificador de outro atleta faria a carteirinha apontar para ele.
+  if (porId(idDoAtleta(novo))) {
+    alert("Já existe um atleta fictício com esse número USP ou com esse nome nessa atlética.");
+    return;
+  }
+  atletas.push(novo);
+  evento.target.reset();
+  evento.target.hidden = true;
+  preencherSeletores();
+  escolherAtleta(idDoAtleta(novo));
+});
+
+async function renderizarCarteirinha() {
+  const atleta = atual();
+  const identidade = identidadeDa(atleta.atletica, atleticas);
+  document.getElementById("area-carteirinha")
+    .replaceChildren(await montarCarteirinha(atleta, identidade, temporada));
+  document.getElementById("payload-qr").textContent = payloadDaCarteirinha(atleta, temporada);
+
+  const aviso = document.getElementById("aviso-situacao");
+  aviso.textContent = estaRegular(atleta)
+    ? "Filiação regular: pode ser escalado por qualquer equipe que inclua a atlética."
+    : "Filiação irregular: a mesa vai barrar em qualquer partida.";
+  aviso.style.color = estaRegular(atleta) ? "var(--verde)" : "var(--vermelho)";
+  document.getElementById("aviso-carteirinha").textContent = "";
+}
+
+document.getElementById("btn-imagem").addEventListener("click", async () => {
+  const aviso = document.getElementById("aviso-carteirinha");
+  try {
+    const atleta = atual();
+    const nome = await baixarCarteirinhaPNG(atleta, identidadeDa(atleta.atletica, atleticas), temporada);
+    aviso.textContent = `Imagem salva como ${nome}.`;
+  } catch (erro) {
+    aviso.textContent = `Não deu para gerar a imagem: ${erro.message}`;
+  }
+});
+
+document.getElementById("btn-para-mesa").addEventListener("click", () => {
+  abrirAba("painel-mesa");
+  apresentarCarteirinha();
+});
+document.getElementById("btn-para-pizzaria").addEventListener("click", () => abrirAba("painel-pizzaria"));
+
+/* ---------- mesa: quem pode jogar a partida ---------- */
+
+/* Mesma regra da área restrita (Artigo 7 e Artigo 8, § 1º): pode entrar na súmula
+   quem é filiado regular de uma das atléticas que formam a equipe. */
+
+const seletorJogo = document.getElementById("mesa-jogo");
+seletorJogo.append(el("option", { value: "", text: "Sem jogo vinculado" }),
+  ...jogos.map((j) => el("option", {
+    value: j.codigo,
+    text: `${j.codigo} — ${j.equipeA || "A definir"} x ${j.equipeB || "A definir"} (${j.data || "s/ data"})`,
+  })));
+
+function siglasDaEquipe(equipe) {
+  return (equipe || "").split("+").map((p) => p.trim()).filter(Boolean)
+    .map((sigla) => semAcento(acharAtletica(sigla, cores)?.sigla || sigla));
+}
+
+function jogoAtual() {
+  return jogos.find((j) => j.codigo === seletorJogo.value) || null;
+}
+
+function equipeDe(atleta, jogo) {
+  if (!jogo) return null;
+  return [jogo.equipeA, jogo.equipeB].find((equipe) =>
+    siglasDaEquipe(equipe).includes(semAcento(atleta.atletica))) || null;
+}
+
+function jogoCom(atleta, { contra = false } = {}) {
+  return jogos.find((j) => j.equipeA && j.equipeB && Boolean(equipeDe(atleta, j)) !== contra);
+}
+
+function sugerirJogo() {
+  const jogo = jogoAtual();
+  if (jogo && equipeDe(atual(), jogo)) return atualizarStatusJogo();
+  const sugerido = jogoCom(atual());
+  if (sugerido) seletorJogo.value = sugerido.codigo;
+  atualizarStatusJogo();
+}
+
+function atualizarStatusJogo() {
+  const jogo = jogoAtual();
+  const status = document.getElementById("status-jogo");
+  if (!jogo) {
+    status.textContent = "Sem jogo escolhido: a conferência diz só se a pessoa está filiada e regular.";
+    return;
+  }
+  const contagem = [jogo.equipeA, jogo.equipeB].filter(Boolean).map((equipe) => {
+    const n = atletas.filter((a) => estaRegular(a) && equipeDe(a, { equipeA: equipe })).length;
+    return `${equipe}: ${n}`;
+  });
+  status.textContent = `${jogo.modalidadeNome} · ${contagem.join(" · ")} atleta(s) fictício(s) regular(es).`;
+}
+
+seletorJogo.addEventListener("change", atualizarStatusJogo);
+
+/* ---------- mesa: leitura ---------- */
+
+const visor = document.getElementById("visor");
+const caixaResultado = document.getElementById("resultado");
+let ultimoCodigoDesconhecido = "";
+
+/** Desenha o QR no visor e o lê de volta com o leitor da mesa, sem atalho. */
+async function lerQRDesenhado(conteudo, legenda) {
+  pararCamera();
+  const canvas = await desenharQR(conteudo, 240);
+  visor.replaceChildren(el("div", { style: "text-align:center" }, canvas, el("p", { text: legenda })));
+  const leitura = await lerCodigo(canvas, canvas.width, canvas.height);
+  if (!leitura) {
+    mostrarResultado("erro", "O leitor não achou o código", { Conteúdo: conteudo });
+    return;
+  }
+  processar(leitura.valor, "simulada");
+}
+
+function apresentarCarteirinha() {
+  const atleta = porId(document.getElementById("mesa-atleta").value);
+  return lerQRDesenhado(payloadDaCarteirinha(atleta, temporada), `Carteirinha de ${atleta.nome}`);
+}
+
+/** Código de cartão estável e fictício para quem ainda não tem e-Card vinculado. */
+function codigoFicticio(atleta) {
+  let h = 0;
+  for (const c of idDoAtleta(atleta)) h = (h * 31 + c.charCodeAt(0)) % 1e9;
+  return `8${String(h).padStart(9, "0")}`;
+}
+
+function apresentarECard() {
+  const atleta = porId(document.getElementById("mesa-atleta").value);
+  const codigo = atleta.codigoEcard || codigoFicticio(atleta);
+  return lerQRDesenhado(codigo, `e-Card USP de ${atleta.nome} (o QR só traz o código do cartão)`);
+}
+
+document.getElementById("btn-apresentar").addEventListener("click", apresentarCarteirinha);
+document.getElementById("btn-ecard").addEventListener("click", apresentarECard);
+
+document.getElementById("btn-manual").addEventListener("click", () => {
+  const bruto = document.getElementById("manual").value.trim();
+  const valor = /^LAAUSP\|/i.test(bruto) ? bruto : bruto.replace(/\D/g, "");
+  if (valor) processar(valor, "manual");
+});
+
+document.getElementById("btn-foto").addEventListener("click", () => document.getElementById("arquivo").click());
+document.getElementById("arquivo").addEventListener("change", async (evento) => {
+  const arquivo = evento.target.files[0];
+  if (!arquivo) return;
+  try {
+    const leitura = await lerCodigoDeArquivo(arquivo);
+    if (leitura) processar(leitura.valor, "foto");
+    else mostrarResultado("erro", "Nenhum código encontrado na imagem", { Arquivo: arquivo.name });
+  } catch (erro) {
+    mostrarResultado("erro", "Falha ao ler a imagem", { Erro: erro.message });
+  }
+  evento.target.value = "";
+});
+
+/* Câmera de verdade: lê a carteirinha do sandbox aberta em outro aparelho. */
+let fluxo = null;
+let ultimoLido = "";
+
+document.getElementById("btn-camera").addEventListener("click", () => (fluxo ? pararCamera() : ligarCamera()));
+
+async function ligarCamera() {
+  const status = document.getElementById("status-camera");
+  try {
+    fluxo = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 } }, audio: false });
+    const video = el("video", { playsinline: "", muted: "" });
+    video.srcObject = fluxo;
+    visor.replaceChildren(video);
+    await video.play();
+    document.getElementById("btn-camera").textContent = "Desligar câmera";
+    status.textContent = "Câmera ligada — aponte para uma carteirinha ou um e-Card.";
+    while (fluxo) {
+      if (video.readyState >= 2 && video.videoWidth) {
+        const leitura = await lerCodigo(video, video.videoWidth, video.videoHeight).catch(() => null);
+        if (leitura && leitura.valor !== ultimoLido) {
+          ultimoLido = leitura.valor;
+          processar(leitura.valor, "camera");
+          setTimeout(() => { ultimoLido = ""; }, 2500);
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, 180));
+    }
+  } catch (erro) {
+    pararCamera();
+    status.textContent = `Não foi possível abrir a câmera (${erro.name}). No celular, o site precisa estar em HTTPS.`;
+  }
+}
+
+function pararCamera() {
+  if (!fluxo) return;
+  for (const trilha of fluxo.getTracks()) trilha.stop();
+  fluxo = null;
+  document.getElementById("btn-camera").textContent = "Usar a câmera";
+  visor.replaceChildren(el("p", { text: "Câmera desligada." }));
+}
+
+/* ---------- mesa: conferência ---------- */
+
+const ORIGEM = { simulada: "Leitura simulada", camera: "Câmera", foto: "Foto", manual: "Digitado" };
+
+function processar(payload, origem) {
+  const leitura = interpretarECard(payload);
+  let atleta = null;
+  let documento = "e-Card USP";
+  if (leitura.tipo === "carteirinha") {
+    documento = `Carteirinha LAAUSP ${leitura.temporada}`;
+    atleta = porId(leitura.idAtleta);
+  } else {
+    atleta = atletas.find((a) =>
+      (leitura.codigo && a.codigoEcard && a.codigoEcard === leitura.codigo) ||
+      (leitura.nusp && a.nusp && a.nusp === leitura.nusp));
+  }
+
+  const jogo = jogoAtual();
+  const equipe = atleta && equipeDe(atleta, jogo);
+  let nivel = "ok";
+  let titulo = "Liberado para jogar";
+  if (!atleta && leitura.tipo === "carteirinha") {
+    nivel = "alerta";
+    titulo = "Carteirinha não encontrada na filiação";
+  } else if (!atleta) {
+    nivel = "alerta";
+    titulo = "Não encontrado na filiação";
+  } else if (!estaRegular(atleta)) {
+    nivel = "erro";
+    titulo = `Impedido: filiação ${atleta.situacao}`;
+  } else if (jogo && !equipe) {
+    nivel = "erro";
+    titulo = "Não é de nenhuma das equipes deste jogo";
+  }
+
+  ultimoCodigoDesconhecido = !atleta && leitura.tipo !== "carteirinha" ? leitura.codigo : "";
+  const caixa = document.getElementById("caixa-vinculo");
+  caixa.hidden = !ultimoCodigoDesconhecido;
+  document.getElementById("vinculo-codigo").textContent = ultimoCodigoDesconhecido;
+  // Quem apresentou o cartão é o dono mais provável.
+  if (ultimoCodigoDesconhecido) {
+    document.getElementById("vinculo-atleta").value = document.getElementById("mesa-atleta").value;
+  }
+
+  mostrarResultado(nivel, titulo, {
+    Documento: documento,
+    "Código do e-Card": leitura.tipo === "carteirinha" ? "—" : (leitura.codigo || "—"),
+    "Número USP": atleta?.nusp || leitura.nusp || "—",
+    Atleta: atleta?.nome || "—",
+    Atlética: atleta?.atletica || "—",
+    Jogo: jogo ? `${jogo.codigo} — ${jogo.equipeA} x ${jogo.equipeB}` : "—",
+    "Nesta partida": jogo ? (equipe ? `joga por ${equipe}` : "não é das equipes em quadra") : "—",
+    Origem: ORIGEM[origem],
+    "Conteúdo lido": payload,
+  });
+
+  registros.unshift({
+    quando: new Date().toISOString(),
+    nusp: atleta?.nusp || leitura.nusp,
+    nome: atleta?.nome || "",
+    atletica: atleta?.atletica || "",
+    jogo: jogo?.codigo || "",
+    situacao: titulo,
+    origem,
+    payload,
+  });
+  renderizarRegistros();
+  if (navigator.vibrate) navigator.vibrate(nivel === "ok" ? 60 : [60, 60, 60]);
+}
+
+function mostrarResultado(nivel, titulo, detalhes) {
+  caixaResultado.className = `resultado resultado--${nivel}`;
+  caixaResultado.replaceChildren(
+    el("p", { class: "resultado__titulo", text: titulo }),
+    el("dl", {}, Object.entries(detalhes).flatMap(([chave, valor]) => [
+      el("dt", { text: chave }), el("dd", { text: String(valor) })])));
+}
+
+document.getElementById("btn-vincular").addEventListener("click", () => {
+  if (!ultimoCodigoDesconhecido) return;
+  const dono = porId(document.getElementById("vinculo-atleta").value);
+  // Um cartão tem um dono só: tira o código de quem o tinha antes.
+  for (const a of atletas) if (a.codigoEcard === ultimoCodigoDesconhecido) a.codigoEcard = "";
+  dono.codigoEcard = ultimoCodigoDesconhecido;
+  processar(ultimoCodigoDesconhecido, "manual");
+});
+
+function renderizarRegistros() {
+  document.getElementById("contador").textContent = String(registros.length);
+  const lista = document.getElementById("registros");
+  if (!registros.length) {
+    lista.replaceChildren(el("li", { class: "vazio", text: "Nenhuma leitura ainda." }));
+    return;
+  }
+  lista.replaceChildren(...registros.slice(0, 40).map((r) => el("li", {},
+    el("strong", { text: r.nusp || r.nome || "sem identificação" }),
+    ` — ${r.nome || "atleta não identificado"} · ${r.situacao}`,
+    el("div", { style: "color:var(--tinta-fraca)",
+      text: `${new Date(r.quando).toLocaleTimeString("pt-BR")}${r.jogo ? ` · ${r.jogo}` : ""} · ${ORIGEM[r.origem]}` }))));
+}
+
+document.getElementById("btn-exportar").addEventListener("click", () => {
+  const colunas = ["quando", "nusp", "nome", "atletica", "jogo", "situacao", "origem", "payload"];
+  const escapar = (valor) => `"${String(valor ?? "").replace(/"/g, '""')}"`;
+  const csv = [colunas.join(","), ...registros.map((r) => colunas.map((c) => escapar(r[c])).join(","))].join("\r\n");
+  const url = URL.createObjectURL(new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" }));
+  const link = el("a", { href: url, download: "leituras-sandbox.csv" });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("btn-limpar").addEventListener("click", () => {
+  registros = [];
+  renderizarRegistros();
+});
+
+/* ---------- mesa: cenários prontos ---------- */
+
+async function rodarCenario(nome) {
+  const regulares = atletas.filter(estaRegular);
+  const comEcard = regulares.find((a) => a.codigoEcard);
+  const escolhas = {
+    liberado: () => [regulares[0], jogoCom(regulares[0]), "carteirinha"],
+    irregular: () => {
+      const a = atletas.find((x) => !estaRegular(x));
+      return [a, jogoCom(a), "carteirinha"];
+    },
+    "outra-equipe": () => [regulares[0], jogoCom(regulares[0], { contra: true }), "carteirinha"],
+    ecard: () => [comEcard, jogoCom(comEcard), "ecard"],
+    desconhecido: () => {
+      const a = regulares.find((x) => !x.codigoEcard);
+      return [a, jogoCom(a), "ecard"];
+    },
+  };
+  const [atleta, jogo, documento] = escolhas[nome]();
+  if (!atleta) return;
+  escolherAtleta(idDoAtleta(atleta));
+  seletorJogo.value = jogo?.codigo || "";
+  atualizarStatusJogo();
+  if (documento === "ecard") await apresentarECard();
+  else await apresentarCarteirinha();
+}
+
+for (const botao of document.querySelectorAll("#painel-mesa [data-cenario]")) {
+  botao.addEventListener("click", () => rodarCenario(botao.dataset.cenario));
+}
+
+/* ---------- pizzaria ---------- */
+
+function cartelaDe(id) {
+  if (!cartelas.has(id)) cartelas.set(id, { carimbos: [], resgates: [] });
+  return cartelas.get(id);
+}
+
+function renderizarCartela() {
+  const cartao = cartelaDe(atualId);
+  document.getElementById("cartela").replaceChildren(montarCartela(cartao));
+  const faltam = CARIMBOS_PARA_PREMIO - cartao.carimbos.length;
+  document.getElementById("status-fidelidade").textContent = completo(cartao)
+    ? "Cartela completa — a 8ª pizza é por conta da casa!"
+    : `${cartao.carimbos.length} de ${CARIMBOS_PARA_PREMIO} carimbos · ` +
+      `${faltam === 1 ? "falta 1 pizza" : `faltam ${faltam} pizzas`} para a grátis.`;
+  document.getElementById("btn-resgatar").hidden = !completo(cartao);
+  document.getElementById("btn-carimbar").disabled = completo(cartao);
+  document.getElementById("btn-desfazer").disabled = !cartao.carimbos.length;
+  document.getElementById("historico").textContent = cartao.resgates.length
+    ? `${cartao.resgates.length} pizza(s) grátis resgatada(s) nesta sessão.`
+    : "Nenhum resgate ainda.";
+}
+
+document.getElementById("btn-carimbar").addEventListener("click", () => {
+  const cartao = cartelaDe(atualId);
+  if (!completo(cartao)) cartao.carimbos.push(new Date().toISOString());
+  renderizarCartela();
+});
+document.getElementById("btn-desfazer").addEventListener("click", () => {
+  cartelaDe(atualId).carimbos.pop();
+  renderizarCartela();
+});
+document.getElementById("btn-resgatar").addEventListener("click", () => {
+  const cartao = cartelaDe(atualId);
+  cartao.resgates.push({ quando: new Date().toISOString(), carimbos: cartao.carimbos });
+  cartao.carimbos = [];
+  renderizarCartela();
+});
+
+/* ---------- mata-mata ---------- */
+
+const campoEquipes = document.getElementById("n-equipes");
+
+function listarConfrontos(alvo, equipes) {
+  const fases = propagar(montarChave(equipes));
+  if (!fases.length) {
+    alvo.replaceChildren(el("li", { class: "vazio", style: "padding:12px 0", text: "Sem equipes suficientes para uma chave." }));
+    return;
+  }
+  alvo.replaceChildren(...fases[0].map(({ a, b }) => el("li", {},
+    a && b
+      ? [el("span", { class: "seed", text: a.nome }), "×", el("span", { class: "seed", text: b.nome })]
+      : [el("span", { class: "seed", text: (a || b).nome }), "passa direto (§5)"])));
+}
+
+function renderizarChave() {
+  const total = Math.max(2, Math.min(32, Number(campoEquipes.value) || 2));
+  const divisao = dividirSeries(total);
+  document.getElementById("regra").textContent =
+    `${total} equipes — ${divisao.regra}. Série Ouro com ${divisao.ouro}, Prata com ${divisao.prata}.`;
+  // Nomeadas pela colocação geral, para a Prata não recomeçar do 1º.
+  const colocacoes = Array.from({ length: total }, (_, i) => `${i + 1}º`);
+  listarConfrontos(document.getElementById("confrontos-ouro"), colocacoes.slice(0, divisao.ouro));
+  listarConfrontos(document.getElementById("confrontos-prata"), colocacoes.slice(divisao.ouro));
+}
+
+campoEquipes.addEventListener("input", renderizarChave);
+
+/* ---------- feedback ---------- */
+
+const seletorTipo = document.getElementById("fb-tipo");
+seletorTipo.append(...TIPOS.map(([valor, rotulo]) => el("option", { value: valor, text: rotulo })));
+
+document.getElementById("form-feedback").addEventListener("submit", (evento) => {
+  evento.preventDefault();
+  const registro = {
+    tipo: seletorTipo.value,
+    mensagem: document.getElementById("fb-mensagem").value.trim(),
+    contato: document.getElementById("fb-contato").value.trim(),
+    pagina: "sandbox.html",
+    quando: new Date().toISOString(),
+  };
+  const caminho = document.getElementById("fb-caminho");
+  const carga = document.getElementById("fb-carga");
+  carga.hidden = false;
+
+  // Mesma ordem de feedback.js: Google Forms, endpoint, e-mail.
+  if (FEEDBACK_GOOGLE_FORM.url && FEEDBACK_GOOGLE_FORM.campos?.mensagem) {
+    const campos = Object.entries(FEEDBACK_GOOGLE_FORM.campos)
+      .filter(([chave, entry]) => entry && registro[chave])
+      .map(([chave, entry]) => `${entry}=${registro[chave]}`);
+    caminho.textContent = `Iria para o Google Forms da liga (${FEEDBACK_GOOGLE_FORM.url}) e cairia na planilha de respostas.`;
+    carga.textContent = campos.join("\n");
+  } else if (FEEDBACK_ENDPOINT) {
+    caminho.textContent = `Iria em JSON para ${FEEDBACK_ENDPOINT}.`;
+    carga.textContent = JSON.stringify(registro, null, 2);
+  } else {
+    caminho.textContent = `O site ainda não tem formulário configurado: abriria o e-mail da pessoa, já ` +
+      `preenchido para ${EMAIL_FEEDBACK}. Se ela não apertar "enviar", o recado se perde.`;
+    carga.textContent = [
+      `Para: ${EMAIL_FEEDBACK}`,
+      `Assunto: [Site LAAUSP] ${rotuloDoTipo(registro.tipo)} — ${registro.pagina}`,
+      "",
+      `Tipo: ${rotuloDoTipo(registro.tipo)}`,
+      `Página: ${registro.pagina}`,
+      `Contato: ${registro.contato || "não informado"}`,
+      "",
+      registro.mensagem,
+    ].join("\n");
+  }
+});
+
+/* ---------- início ---------- */
+
+preencherSeletores();
+renderizarRegistros();
+renderizarChave();
+escolherAtleta(atualId);
+</script>
+</body>
+</html>
