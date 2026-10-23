@@ -26,7 +26,7 @@ python3 -m http.server 8000     # http://localhost:8000
 | `contato.html` | Feedback e solicitações: canal público para sugestões, solicitações, dúvidas e reclamações. |
 | `atleta.html` | Área do atleta: carteirinha digital da LAAUSP e cartela de fidelidade da Pizzaria Europa. |
 | `restrito.html` | Área do representante: leitura do QR do e-Card **e da carteirinha LAAUSP**, conferência contra a lista de inscritos e registro das leituras. |
-| `sandbox.html` | Sandbox: todas as funções acima para testar sem senha, com os atletas fictícios de `data/filiados.exemplo.json` — carteirinha, conferência na mesa (com cenários prontos), vínculo do e-Card, fidelidade, mata-mata e feedback. Nada é enviado nem gravado no aparelho. |
+| `sandbox.html` | Sandbox: todas as funções acima para testar sem senha, com os atletas fictícios de `data/filiados.exemplo.json` — carteirinha, conferência na mesa (com cenários prontos), vínculo do e-Card, fidelidade, mata-mata, reservas de quadra pelo critério IPR (pedidos fictícios de `data/reservas.exemplo.json`) e feedback. Nada é enviado nem gravado no aparelho. |
 
 ## Dados dos jogos
 
@@ -292,6 +292,22 @@ precisa dele.
 > sem baixá-la. Se isso não for aceitável (e provavelmente não é, pela LGPD
 > citada no próprio formulário), a área do atleta precisa do backend com login
 > antes de ir ao ar com os dados reais.
+
+## Reservas de quadra (proposta IPR)
+
+`assets/js/reservas.js` implementa a proposta da gestão para o CdP (Arts. 35-A a
+35-D, ainda não votados): o Índice de Prioridade de Reserva (IPR, de 0 a 100) e a
+alocação em cinco regras — Seleção USP primeiro, 1 hora para todo pedido dentro
+do horário pedido, módulo por IPR, depois deslocamento de até 1 hora, velódromo e
+meia quadra a partir do menor IPR, sem sorteio e sem técnico em dois treinos ao
+mesmo tempo. O espaço que sobra vira extensão para 1h30.
+
+Hoje só o sandbox usa o módulo, com os pedidos fictícios de
+`data/reservas.exemplo.json`. Os testes ficam em `tests/`:
+
+```bash
+node --test tests/*.test.mjs
+```
 
 ## Publicação
 
