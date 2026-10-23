@@ -69,7 +69,7 @@ anônima. O resto (esquema, RLS, migração dos dados, cliente no site) eu monto
 | 4 | Caixa de entrada do feedback | Hoje abre o e-mail da pessoa; quem não apertar "enviar" some sem deixar rastro | Google Forms (decidido) ou backend |
 | 5 | Aba própria de classificação | Hoje ela fica no fim de `jogos.html`, embaixo de 169 jogos e com 11 modalidades empilhadas | — |
 | 6 | Simulador de mata-mata | Artigo 16 define séries Ouro/Prata e o chaveamento | Dúvida D1 |
-| 7 | Atualização automática dos dados | Segunda 18h e sexta 23h, pedido da liga | Fazer os scripts buscarem a planilha (ver abaixo) |
+| 7 | Atualização automática dos dados | Segunda 18h e sexta 23h, pedido da liga. Caso real (grupo da gestão, out/2026): atleta da EEL filiado e pago havia 3 semanas foi barrado por 3,5 quartos porque a lista do representante estava velha — o Art. 8 §4 pede a lista atualizada a cada rodada | Fazer os scripts buscarem a planilha (ver abaixo) |
 | 8 | Fidelidade da pizzaria fora do `localStorage` | Some ao trocar de aparelho e é forjável pelo próprio atleta | Backend |
 | 9 | Limpar o histórico do git | O repositório é público e o histórico ainda tem número USP, e-mail USP e código de e-Card reais | Decisão sua (reescrita é destrutiva) |
 | 10 | Testes automatizados | Só existe `tests/reservas.test.mjs` (regra do IPR); o resto foi validado à mão no navegador | — |
@@ -114,10 +114,13 @@ Além disso, §1 vale para número par **e menor que 15**, e §2 para ímpar **e
 menor que 16** — com 17 inscritos (Basquete M, Futsal F, Futsal M) nenhum dos
 dois se aplica. Como a liga faz na prática?
 
-**D2 — Critérios de desempate.** O regulamento remete aos "Regulamentos
-Específicos de Modalidades", documento que não está no repositório. Sem ele não
-dá para recalcular classificação a partir de resultados simulados — só para
-simular o mata-mata a partir da classificação já publicada.
+*Indício da prática (grupo da gestão, set/2026):* o Futebol de Campo, com 10
+inscritas, foi montado com 6 na Ouro (quartas, semi e final) e 4 na Prata (semi e
+final) — o mesmo que o §1 e o simulador do site dão. Falta saber o caso de 17.
+
+**D2 — Critérios de desempate.** *Respondida, ver seção 4.* O texto antigo dizia
+que o regulamento específico não estava no repositório — estava: é o Capítulo XIV
+do próprio PDF em `documentos/`.
 
 **D3 — Quem administra.** Quantas pessoas vão operar a ferramenta, e em quais
 papéis (diretoria, representante de atlética, mesa)? Isso define o modelo de
@@ -149,6 +152,16 @@ de IPR alto pode acabar no velódromo enquanto um de IPR baixo fica no módulo,
 quando os horários pedidos não coincidem. É isso que a gestão quer? Enquanto não
 houver resposta, a simulação mostra o efeito, mas não serve como grade oficial.
 
+**D9 — O que o site diz na mesa.** O Art. 8 §5 diz que "o representante da
+partida não tem poder de autorizar ou não a participação de um atleta", e o §2
+manda o representante *notificar a entidade* antes do jogo. A área restrita e o
+sandbox mostram "Liberado para jogar" e "Impedido", que soam como autorização.
+Trocar para algo como "Filiação regular" e "Filiação irregular — avisar a
+atlética" deixaria o site alinhado ao regulamento. Além disso, o Art. 9 §8 não
+aceita a Carteirinha USP como documento oficial: a carteirinha da LAAUSP e o
+e-Card só conferem filiação, o RG (ou outro documento do §6) continua obrigatório.
+Decisão da gestão: mudar o texto?
+
 ---
 
 ## 4. Decidido
@@ -160,5 +173,24 @@ houver resposta, a simulação mostra o efeito, mas não serve como grade oficia
 - **Elegibilidade por filiação, não por ficha.** Artigo 7 e Artigo 8 §1:
   qualquer atleta filiado regular de uma das atléticas da equipe pode jogar
   qualquer modalidade. Modalidade e naipe na ficha são intenção, não restrição.
+- **Critérios de desempate (fecha D2).** Estão no Capítulo XIV do regulamento.
+  Fase de classificação:
+  - Basquete: vitória 2, derrota 1, W.O. 0 (20×0). Desempate: confronto direto,
+    vitórias, média de saldo de pontos, média de pontos pró, média de pontos
+    sofridos, média de expulsões, sorteio.
+  - Futebol e Futsal: vitória 3, empate 1, derrota 0, W.O. −1 (3×0). Desempate:
+    confronto direto, saldo de gols, gols pró, gols contra, cartões vermelhos
+    (e amarelos no futebol), sorteio. No futsal o texto pula do inciso V para o VII.
+  - Handebol: vitória 3, empate 1, derrota 0, W.O. −1 (10×0). Desempate: confronto
+    direto, média de saldo de gols, média de gols pró, média de gols contra,
+    sorteio.
+  - Vôlei: 2-0 vale 3, 2-1 vale 2, 1-2 vale 1, 0-2 vale 0, W.O. −1. Desempate:
+    vitórias, confronto direto, sets average, pontos average, sorteio.
+  - Tênis de Campo: vitória 1, derrota 0, W.O. −1. Desempate: confronto direto,
+    saldo de sets, sets ganhos, saldo de games, sorteio.
+  Isso destrava recalcular a classificação a partir de resultados simulados.
+- **Faixa das reservas.** A LAAUSP distribui reservas em dois períodos: 11h–14h e
+  17h–21h (Manual de DGEs 2026). A planilha de pedidos tem ODP e Preferência de
+  Horário (PH) por dia. O sandbox usa 17h–21h.
 - **Repositório público.** Feito em 21/09/2026, com os dados pessoais do estado
   atual já removidos. O histórico não foi reescrito.

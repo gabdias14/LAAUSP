@@ -1164,7 +1164,8 @@ document.getElementById("np-modalidade").append(...[...new Set(exemploReservas.p
   .map((m) => el("option", { value: m, text: m })));
 document.getElementById("np-dia").append(...DIAS.map(([valor, nome]) => el("option", { value: valor, text: nome })));
 const meiasHoras = [];
-for (let t = paraMinutos("17:00"); t <= paraMinutos("23:00"); t += 30) meiasHoras.push(paraHora(t));
+// Faixa noturna em que a LAAUSP distribui as reservas (Manual de DGEs 2026).
+for (let t = paraMinutos("17:00"); t <= paraMinutos("21:00"); t += 30) meiasHoras.push(paraHora(t));
 document.getElementById("np-inicio").append(...meiasHoras.slice(0, -2).map((h) => el("option", { value: h, text: h })));
 document.getElementById("np-fim").append(...meiasHoras.slice(2).map((h) => el("option", { value: h, text: h })));
 document.getElementById("np-inicio").value = "19:00";
