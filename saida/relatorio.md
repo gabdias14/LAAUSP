@@ -11,7 +11,7 @@
 
 | Etapa | Momento | Segmento | Contatos |
 | --- | --- | --- | --- |
-| Aviso de atraso na produção | disparo de hoje | `todos` | 63 |
+| Pedido chegou — retirada na salinha | disparo de hoje | `todos` | 63 |
 
 ## Grade de tamanhos
 

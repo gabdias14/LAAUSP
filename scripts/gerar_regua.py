@@ -62,6 +62,7 @@ COLUNAS = {
     "comprovante": ("comprovante de pagamento",),
     "instituto": ("instituto/atletica de origem", "instituto"),
     "pago": ("pago",),
+    "parcela2_paga": ("2a parcela paga", "2ª parcela paga", "pago2x"),
 }
 
 
@@ -80,6 +81,7 @@ class Pedido:
     pagamento: str = ""
     comprovante: str = ""
     instituto: str = ""
+    parcela2_paga: str = ""
     alertas: list[str] = field(default_factory=list)
 
     @property
@@ -102,6 +104,11 @@ class Pedido:
     @property
     def parcelado(self) -> bool:
         return "2x" in self.pagamento.lower()
+
+    @property
+    def parcela_em_aberto(self) -> bool:
+        paga = self.parcela2_paga.strip().lower().startswith(("s", "t", "1"))
+        return self.parcelado and not paga
 
     @property
     def personalizado(self) -> bool:
@@ -168,6 +175,7 @@ def ler_pedidos(caminho: Path) -> list[Pedido]:
                 pagamento=valor("pagamento"),
                 comprovante=valor("comprovante"),
                 instituto=valor("instituto"),
+                parcela2_paga=valor("parcela2_paga"),
             )
             if alerta:
                 pedido.alertas.append(alerta)
@@ -212,6 +220,7 @@ SEGMENTOS = {
     "social_pendente": lambda p: p.social_pendente,
     "pagamento_pendente": lambda p: p.pagamento_pendente,
     "parcelado": lambda p: p.parcelado,
+    "parcela_em_aberto": lambda p: p.parcela_em_aberto,
     "personalizado": lambda p: p.personalizado,
     "sem_personalizacao": lambda p: not p.personalizado,
     "social": lambda p: p.e_social,
@@ -285,14 +294,22 @@ def montar_contexto(pedido: Pedido, config: dict) -> dict[str, str]:
             "\nSobre o pagamento: seu pedido ficou como *Pix parcelado em 2x* e a 2ª parcela "
             "ainda está em aberto por aqui. Como o lote atrasou, *não precisa pagar agora* — "
             "você acerta a 2ª parcela *na hora da retirada*, quando o pedido chegar.\n"
-            if pedido.parcelado
+            if pedido.parcela_em_aberto
+            else ""
+        ),
+        "bloco_pagamento": (
+            "\nLembrando: a 2ª parcela do seu Pix em 2x você acerta na hora da retirada.\n"
+            if pedido.parcela_em_aberto
+            else "\nAh, e falta finalizar o pagamento do seu pedido no crédito. "
+            "Me chama por aqui que eu te passo como fazer, tá?\n"
+            if pedido.pagamento_pendente
             else ""
         ),
         "pagamento_frase": (
             "com o pagamento no crédito ainda a finalizar"
             if pedido.pagamento_pendente
             else "com a 2ª parcela do Pix ainda em aberto"
-            if pedido.parcelado
+            if pedido.parcela_em_aberto
             else "já pago e reservado no seu nome"
         ),
     }

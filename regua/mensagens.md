@@ -8,7 +8,8 @@ Placeholders disponíveis: `{primeiro_nome}` `{nome}` `{tamanho}`
 `{valor}` `{produto}` `{organizacao}` `{assinatura}` `{responsavel_nome}`
 `{responsavel_link}` `{prazo_pendencia}` `{data_producao}` `{data_retirada}`
 `{horario_retirada}` `{local_retirada}` `{link_form_correcao}` `{pagamento_frase}` `{bloco_parcela}` `{chave_pix}`
-`{prazo_pagamento}` `{nova_previsao}` `{motivo_atraso}`.
+`{prazo_pagamento}` `{nova_previsao}` `{motivo_atraso}` `{bloco_pagamento}`
+`{opcao_1}` `{opcao_2}` `{opcao_3}`.
 
 Formatação do WhatsApp: `*negrito*`, `_itálico_`.
 
@@ -89,7 +90,7 @@ A previsão de entrega é {data_retirada}. Assim que chegar, eu te aviso por aqu
 
 ## 5b-atraso :: Aviso de atraso na produção :: disparo de hoje
 alvo: todos
-ativo: sim
+ativo: nao
 objetivo: avisar o atraso, assumir a causa, prometer o aviso da retirada e, para quem parcelou em 2x, jogar a 2ª parcela para a entrega
 ---
 Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 🧡💙
@@ -186,3 +187,21 @@ Tô abrindo a lista de avisos do *próximo lote* da {organizacao} (quem está ne
 Quer entrar? Responde *EU QUERO*.
 
 E me conta: você pratica alguma modalidade ou quer começar? Tem treino aberto rolando e dá pra te encaixar com o pessoal do seu instituto ({instituto}) 🏐🏀🥋
+
+## 11-retirada-salinha :: Pedido chegou — retirada na salinha :: disparo de hoje
+alvo: todos
+ativo: sim
+objetivo: avisar que o pedido está disponível e fechar o dia de retirada na salinha da LAAUSP
+---
+Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 🧡💙
+
+Seu *{produto}* chegou! (tamanho *{tamanho}*, {personalizacao_frase})
+
+A retirada é na *{local_retirada}*. Qual desses dias funciona melhor pra você?
+
+*1)* {opcao_1}
+*2)* {opcao_2}
+*3)* {opcao_3}
+{bloco_pagamento}
+Me responde *1*, *2* ou *3* que eu já anoto. Se nenhum dia der certo, me avisa que a gente combina 🦕
+{assinatura}

@@ -15,7 +15,10 @@
   "data_producao": "a definir",
   "data_retirada": "a definir",
   "horario_retirada": "a definir",
-  "local_retirada": "a definir",
+  "local_retirada": "salinha da LAAUSP",
   "link_grupo": "",
-  "link_form_correcao": ""
+  "link_form_correcao": "",
+  "opcao_1": "Hoje (terça-feira)",
+  "opcao_2": "Quinta-feira",
+  "opcao_3": "Sexta-feira"
 }
