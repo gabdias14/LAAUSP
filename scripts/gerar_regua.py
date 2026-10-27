@@ -369,7 +369,14 @@ def escrever_csvs(etapas, pedidos, config) -> dict[str, int]:
     return contagem
 
 
-def escrever_painel(etapas, pedidos, config) -> None:
+def escrever_painel(etapas, pedidos, config, artifact: bool = False, titulo: str | None = None) -> None:
+    """Escreve o painel de disparo.
+
+    artifact=False -> painel.html, página completa para abrir no navegador.
+    artifact=True  -> painel_celular.html, fragmento no formato exigido pelo Artifact do claude.ai
+                      (sem <html>/<head>/<body>; título, meta e estilo no topo).
+    """
+    destino_alvo = "_blank" if artifact else "wa"  # no computador, reaproveita uma única aba do WhatsApp
     blocos = []
     for etapa in etapas:
         alvos = [p for p in pedidos if SEGMENTOS[etapa.alvo](p) and p.enviavel]
@@ -379,11 +386,12 @@ def escrever_painel(etapas, pedidos, config) -> None:
             chave = f"{etapa.id}::{pedido.telefone}"
             cartoes.append(
                 f"""      <li class="contato" data-chave="{html.escape(chave)}">
-        <label><input type="checkbox" class="feito"> <b>{html.escape(pedido.nome)}</b>
-          <span class="meta">{html.escape(pedido.tamanho)} · {html.escape(pedido.instituto)}</span></label>
-        <a class="enviar" target="_blank" rel="noopener"
-           href="{html.escape(link_whatsapp(pedido.telefone, mensagem))}">Abrir no WhatsApp</a>
-        <button class="copiar" type="button">Copiar texto</button>
+        <label><input type="checkbox" class="feito"> <b>{html.escape(pedido.nome.strip())}</b>
+          <span class="meta">{html.escape(pedido.tamanho)} · {html.escape(pedido.instituto.strip())}</span></label>
+        <div class="acoes">
+          <a class="enviar" target="{destino_alvo}" href="{html.escape(link_whatsapp(pedido.telefone, mensagem))}">Abrir no WhatsApp</a>
+          <button class="copiar" type="button">Copiar texto</button>
+        </div>
         <details><summary>ver mensagem</summary><pre>{html.escape(mensagem)}</pre></details>
       </li>"""
             )
@@ -410,124 +418,171 @@ def escrever_painel(etapas, pedidos, config) -> None:
     indice = "".join(
         f'<a href="#{html.escape(e.id)}">{html.escape(e.titulo)}</a>' for e in etapas
     )
-    pagina = f"""<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Régua de comunicação — {html.escape(config['produto'])}</title>
-<style>
-  :root {{ color-scheme: light dark; --bg:#fff; --fg:#14181d; --linha:#e3e6ea; --acento:#128c7e; --suave:#667; }}
-  @media (prefers-color-scheme: dark) {{
-    :root {{ --bg:#14181d; --fg:#eef1f4; --linha:#2b3138; --acento:#25d366; --suave:#9aa4ae; }}
-  }}
-  * {{ box-sizing: border-box; }}
-  body {{ margin:0; padding:16px; background:var(--bg); color:var(--fg);
-         font:16px/1.5 -apple-system,Segoe UI,Roboto,sans-serif; }}
-  main {{ max-width: 820px; margin: 0 auto; }}
-  h1 {{ font-size: 1.4rem; margin: 0 0 4px; }}
-  .sub {{ color: var(--suave); margin: 0 0 16px; }}
-  nav {{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }}
-  nav a {{ font-size:.85rem; padding:4px 10px; border:1px solid var(--linha);
-           border-radius:999px; text-decoration:none; color:var(--fg); }}
-  .etapa {{ border-top:1px solid var(--linha); padding-top:16px; margin-top:24px; }}
-  h2 {{ font-size:1.1rem; margin:0 0 4px; }}
-  .tag {{ font-size:.75rem; color:var(--suave); font-weight:400; }}
-  .objetivo, .contagem {{ margin:0 0 8px; color:var(--suave); font-size:.9rem; }}
-  ul {{ list-style:none; padding:0; margin:0; }}
-  .contato {{ border:1px solid var(--linha); border-radius:10px; padding:10px 12px; margin-bottom:8px; }}
-  .contato.ok {{ opacity:.45; }}
-  .meta {{ color:var(--suave); font-size:.85rem; }}
-  .enviar {{ display:inline-block; margin:8px 0 0; padding:6px 12px; border-radius:8px;
-             background:var(--acento); color:#fff; text-decoration:none; font-size:.9rem; }}
-  details {{ margin-top:8px; }}
-  summary {{ cursor:pointer; color:var(--suave); font-size:.85rem; }}
-  pre {{ white-space:pre-wrap; background:rgba(127,127,127,.1); padding:10px;
-         border-radius:8px; font:14px/1.5 ui-monospace,monospace; }}
-  .vazio {{ color:var(--suave); font-size:.9rem; }}
-  #fila {{ position:sticky; top:0; z-index:9; display:flex; gap:8px; align-items:center;
-           background:var(--bg); border:1px solid var(--linha); border-radius:10px;
-           padding:10px 12px; margin-bottom:16px; }}
-  #fila-txt {{ flex:1; font-size:.95rem; }}
-  #fila button {{ font:inherit; font-size:.9rem; padding:6px 12px; border-radius:8px;
-                  border:1px solid var(--linha); background:var(--acento); color:#fff; cursor:pointer; }}
-  #fila-pular {{ background:transparent; color:var(--fg); }}
-  .dica {{ font-size:.8rem; color:var(--suave); white-space:nowrap; }}
-  .contato.proximo {{ outline:2px solid var(--acento); }}
-  .copiar {{ font:inherit; font-size:.9rem; margin-left:8px; padding:6px 12px; cursor:pointer;
-             border:1px solid var(--linha); border-radius:8px; background:transparent; color:var(--fg); }}
-  #limpar {{ font:inherit; font-size:.85rem; margin-left:auto; padding:6px 10px; cursor:pointer;
-             border:1px solid var(--linha); border-radius:8px; background:transparent; color:var(--fg); }}
-  .aviso {{ background:#ffb020; color:#3a2600; padding:8px 12px; border-radius:8px;
-            font-size:.9rem; margin:0 0 10px; }}
-  .aviso code {{ background:rgba(0,0,0,.12); padding:1px 4px; border-radius:4px; }}
-  .bloqueada .enviar {{ background:#8b949e; }}
-</style>
-</head>
-<body>
-<main>
-  <h1>Régua de comunicação — {html.escape(config['produto'])}</h1>
-  <p class="sub">Abra cada contato no WhatsApp com a mensagem já escrita. O check fica salvo neste navegador.</p>
+    titulo_pagina = titulo or f"Régua de comunicação — {config['produto']}"
+
+    estilo = """
+  /* Layout: barra fixa com o próximo contato no topo; abaixo, uma lista de cartões por etapa. */
+  :root { --bg:#ffffff; --fg:#14181d; --linha:#dfe3e8; --suave:#58626d; --acento:#0b7a6d; --acento-fg:#ffffff;
+          --chip:#f1f4f6; --aviso-bg:#ffd37a; --aviso-fg:#3a2600; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#12171c; --fg:#eef1f4; --linha:#2b3239; --suave:#98a3ae; --acento:#2fd36f;
+          --acento-fg:#06281a; --chip:#1b2229; --aviso-bg:#5a4208; --aviso-fg:#ffe9b8; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg:#12171c; --fg:#eef1f4; --linha:#2b3239; --suave:#98a3ae; --acento:#2fd36f;
+          --acento-fg:#06281a; --chip:#1b2229; --aviso-bg:#5a4208; --aviso-fg:#ffe9b8; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding-block:16px; padding-left:max(16px, env(safe-area-inset-left, 0px));
+         padding-right:max(16px, env(safe-area-inset-right, 0px)); background:var(--bg); color:var(--fg);
+         font:16px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px);
+                 z-index:10; background:var(--bg); }
+  main { max-width:820px; margin:0 auto; }
+  h1 { font-size:1.35rem; margin:0 0 4px; text-wrap:balance; }
+  .sub { color:var(--suave); margin:0 0 16px; font-size:.95rem; }
+  nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  nav a { font-size:.85rem; padding:4px 10px; border:1px solid var(--linha); border-radius:999px;
+          text-decoration:none; color:var(--fg); }
+  .etapa { border-top:1px solid var(--linha); padding-top:16px; margin-top:24px; }
+  h2 { font-size:1.1rem; margin:0 0 4px; }
+  .tag { font-size:.75rem; color:var(--suave); font-weight:400; }
+  .objetivo, .contagem { margin:0 0 8px; color:var(--suave); font-size:.9rem; }
+  ul { list-style:none; padding:0; margin:0; }
+  .contato { border:1px solid var(--linha); border-radius:10px; padding:10px 12px; margin-bottom:8px; min-width:0; }
+  .contato.ok { opacity:.5; }
+  .contato.proximo { outline:2px solid var(--acento); }
+  .contato label { display:block; overflow-wrap:anywhere; }
+  .meta { color:var(--suave); font-size:.85rem; }
+  .acoes { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .botao, .enviar, .copiar, #fila button { font:inherit; font-size:.95rem; min-height:44px; padding:0 14px;
+        display:inline-flex; align-items:center; justify-content:center; border-radius:8px; cursor:pointer;
+        text-decoration:none; border:1px solid var(--linha); background:transparent; color:var(--fg); }
+  .botao, .enviar { background:var(--acento); border-color:var(--acento); color:var(--acento-fg); font-weight:600; }
+  .botao[aria-disabled="true"] { opacity:.5; pointer-events:none; }
+  :is(a, button, summary):focus-visible { outline:3px solid var(--acento); outline-offset:2px; }
+  details { margin-top:8px; }
+  summary { cursor:pointer; color:var(--suave); font-size:.85rem; }
+  pre { white-space:pre-wrap; overflow-wrap:anywhere; background:var(--chip); padding:10px; border-radius:8px;
+        font:14px/1.5 ui-monospace, Menlo, monospace; }
+  .vazio { color:var(--suave); font-size:.9rem; }
+  #fila { position:sticky; top:env(safe-area-inset-top, 0px); z-index:9; display:flex; flex-wrap:wrap; gap:8px;
+          align-items:center; background:var(--bg); border:1px solid var(--linha); border-radius:10px;
+          padding:10px 12px; margin-bottom:16px; }
+  #fila-txt { flex:1 1 100%; font-size:.95rem; min-width:0; overflow-wrap:anywhere; }
+  #fila .botao { flex:1 1 auto; }
+  .dica { font-size:.8rem; color:var(--suave); }
+  @media (hover:none) { .dica { display:none; } }
+  .aviso { background:var(--aviso-bg); color:var(--aviso-fg); padding:8px 12px; border-radius:8px;
+           font-size:.9rem; margin:0 0 10px; }
+  .aviso code { background:rgba(0,0,0,.15); padding:1px 4px; border-radius:4px; }
+  .bloqueada .enviar { opacity:.5; }
+"""
+
+    corpo = f"""<main>
+  <h1>{html.escape(titulo_pagina)}</h1>
+  <p class="sub">Toque em “Abrir e marcar”: o WhatsApp abre com a mensagem pronta. Envie e volte para esta página. O progresso fica salvo neste aparelho.</p>
   <nav>{indice}</nav>
   <div id="fila">
-    <span id="fila-txt">—</span><span class="dica">Enter = abrir o próximo</span>
-    <button id="fila-btn">Abrir e marcar</button>
-    <button id="fila-pular" title="Pular sem marcar">Pular</button>
-    <button id="limpar" title="Desmarcar todos os enviados">Desmarcar todos</button>
+    <span id="fila-txt">—</span>
+    <a id="fila-btn" class="botao" target="{destino_alvo}" href="#">Abrir e marcar</a>
+    <button id="fila-pular" type="button" title="Pular sem marcar">Pular</button>
+    <button id="limpar" type="button" title="Desmarcar todos os enviados">Desmarcar todos</button>
+    <span class="dica">Enter = abrir o próximo</span>
   </div>
 {chr(10).join(blocos)}
 </main>
 <script>
-  const guardadas = JSON.parse(localStorage.getItem('regua-enviados') || '{{}}');
-  document.querySelectorAll('.contato').forEach(item => {{
-    const chave = item.dataset.chave;
+  const CHAVE = 'regua-enviados';
+  function lerGuardadas() {{ try {{ return JSON.parse(localStorage.getItem(CHAVE) || '{{}}'); }} catch (e) {{ return {{}}; }} }}
+  function salvar(g) {{ try {{ localStorage.setItem(CHAVE, JSON.stringify(g)); }} catch (e) {{}} }}
+  const guardadas = lerGuardadas();
+  const contatos = [...document.querySelectorAll('.contato')];
+  contatos.forEach(item => {{
     const caixa = item.querySelector('.feito');
-    caixa.checked = !!guardadas[chave];
+    caixa.checked = !!guardadas[item.dataset.chave];
     item.classList.toggle('ok', caixa.checked);
     caixa.addEventListener('change', () => {{
-      guardadas[chave] = caixa.checked;
-      localStorage.setItem('regua-enviados', JSON.stringify(guardadas));
+      guardadas[item.dataset.chave] = caixa.checked;
+      salvar(guardadas);
       item.classList.toggle('ok', caixa.checked);
+      proximo();
     }});
   }});
-  const fila = () => [...document.querySelectorAll('.contato')].filter(
-    i => !i.querySelector('.feito').checked && !i.dataset.pulado);
+
+  const fila = () => contatos.filter(i => !i.querySelector('.feito').checked && !i.dataset.pulado);
   const txt = document.getElementById('fila-txt');
   const btn = document.getElementById('fila-btn');
   function proximo() {{
-    document.querySelectorAll('.contato.proximo').forEach(i => i.classList.remove('proximo'));
+    contatos.forEach(i => i.classList.remove('proximo'));
     const item = fila()[0];
-    if (!item) {{ txt.textContent = 'Fila concluída 🎉'; btn.disabled = true; return null; }}
+    if (!item) {{
+      txt.textContent = 'Fila concluída';
+      btn.setAttribute('aria-disabled', 'true');
+      btn.removeAttribute('href');
+      return;
+    }}
     item.classList.add('proximo');
-    const restantes = fila().length;
-    txt.textContent = `Próximo: ${{item.querySelector('b').textContent}} · faltam ${{restantes}}`;
-    btn.disabled = false;
-    return item;
+    btn.href = item.querySelector('.enviar').href;
+    btn.removeAttribute('aria-disabled');
+    txt.textContent = 'Próximo: ' + item.querySelector('b').textContent + ' · faltam ' + fila().length;
   }}
-  btn.addEventListener('click', () => {{
-    const item = fila()[0];
-    if (!item) return;
-    window.open(item.querySelector('.enviar').href, 'wa');
+  function marcar(item) {{
     const caixa = item.querySelector('.feito');
-    caixa.checked = true; caixa.dispatchEvent(new Event('change'));
-    proximo();
+    caixa.checked = true;
+    caixa.dispatchEvent(new Event('change'));
+  }}
+  // o link segue com o href atual; só depois da navegação a fila avança
+  btn.addEventListener('click', e => {{
+    const item = fila()[0];
+    if (!item || btn.getAttribute('aria-disabled') === 'true') {{ e.preventDefault(); return; }}
+    setTimeout(() => marcar(item), 0);
   }});
   document.getElementById('fila-pular').addEventListener('click', () => {{
     const item = fila()[0];
     if (item) {{ item.dataset.pulado = '1'; proximo(); }}
   }});
+  contatos.forEach(item => item.querySelector('.enviar').addEventListener('click', () => {{
+    const caixa = item.querySelector('.feito');
+    if (!caixa.checked) setTimeout(() => marcar(item), 0);
+  }}));
   proximo();
-  btn.focus();
   window.addEventListener('focus', () => btn.focus());
   document.addEventListener('keydown', e => {{
     if (!['Enter', ' ', 'ArrowRight'].includes(e.key)) return;
-    const alvo = e.target;
-    if (alvo.closest('button, a, input, textarea, summary')) return;  // o botão focado já reage sozinho
+    if (e.target.closest('button, a, input, textarea, summary')) return;  // o controle focado já reage sozinho
     e.preventDefault();
     btn.click();
   }});
-  document.querySelectorAll('.feito').forEach(c => c.addEventListener('change', proximo));
-  // clipboard falha em file:// e dentro de iframe sandbox: três rotas, da melhor para a manual
+
+  // confirmação dentro da página: confirm() não aparece no Artifact
+  const limpar = document.getElementById('limpar');
+  let armado = false, relogio = null;
+  limpar.addEventListener('click', () => {{
+    if (!armado) {{
+      armado = true;
+      limpar.textContent = 'Toque de novo para confirmar';
+      relogio = setTimeout(() => {{ armado = false; limpar.textContent = 'Desmarcar todos'; }}, 4000);
+      return;
+    }}
+    clearTimeout(relogio); armado = false; limpar.textContent = 'Desmarcar todos';
+    contatos.forEach(i => {{
+      delete i.dataset.pulado;
+      const c = i.querySelector('.feito');
+      if (c.checked) {{ c.checked = false; c.dispatchEvent(new Event('change')); }}
+    }});
+    proximo();
+  }});
+
+  // cópia: execCommand funciona em file://, a Clipboard API em páginas seguras, e por último o texto fica selecionado
+  function selecionar(alvo) {{
+    const cartao = alvo.closest('.contato');
+    cartao.querySelector('details').open = true;
+    const faixa = document.createRange();
+    faixa.selectNodeContents(cartao.querySelector('pre'));
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(faixa);
+    return 'Selecionado — copie';
+  }}
   function copiarTexto(texto, alvo) {{
     const area = document.createElement('textarea');
     area.value = texto;
@@ -541,50 +596,34 @@ def escrever_painel(etapas, pedidos, config) -> None:
     document.body.removeChild(area);
     if (ok) return Promise.resolve('Copiado ✓');
     if (navigator.clipboard && navigator.clipboard.writeText) {{
-      return navigator.clipboard.writeText(texto)
-        .then(() => 'Copiado ✓')
-        .catch(() => selecionar(alvo));
+      return navigator.clipboard.writeText(texto).then(() => 'Copiado ✓').catch(() => selecionar(alvo));
     }}
     return Promise.resolve(selecionar(alvo));
   }}
-  function selecionar(alvo) {{  // última rota: deixa o texto selecionado para o Ctrl+C
-    const pre = alvo.closest('.contato').querySelector('pre');
-    alvo.closest('.contato').querySelector('details').open = true;
-    const faixa = document.createRange();
-    faixa.selectNodeContents(pre);
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(faixa);
-    return 'Selecionado — Ctrl+C';
-  }}
-  document.querySelectorAll('.copiar').forEach(botao => {{
-    botao.addEventListener('click', () => {{
-      const texto = botao.closest('.contato').querySelector('pre').textContent;
-      copiarTexto(texto, botao).then(msg => {{
-        botao.textContent = msg;
-        setTimeout(() => {{ botao.textContent = 'Copiar texto'; }}, 2500);
-      }});
+  document.querySelectorAll('.copiar').forEach(botao => botao.addEventListener('click', () => {{
+    const texto = botao.closest('.contato').querySelector('pre').textContent;
+    copiarTexto(texto, botao).then(msg => {{
+      botao.textContent = msg;
+      setTimeout(() => {{ botao.textContent = 'Copiar texto'; }}, 2500);
     }});
-  }});
-  document.getElementById('limpar').addEventListener('click', () => {{
-    if (!confirm('Desmarcar todos os contatos já enviados?')) return;
-    document.querySelectorAll('.feito').forEach(c => {{
-      if (c.checked) {{ c.checked = false; c.dispatchEvent(new Event('change')); }}
-    }});
-    document.querySelectorAll('.contato').forEach(i => delete i.dataset.pulado);
-    proximo();
-  }});
-  document.querySelectorAll('.enviar').forEach(link => {{
-    link.addEventListener('click', () => {{
-      const caixa = link.closest('.contato').querySelector('.feito');
-      if (!caixa.checked) {{ caixa.checked = true; caixa.dispatchEvent(new Event('change')); }}
-    }});
-  }});
-</script>
-</body>
-</html>
-"""
-    (SAIDA / "painel.html").write_text(pagina, encoding="utf-8")
+  }}));
+</script>"""
+
+    if artifact:
+        pagina = (
+            f"<title>{html.escape(titulo_pagina)}</title>\n"
+            '<meta name="claude:viewport-fit-sides" content="cover">\n'
+            f"<style>{estilo}</style>\n{corpo}\n"
+        )
+        nome = "painel_celular.html"
+    else:
+        pagina = (
+            '<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            f"<title>{html.escape(titulo_pagina)}</title>\n<style>{estilo}</style>\n</head>\n<body>\n{corpo}\n</body>\n</html>\n"
+        )
+        nome = "painel.html"
+    (SAIDA / nome).write_text(pagina, encoding="utf-8")
 
 
 def escrever_relatorio(etapas, pedidos, contagem) -> None:
@@ -654,6 +693,7 @@ def main() -> None:
     SAIDA.mkdir(parents=True, exist_ok=True)
     contagem = escrever_csvs(etapas, pedidos, config)
     escrever_painel(etapas, pedidos, config)
+    escrever_painel(etapas, pedidos, config, artifact=True, titulo=f"Retirada {config['produto']}")
     escrever_relatorio(etapas, pedidos, contagem)
 
     print(f"{len(pedidos)} pedidos · {len(etapas)} etapas")
