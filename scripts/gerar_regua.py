@@ -63,6 +63,7 @@ COLUNAS = {
     "instituto": ("instituto/atletica de origem", "instituto"),
     "pago": ("pago",),
     "parcela2_paga": ("2a parcela paga", "2ª parcela paga", "pago2x"),
+    "nao_enviar": ("nao enviar",),
 }
 
 
@@ -82,6 +83,7 @@ class Pedido:
     comprovante: str = ""
     instituto: str = ""
     parcela2_paga: str = ""
+    nao_enviar: str = ""
     alertas: list[str] = field(default_factory=list)
 
     @property
@@ -116,7 +118,7 @@ class Pedido:
 
     @property
     def enviavel(self) -> bool:
-        return bool(self.telefone)
+        return bool(self.telefone) and not self.nao_enviar.strip()
 
 
 def normalizar_telefone(bruto: str) -> tuple[str, str | None]:
@@ -176,7 +178,10 @@ def ler_pedidos(caminho: Path) -> list[Pedido]:
                 comprovante=valor("comprovante"),
                 instituto=valor("instituto"),
                 parcela2_paga=valor("parcela2_paga"),
+                nao_enviar=valor("nao_enviar"),
             )
+            if pedido.nao_enviar:
+                pedido.alertas.append(f"fora do envio: {pedido.nao_enviar}")
             if alerta:
                 pedido.alertas.append(alerta)
             if pedido.e_social and not pedido.atestado.strip():

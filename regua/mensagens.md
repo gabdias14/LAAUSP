@@ -197,7 +197,7 @@ Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 🧡💙
 
 Seu *{produto}* chegou! (tamanho *{tamanho}*, {personalizacao_frase})
 
-A retirada é na *{local_retirada}*. Qual desses dias funciona melhor pra você?
+A retirada é na *{local_retirada}*, das *{horario_retirada}*. Qual desses dias funciona melhor pra você?
 
 *1)* {opcao_1}
 *2)* {opcao_2}
