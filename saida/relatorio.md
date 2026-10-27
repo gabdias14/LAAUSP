@@ -1,7 +1,7 @@
 # Relatório da régua — Corta-vento G26
 
 - Pedidos lidos: **63**
-- Com telefone utilizável: **62**
+- Com telefone utilizável: **59**
 - Lote social: **15** (pendentes de atestado: **10**)
 - Pagamento em aberto (crédito): **3**
 - Pix parcelado em 2x: **8**
@@ -11,7 +11,7 @@
 
 | Etapa | Momento | Segmento | Contatos |
 | --- | --- | --- | --- |
-| Pedido chegou — retirada na salinha | disparo de hoje | `todos` | 62 |
+| Pedido chegou — retirada na salinha | disparo de hoje | `todos` | 59 |
 
 ## Grade de tamanhos
 
@@ -29,8 +29,10 @@
 
 | Linha | Nome | Telefone | Pendência |
 | --- | --- | --- | --- |
-| 17 | Gisele Carvalho | 1198117822 | 10 dígitos — o 9 foi acrescentado, confira |
+| 6 | Uiran Umbelino da Silva | 11 952790150 | fora do envio: Pular |
+| 17 | Gisele Carvalho | 1198117822 | fora do envio: WhatsApp inválido; 10 dígitos — o 9 foi acrescentado, confira |
 | 20 | Caio Alves dos Santos Baia | 11988178101 | lote social sem atestado de matrícula |
+| 21 | Ariane Minetto Araújo | 41991947799 | fora do envio: Reembolso da personalização |
 | 23 | Guilherme Anjinho | 11973302189 | lote social sem atestado de matrícula |
 | 25 | Guilherme cortes | 11915335606 | lote social sem atestado de matrícula |
 | 26 | José Víctor da Silva | 19 993318844 | lote social sem atestado de matrícula |
