@@ -197,6 +197,8 @@ Oi, {primeiro_nome}! Aqui é o Dias, da LAAUSP 🧡💙
 
 Seu *{produto}* chegou! (tamanho *{tamanho}*, {personalizacao_frase})
 
+Mais uma vez, desculpa pelo atraso — sabemos que a espera foi longa, e agradecemos muito a paciência.
+
 A retirada é na *{local_retirada}*, das *{horario_retirada}*. Qual desses dias funciona melhor pra você?
 
 *1)* {opcao_1}

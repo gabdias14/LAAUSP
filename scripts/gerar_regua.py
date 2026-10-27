@@ -452,6 +452,7 @@ def escrever_painel(etapas, pedidos, config) -> None:
   #fila button {{ font:inherit; font-size:.9rem; padding:6px 12px; border-radius:8px;
                   border:1px solid var(--linha); background:var(--acento); color:#fff; cursor:pointer; }}
   #fila-pular {{ background:transparent; color:var(--fg); }}
+  .dica {{ font-size:.8rem; color:var(--suave); white-space:nowrap; }}
   .contato.proximo {{ outline:2px solid var(--acento); }}
   .copiar {{ font:inherit; font-size:.9rem; margin-left:8px; padding:6px 12px; cursor:pointer;
              border:1px solid var(--linha); border-radius:8px; background:transparent; color:var(--fg); }}
@@ -469,7 +470,7 @@ def escrever_painel(etapas, pedidos, config) -> None:
   <p class="sub">Abra cada contato no WhatsApp com a mensagem já escrita. O check fica salvo neste navegador.</p>
   <nav>{indice}</nav>
   <div id="fila">
-    <span id="fila-txt">—</span>
+    <span id="fila-txt">—</span><span class="dica">Enter = abrir o próximo</span>
     <button id="fila-btn">Abrir e marcar</button>
     <button id="fila-pular" title="Pular sem marcar">Pular</button>
     <button id="limpar" title="Desmarcar todos os enviados">Desmarcar todos</button>
@@ -506,7 +507,7 @@ def escrever_painel(etapas, pedidos, config) -> None:
   btn.addEventListener('click', () => {{
     const item = fila()[0];
     if (!item) return;
-    window.open(item.querySelector('.enviar').href, '_blank', 'noopener');
+    window.open(item.querySelector('.enviar').href, 'wa');
     const caixa = item.querySelector('.feito');
     caixa.checked = true; caixa.dispatchEvent(new Event('change'));
     proximo();
@@ -516,6 +517,15 @@ def escrever_painel(etapas, pedidos, config) -> None:
     if (item) {{ item.dataset.pulado = '1'; proximo(); }}
   }});
   proximo();
+  btn.focus();
+  window.addEventListener('focus', () => btn.focus());
+  document.addEventListener('keydown', e => {{
+    if (!['Enter', ' ', 'ArrowRight'].includes(e.key)) return;
+    const alvo = e.target;
+    if (alvo.closest('button, a, input, textarea, summary')) return;  // o botão focado já reage sozinho
+    e.preventDefault();
+    btn.click();
+  }});
   document.querySelectorAll('.feito').forEach(c => c.addEventListener('change', proximo));
   // clipboard falha em file:// e dentro de iframe sandbox: três rotas, da melhor para a manual
   function copiarTexto(texto, alvo) {{
