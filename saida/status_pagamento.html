@@ -1,0 +1,145 @@
+<title>Status de pagamento — Corta-vento G26</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: resumo no topo, filtro por status, depois a lista. Tokens de cor no :root. */
+  :root { --bg:#ffffff; --fg:#14181d; --suave:#58626d; --linha:#dfe3e8; --chip:#f1f4f6;
+          --ok:#0b7a4b; --ok-bg:#dff5e8; --meio:#8a5a00; --meio-bg:#fff0cc; --nao:#a1281e; --nao-bg:#fde2df;
+          --acento:#0b7a6d; --acento-fg:#ffffff; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#12171c; --fg:#eef1f4; --suave:#98a3ae; --linha:#2b3239; --chip:#1b2229;
+          --ok:#6fe0a0; --ok-bg:#133222; --meio:#ffd27a; --meio-bg:#3a2c08; --nao:#ff9b90; --nao-bg:#3b1714;
+          --acento:#2fd36f; --acento-fg:#06281a; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg:#12171c; --fg:#eef1f4; --suave:#98a3ae; --linha:#2b3239; --chip:#1b2229;
+          --ok:#6fe0a0; --ok-bg:#133222; --meio:#ffd27a; --meio-bg:#3a2c08; --nao:#ff9b90; --nao-bg:#3b1714;
+          --acento:#2fd36f; --acento-fg:#06281a; color-scheme: dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding-block:16px; padding-left:max(16px, env(safe-area-inset-left, 0px));
+         padding-right:max(16px, env(safe-area-inset-right, 0px)); background:var(--bg); color:var(--fg);
+         font:16px/1.5 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.35rem; margin:0 0 4px; text-wrap:balance; }
+  .sub { color:var(--suave); margin:0 0 16px; font-size:.95rem; }
+  .resumo { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; margin-bottom:16px; }
+  .resumo button { font:inherit; text-align:left; padding:10px 12px; border-radius:10px; border:1px solid var(--linha);
+                   background:var(--chip); color:var(--fg); cursor:pointer; min-height:64px; }
+  .resumo .n { font-size:1.6rem; font-weight:700; font-variant-numeric:tabular-nums; display:block; }
+  .resumo .r { font-size:.8rem; color:var(--suave); }
+  .resumo button[aria-pressed="true"] { outline:2px solid var(--acento); }
+  :is(button, a):focus-visible { outline:3px solid var(--acento); outline-offset:2px; }
+  .reemb { border:1px solid var(--linha); border-radius:10px; padding:12px; margin-bottom:16px; }
+  .reemb h2 { font-size:1rem; margin:0 0 6px; }
+  .reemb li { margin:4px 0; font-size:.95rem; }
+  .reemb .valor { color:var(--suave); }
+  ul.lista { list-style:none; padding:0; margin:0; }
+  .linha { display:grid; grid-template-columns:auto minmax(0,1fr); gap:2px 10px; align-items:center;
+           padding:10px 0; border-bottom:1px solid var(--linha); }
+  .linha[hidden] { display:none !important; }
+  .pill { font-size:.75rem; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .pago { background:var(--ok-bg); color:var(--ok); }
+  .parcial { background:var(--meio-bg); color:var(--meio); }
+  .pendente { background:var(--nao-bg); color:var(--nao); }
+  .nome { font-weight:600; overflow-wrap:anywhere; min-width:0; }
+  .det { grid-column:2; color:var(--suave); font-size:.85rem; overflow-wrap:anywhere; }
+  .vazio { color:var(--suave); padding:12px 0; }
+</style>
+<main>
+  <h1>Status de pagamento — Corta-vento G26</h1>
+  <p class="sub">Calculado da base de vendas. Toque em um status para filtrar.</p>
+  <div class="resumo" role="group" aria-label="Filtrar por status">
+    <button type="button" data-f="Pago" aria-pressed="false"><span class="n">53</span><span class="r">pagos</span></button>
+    <button type="button" data-f="Parcial" aria-pressed="false"><span class="n">7</span><span class="r">2ª parcela em aberto</span></button>
+    <button type="button" data-f="Pendente" aria-pressed="false"><span class="n">3</span><span class="r">pendentes</span></button>
+  </div>
+  <section class="reemb" aria-labelledby="reemb-t">
+    <h2 id="reemb-t">Reembolsos pendentes</h2>
+    <ul>
+      <li><b>Ariane Minetto</b> · personalização <span class="valor">· valor a confirmar</span></li>
+      <li><b>Rhaissa Klaumann</b> · <span class="valor">valor a confirmar</span></li>
+    </ul>
+  </section>
+  <ul class="lista" id="lista">
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Gustavo Cirino</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Hei Yin</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Camila Facuri Silva Rassi</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Maria Eduarda Rodrigues Lisboa</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Uiran Umbelino da Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Eric Nascimento da Silva</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Diogo Spinelli</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Stella Silveira Joaquim</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Karolline Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">João Gabriel Paulino Ribeiro</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Ruan Siqueira</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Camila Laís</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Isabela Buxbaum Marinho Guerra</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Felipe Férrer</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pendente"><span class="pill pendente">Pendente</span><span class="nome">Lucas Galvão</span><span class="det">compra no crédito não finalizada: chamar o Gabriel</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Gisele Carvalho</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Maria Isabel Costacurta Teixeira de Freitas</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Henrique Ludovico Pretel</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Caio Alves dos Santos Baia</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Ariane Minetto Araújo</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Maíra Otero de Albuquerque</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Guilherme Anjinho</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Gabriel da Silva Ferraz</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Guilherme cortes</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">José Víctor da Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Filipe Teles</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Rhaissa Klaumann de Souza</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Emerson Toshio Kobaiyashi</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pendente"><span class="pill pendente">Pendente</span><span class="nome">Julia Reis</span><span class="det">compra no crédito não finalizada: chamar o Gabriel</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Rodrigo Caldeira</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Marina Ramos Giusti</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Fábio</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Diego Galvão Lins</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Ana Laura Obelenis da Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pendente"><span class="pill pendente">Pendente</span><span class="nome">Mayara Pereira Raposo</span><span class="det">compra no crédito não finalizada: chamar o Gabriel</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Rebeca Rufino Martins</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Bruna Duarte</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Marco Lira</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Ana Clara Mendes Franco</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Gabriel Gomes Venâncio</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Thaynã Miranda Ribeiro</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Arthur Alves</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Laura</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Julia cortes dos santos</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">THIAGO PADIN</span><span class="det">Pix em 2x quitado (2ª parcela paga)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Mel Calderaro Castro</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Marina Capani</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Marina Lima Oliveira</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Nina Drumond</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Nathalia Fukase</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Gabrielle Vitória Gomes Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Joao Victor Hipolito dos Santos</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Nina Drumons</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Jonas Santos</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Fabio Carvalho Costa</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Laura</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Thiago Bertucci</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Rafael Dias Gonçalves dos Santos</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Thamiris Ramos</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Parcial"><span class="pill parcial">Parcial</span><span class="nome">Júlia Carneiro</span><span class="det">1ª parcela paga; 2ª em aberto (acerta na retirada)</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Laisa Silva</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Matheus Tavares</span><span class="det">Pix à vista com comprovante</span></li>
+<li class="linha" data-s="Pago"><span class="pill pago">Pago</span><span class="nome">Manuela Moraes</span><span class="det">Pix à vista com comprovante</span></li>
+  </ul>
+  <p class="vazio" id="vazio" hidden>Ninguém neste status.</p>
+</main>
+<script>
+  const botoes = [...document.querySelectorAll('.resumo button')];
+  const linhas = [...document.querySelectorAll('.linha')];
+  const vazio = document.getElementById('vazio');
+  let ativo = null;
+  function filtrar(status) {
+    ativo = ativo === status ? null : status;
+    botoes.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.f === ativo)));
+    let visiveis = 0;
+    linhas.forEach(l => {
+      const mostra = !ativo || l.dataset.s === ativo;
+      l.hidden = !mostra;
+      if (mostra) visiveis++;
+    });
+    vazio.hidden = visiveis > 0;
+  }
+  botoes.forEach(b => b.addEventListener('click', () => filtrar(b.dataset.f)));
+</script>

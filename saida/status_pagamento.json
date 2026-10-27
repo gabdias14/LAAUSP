@@ -1,0 +1,380 @@
+[
+ {
+  "nome": "Gustavo Cirino",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Hei Yin",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Camila Facuri Silva Rassi",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Maria Eduarda Rodrigues Lisboa",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Uiran Umbelino da Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Eric Nascimento da Silva",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Diogo Spinelli",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Stella Silveira Joaquim",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Karolline Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "João Gabriel Paulino Ribeiro",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Ruan Siqueira",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Camila Laís",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Isabela Buxbaum Marinho Guerra",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Felipe Férrer",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Lucas Galvão",
+  "pagamento": "Crédito",
+  "status": "Pendente",
+  "detalhe": "compra no crédito não finalizada: chamar o Gabriel"
+ },
+ {
+  "nome": "Gisele Carvalho",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Maria Isabel Costacurta Teixeira de Freitas",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Henrique Ludovico Pretel",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Caio Alves dos Santos Baia",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Ariane Minetto Araújo",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Maíra Otero de Albuquerque",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Guilherme Anjinho",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Gabriel da Silva Ferraz",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Guilherme cortes",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "José Víctor da Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Filipe Teles",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Rhaissa Klaumann de Souza",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Emerson Toshio Kobaiyashi",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Julia Reis",
+  "pagamento": "Crédito",
+  "status": "Pendente",
+  "detalhe": "compra no crédito não finalizada: chamar o Gabriel"
+ },
+ {
+  "nome": "Rodrigo Caldeira",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Marina Ramos Giusti",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Fábio",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Diego Galvão Lins",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Ana Laura Obelenis da Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Mayara Pereira Raposo",
+  "pagamento": "Crédito",
+  "status": "Pendente",
+  "detalhe": "compra no crédito não finalizada: chamar o Gabriel"
+ },
+ {
+  "nome": "Rebeca Rufino Martins",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Bruna Duarte",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Marco Lira",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Ana Clara Mendes Franco",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Gabriel Gomes Venâncio",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Thaynã Miranda Ribeiro",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Arthur Alves",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Laura",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Julia cortes dos santos",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "THIAGO PADIN",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Pago",
+  "detalhe": "Pix em 2x quitado (2ª parcela paga)"
+ },
+ {
+  "nome": "Mel Calderaro Castro",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Marina Capani",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Marina Lima Oliveira",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Nina Drumond",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Nathalia Fukase",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Gabrielle Vitória Gomes Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Joao Victor Hipolito dos Santos",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Nina Drumons",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Jonas Santos",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Fabio Carvalho Costa",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Laura",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Thiago Bertucci",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Rafael Dias Gonçalves dos Santos",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Thamiris Ramos",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Júlia Carneiro",
+  "pagamento": "Pix Parcelado em 2x",
+  "status": "Parcial",
+  "detalhe": "1ª parcela paga; 2ª em aberto (acerta na retirada)"
+ },
+ {
+  "nome": "Laisa Silva",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Matheus Tavares",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ },
+ {
+  "nome": "Manuela Moraes",
+  "pagamento": "Pix Total em 1x",
+  "status": "Pago",
+  "detalhe": "Pix à vista com comprovante"
+ }
+]
